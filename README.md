@@ -5,3 +5,4 @@
 - ReactJS
 - Redux
 - Apollo GraphQL
+- Docker
