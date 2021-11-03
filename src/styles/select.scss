@@ -1,0 +1,30 @@
+@import "./variables.scss";
+
+.select-arrow {
+    position: relative;
+    display: grid;
+    &::before {
+        position: absolute;
+        width: 14px;
+        height: 14px;
+        content: '';
+        transform: translateY(-50%);
+        top: 50%;
+        left: 0.5rem;
+        background:url("../images/icones/world.svg");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    select {
+        font-size: .875rem;
+        line-height: 1.3rem;
+        position: relative;
+        padding: 0.5rem 1.375rem;
+        color: $white;
+        background-color: transparent;
+        border: 1px solid #aaa;
+        option {
+            background-color: $dim-gray;
+        }
+    }
+}
