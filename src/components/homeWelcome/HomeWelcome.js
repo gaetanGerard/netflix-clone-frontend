@@ -1,37 +1,53 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
 import React, { Fragment, useState, useEffect } from 'react'
 
+// Import Custom Components
 import Logo from '../ui/Logo';
 import Button from '../ui/Button';
 import Select from '../ui/Select';
+import Typography from '../ui/Typography';
+import InputText from '../ui/InputText';
 
+// Import images
+import section2Mobile from '../../images/home/mobile-0819.jpg';
+import boxshot from '../../images/home/boxshot.png';
+import downloadIcon from '../../images/home/download-icon.gif';
+import tv from '../../images/home/tv.png';
+import tvVideo from '../../images/home/video-tv-0819.m4v';
+
+// Import Styles
 import "../../styles/homeWelcome.scss";
 
+// Import Data
+import data from "../../data/home.json";
+
 const HomeWelcome = () => {
-    const [language, setLanguage] = useState(null);
+    const [language, setLanguage] = useState("Français");
     const languageOption = ["Français", "Nederlands", "English"];
+    const [langData, setLangData] = useState(data[language]);
+
+    useEffect(() => {
+        document.title = langData.documentTitle
+    }, [langData])
 
 
+    // TODO
     const signIn = (e) => {
         e.preventDefault();
-        console.log(e);
+        // console.log(e);
+    }
+
+    // TODO
+    const submitForm = (e) => {
+        // e.preventDefault();
     }
 
     const changeLanguage = (e) => {
         setLanguage(e.target.value);
+        setLangData(data[e.target.value]);
     }
 
-    useEffect(() => {
-        if (language === null) setLanguage(languageOption[0]);
-    /*
-    *
-    *
-    * Find solution for add dependencies whitout warning
-    *
-    */
-   // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [language])
-
-    console.log(language);
+    console.log(langData)
 
     return (
         <Fragment>
@@ -39,11 +55,65 @@ const HomeWelcome = () => {
                 <div className="header">
                     <Logo classname="svg-icon svg-icon-netflix-logo nfLogo" />
                     <div className="signInAndLanguage">
-                        <Select options={languageOption} selectedLanguage={language} onchange={(e) => changeLanguage(e)} />
-                        <Button btnType="button" btnText="Sign In" classname="btn auth-btn" onclick={(e) => signIn(e)} />
+                        <Select options={languageOption} name="language" selected={language} onchange={(e) => changeLanguage(e)} />
+                        <Button btnType="button" classname="btn auth-btn" onclick={(e) => signIn(e)}>{langData["section-1"].loginButton}</Button>
                     </div>
                 </div>
-                <div className="content"></div>
+                <div className="content">
+                    <Typography HTMLElement="h1" classname="hero-card">{langData["section-1"].title}</Typography>
+                    <Typography HTMLElement="h2" classname="our-story">{langData["section-1"].subtitle}</Typography>
+                    <div className="email-form">
+                        <Typography HTMLElement="h3" classname="title">{langData["section-1"].text}</Typography>
+                        <div className="inputContainer">
+                            <InputText fieldName="section-1-email" label={langData["section-1"].input.label} errorMsg={langData["section-1"].input.helperText} />
+                            <Button btnType="submit" classname="btn submitForm-btn" onclick={(e) => submitForm(e)}>
+                                <span>{langData["section-1"].input.buttonText}</span>
+                                <span className="right-chevron"></span>
+                            </Button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <span className="divider"></span>
+            <div className="section-2">
+                <div className="animation-container">
+                    <div className="animation-container-text">
+                        <Typography HTMLElement="h1" classname="animation-container-text-title">{langData["section-2"].title}</Typography>
+                        <Typography HTMLElement="h2" classname="animation-container-text-content">{langData["section-2"].text}</Typography>
+                    </div>
+                    <div className="animation-container-img">
+                        <div className="animation-container-img-container">
+                            <img src={tv} alt="TV" />
+                            <div className="animation-container-img-animation">
+                                <video autoplay muted loop>
+                                    <source src={tvVideo} type="video/m4v" />
+                                </video>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <span className="divider"></span>
+            <div className="section-3">
+                <div className="animation-container">
+                    <div className="animation-container-img">
+                        <img src={section2Mobile} alt="Mobile device picture" />
+                        <div className="animation-container-downloadAndWatch">
+                            <div className="downloadAndWatch-img">
+                                <img src={boxshot} alt="Stranger Things cover" />
+                            </div>
+                            <div className="downloadAndWatch-text">
+                                <Typography HTMLElement="p" classname="downloadAndWatch-text-title">{langData["section-3"].animation.title}</Typography>
+                                <Typography HTMLElement="p" classname="downloadAndWatch-text-par">{langData["section-3"].animation.text}</Typography>
+                            </div>
+                            <div className="downloadAndWatch-gif"></div>
+                        </div>
+                    </div>
+                    <div className="animation-container-text">
+                        <Typography HTMLElement="h1" classname="animation-container-text-title">{langData["section-3"].title}</Typography>
+                        <Typography HTMLElement="h2" classname="animation-container-text-content">{langData["section-3"].text}</Typography>
+                    </div>
+                </div>
             </div>
             <span className="divider"></span>
         </Fragment>

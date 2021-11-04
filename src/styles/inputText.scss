@@ -1,0 +1,102 @@
+@import "./variables.scss";
+
+@mixin label-active() {
+    font-size: 0.75rem;
+    transform: translateY(-14px);
+  }
+
+.form-container {
+    text-align: left;
+    .helperText {
+        padding: 3px;
+        color: $warning;
+        &-hide {
+            display: none;
+        }
+    }
+}
+
+.form-field {
+    display: block;
+
+    &--is-active {
+      .form-field-control {
+        &::after {
+        //   border-bottom: 2px solid $dim-gray;
+          transform: scaleX(150);
+        }
+      }
+      .form-field-label {
+        color: $dim-gray;
+        font-weight: 400;
+        @include label-active();
+      }
+    }
+    &--is-filled {
+      .form-field-label {
+        @include label-active();
+      }
+    }
+    &--is-empty {
+        .form-field-control {
+            &::after {
+                border-bottom: 2px solid $warning;
+                transform: scaleX(150);
+            }
+        }
+    }
+    .form-container {
+        .helperText-show {
+            display: block;
+        }
+    }
+}
+.form-field-label {
+    color: $dim-gray;
+    display: block;
+    font-size: 1.2rem;
+    font-weight: normal;
+    left: 0;
+    margin: 0;
+    padding: 18px 12px 0 ;
+    position: absolute;
+    top: 0;
+    transition: all $animation-duration;
+}
+.form-field-control {
+    background: #eee;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+
+    &::after {
+    //   border-bottom: 2px solid $dim-gray;
+      bottom: 0;
+      content: "";
+      display: block;
+      left: 0;
+      margin: 0 auto;
+      position: absolute;
+      right: 0;
+      transform: scaleX(0);
+      transition: all $animation-duration;
+      width: 1%;
+    }
+}
+.form-field-input,
+.form-field-textarea {
+    appearance: none;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid #999;
+    color: #333;
+    display: block;
+    font-size: 1.2rem;
+    margin-top: 24px;
+    outline: 0;
+    padding: 0 12px 10px 12px;
+    min-width: 450px;
+}
+.form-field-textarea {
+    height: 150px;
+}

@@ -59,6 +59,7 @@ table {
 body {
   margin: 0;
   font-family: 'Segoe UI', 'Roboto', 'Oxygen','Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',sans-serif;
+  overflow-x: hidden;
 }
 
 code {
@@ -74,4 +75,30 @@ code {
 	border: none;
 	background-color: transparent;
 	cursor: pointer;
+}
+
+/*
+*
+*
+* Default Typography
+*
+*/
+
+.typography-h1 {
+	font-size: 3.125rem;
+}
+.typography-h2 {
+	font-size: 1.625rem;
+}
+.typography-h3 {
+	font-size: 1.2rem;
+}
+.typography-h4 {
+	font-size: 1.1rem;
+}
+.typography-h5 {
+	font-size: 1rem;
+}
+.typography-h6 {
+	font-size: .725rem;
 }

@@ -1,0 +1,254 @@
+{
+    "Français": {
+        "documentTitle": "Netflix Belgique - Regardez des séries TV en ligne, Regardez des films en ligne",
+        "section-1": {
+            "title": "Films, séries TV et bien plus en illimité.",
+            "subtitle": "Où que vous soyez. Annulez à tout moment.",
+            "text": "Prêt à regarder Netflix ? Saisissez votre adresse e-mail pour vous abonner ou réactiver votre abonnement.",
+            "loginButton": "S'identifier",
+           "input": {
+                "label": "Adresse e-mail",
+                "buttonText": "Commencer",
+                "helperText": "L'e-mail est obligatoire !"
+            }
+        },
+        "section-2": {
+            "title": "Regardez Netflix sur votre TV.",
+            "text": "Regardez Netflix sur votre Smart TV, PlayStation, Xbox, Chromecast, Apple TV, lecteurs Blu-ray et bien plus."
+        },
+        "section-3": {
+            "title": "Téléchargez vos séries préférées pour les regarder hors connexion.",
+            "text": "Enregistrez vos programmes préférés et ayez toujours quelque chose à regarder.",
+            "animation": {
+                "title": "Stranger Things",
+                "text":"Téléchargement en cours..."
+            }
+        },
+        "section-4": {
+            "title": "Où que vous soyez.",
+            "text": "Regardez des films et séries TV en accès illimité sur votre TV, smartphone, tablette et ordinateur, tout compris."
+        },
+        "section-5": {
+            "title": "Créez des profils pour les enfants.",
+            "text": "Les enfants découvrent de nouvelles aventures et retrouvent leurs personnages préférés dans un espace bien à eux, déjà inclus dans votre abonnement."
+        },
+        "section-6": {
+            "title": "Foire aux questions",
+            "Accordion": [
+                {
+                    "title": "Que puis-je regarder sur Netflix ?",
+                    "content-1": "Netflix propose un vaste catalogue comprenant notamment des longs métrages, des documentaires, des séries TV, des animes et des programmes originaux Netflix primés. Regardez Netflix à volonté, quand vous le voulez.",
+                    "link": "Découvrez quelques-uns de nos contenus."
+                },
+                {
+                    "title": "Netflix, qu'est-ce que c'est ?",
+                    "content-1": "Netflix est un service de streaming qui propose une vaste sélection de séries TV, films, animes, documentaires et autres programmes primés sur des milliers d'appareils connectés à Internet.",
+                    "content-2": "Regardez tout ce que vous voulez, quand vous voulez, sans publicité et à un tarif mensuel très attractif. Découvrez de nouveaux films et séries TV chaque semaine, il y en a pour tous les goûts !"
+                },
+                {
+                    "title": "Combien coût Netflix ?",
+                    "content-1": "Regardez Netflix sur votre smartphone, tablette, Smart TV, ordinateur ou appareil de streaming, le tout pour un tarif mensuel fixe. Les forfaits vont de 8,99 € à 17,99 € par mois. Pas de contrat ni de frais supplémentaires."
+                },
+                {
+                    "title": "Où puis-je regarder Netflix ?",
+                    "content-1": "Netflix, c'est où vous voulez, quand vous voulez. Connectez-vous à votre compte pour regarder Netflix en ligne sur netflix.com depuis votre ordinateur ou tout appareil connecté à Internet avec l'application Netflix, comme les Smart TV, smartphones, tablettes, lecteurs de streaming et consoles de jeu.",
+                    "content-2": "Vous pouvez aussi télécharger vos séries préférées avec l'application iOS, Android ou Windows 10. Téléchargez des titres pour les regarder sur votre appareil mobile, même sans connexion Internet. Emportez Netflix partout avec vous."
+                },
+                {
+                    "title": "Comment puis-je annuler mon forfait ?",
+                    "content-1": "Netflix offre une grande souplesse. Pas de contrat compliqué. Sans engagement. Deux clics suffisent pour annuler votre compte en ligne. Pas de frais d'annulation : ouvrez ou fermez votre compte à tout moment."
+                },
+                {
+                    "title": "Est-ce que Netflix est adapté aux enfants ?",
+                    "content-1": "Netflix Jeunesse est inclus dans votre abonnement et offre un meilleur contrôle aux parents, ainsi qu'un espace dédié aux enfants, avec des films et des séries destinés à toute la famille.",
+                    "content-2": "Les profils Enfants comportent des fonctionnalités de contrôle parental avec code PIN permettant de modifier la catégorie d'âge des contenus que vos enfants peuvent regarder et de bloquer des titres spécifiques."
+                }
+            ],
+            "text": "Prêt à regarder Netflix ? Saisissez votre adresse e-mail pour vous abonner ou réactiver votre abonnement.",
+            "input": {
+                "label": "Adresse e-mail",
+                "buttonText": "Commencer",
+                "helperText": "L'e-mail est obligatoire !"
+            }
+        },
+        "section-7": {
+            "title": "Des questions ? Appelez le",
+            "tel": "0800-800-82",
+            "column-link": [
+                ["FAQ", "Relations Investisseurs", "Modes de lecture", "Mentions légales", "Seulement sur Netflix"],
+                ["Centre d'aide", "Recrutement", "Conditions d'utilisation", "Nous contacter"],
+                ["Compte", "Utiliser des cartes cadeaux", "Confidentialité", "Test de vitesse"],
+                ["Presse", "Acheter des cartes cadeaux", "Préférences de cookies", "Informations légales"]
+            ],
+            "copyright": "Netflix Belgique"
+        }
+    },
+    "Nederlands": {
+        "documentTitle": "Netflix België - Kijk series online, kijk films online",
+        "section-1": {
+            "title": "Onbeperkt series, films en meer kijken.",
+            "subtitle": "Kijk waar je wilt. Altijd opzegbaar.",
+            "text": "Klaar om te kijken? Voer je e-mailadres in om je lidmaatschap te starten of te hernieuwen.",
+            "loginButton": "Inloggen",
+           "input": {
+                "label": "e-mailadres",
+                "buttonText": "Aan de slag",
+                "helperText": "E-mailadres is vereist."
+            }
+        },
+        "section-2": {
+            "title": "Kijk op je tv.",
+            "text": "Kijk op smart-tv's, PlayStation, Xbox, Chromecast, Apple TV, blu-rayspelers en meer."
+        },
+        "section-3": {
+            "title": "Download series die je offline wilt kijken.",
+            "text": "Sla je favorieten eenvoudig op zodat je altijd wat kunt kijken.",
+            "animation": {
+                "title": "Stranger Things",
+                "text":"Downloaden..."
+            }
+        },
+        "section-4": {
+            "title": "Kijk overal.",
+            "text": "Stream onbeperkt series en films op je telefoon, tablet, laptop en tv, zonder meer te betalen."
+        },
+        "section-5": {
+            "title": "Maak profielen voor kids.",
+            "text": "Laat kids op avontuur gaan met hun favoriete personages in een omgeving die speciaal voor hen is gemaakt. Gratis bij je lidmaatschap."
+        },
+        "section-6": {
+            "title": "Veelgestelde vragen",
+            "Accordion": [
+                {
+                    "title": "Wat kan ik kijken op Netflix?",
+                    "content-1": "Netflix heeft een uitgebreide catalogus van speelfilms, documentaires, series, anime, bekroonde Netflix Originals en meer. Kijk zoveel je wilt en wanneer je wilt.",
+                    "link": "Bekijk enkele titels."
+                },
+                {
+                    "title": "Wat is Netflix?",
+                    "content-1": "Netflix is een streamingservice met een zeer groot aanbod van bekroonde series, films, anime, documentaires en nog veel meer op duizenden apparaten met een internetverbinding.",
+                    "content-2": "Je kijkt zo veel je wilt, wanneer je wilt, zonder enige vorm van reclame. En dit allemaal voor één lage prijs per maand. Er valt altijd iets nieuws te ontdekken en elke week worden er nieuwe series en films toegevoegd!"
+                },
+                {
+                    "title": "Hoeveel kost Netflix?",
+                    "content-1": "Kijk Netflix op je smartphone, tablet, smart-tv, laptop of streamingapparaat. Allemaal voor één lage prijs per maand. Abonnementen vanaf 8,99 € tot 17,99 € per maand. Geen bijkomende kosten of contracten."
+                },
+                {
+                    "title": "Waar kan ik kijken?",
+                    "content-1": "Kijk altijd en overal. Log in bij je account op de Netflix-website om direct online te kijken vanaf je computer of op een apparaat met een internetverbinding en de Netflix-app, zoals smart-tv's, smartphones, tablets, mediaspelers en gameconsoles.",
+                    "content-2": "Je kunt je favoriete series ook downloaden via de iOS-, Android- of Windows 10-app. Gebruik de downloadfunctie om onderweg en wanneer je geen internetverbinding hebt, te kunnen kijken. Neem Netflix overal mee."
+                },
+                {
+                    "title": "Hoe kan ik opzeggen?",
+                    "content-1": "Netflix is flexibel. Er zijn geen omslachtige contracten en geen verplichtingen aan verbonden. Je kunt je account makkelijk online annuleren. Je hoeft hiervoor maar twee keer te klikken. Er zijn geen annuleringskosten. Je kunt je account op elk gewenst moment opstarten of stopzetten."
+                },
+                {
+                    "title": "Is Netflix geschikt voor kids?",
+                    "content-1": "Netflix Kids maakt onderdeel uit van je lidmaatschap. Ouders kunnen erop vertrouwen dat hun kids gezinsvriendelijke series en films kijken in hun eigen omgeving.",
+                    "content-2": "Kids-profielen bevatten ouderlijk toezicht met een pincode, dus je kunt een leeftijdsclassificatie instellen voor content die kids mogen kijken. Ook kun je specifieke titels blokkeren die kids niet mogen zien."
+                }
+            ],
+            "text": "Klaar om te kijken? Voer je e-mailadres in om je lidmaatschap te starten of te hernieuwen.",
+            "input": {
+                "label": "e-mailadres",
+                "buttonText": "Aan de slag",
+                "helperText": "E-mailadres is vereist."
+            }
+        },
+        "section-7": {
+            "title": "Vragen? Bel",
+            "tel": "0800-800-82",
+            "column-link": [
+                ["Veelgestelde vragen", "Relaties met investeerders", "Hoe kun je Netflix kijken?", "Bedrijfsgegevens", "Alleen op Netflix"],
+                ["Helpcentrum", "Vacatures", "Gebruiksvoorwaarden", "Contact opnemen"],
+                ["Account", "Cadeaubonnen gebruiken", "Privacy", "Snelheidstest"],
+                ["Mediacenter", "Cadeaubonnen kopen", "Cookievoorkeuren", "Wettelijke bepalingen"]
+            ],
+            "copyright": "Netflix België"
+        }
+    },
+    "English": {
+        "documentTitle": "Netflix Belgium - Watch TV Shows Online, Watch Movies Online",
+        "section-1": {
+            "title": "Unlimited movies, TV shows, and more.",
+            "subtitle": "Watch anywhere. Cancel anytime.",
+            "text": "Ready to watch? Enter your email to create or restart your membership.",
+            "loginButton": "Sign In",
+           "input": {
+                "label": "Email adress",
+                "buttonText": "Get Started",
+                "helperText": "Email is required!"
+            }
+        },
+        "section-2": {
+            "title": "Enjoy on your TV.",
+            "text": "Watch on Smart TVs, Playstation, Xbox, Chromecast, Apple TV, Blu-ray players, and more."
+        },
+        "section-3": {
+            "title": "Download your shows to watch offline.",
+            "text": "Save your favorites easily and always have something to watch.",
+            "animation": {
+                "title": "Stranger Things",
+                "text": "Downloading..."
+            }
+        },
+        "section-4": {
+            "title": "Watch everywhere.",
+            "text": "Stream unlimited movies and TV shows on your phone, tablet, laptop, and TV without paying more."
+        },
+        "section-5": {
+            "title": "Create profiles for kids.",
+            "text": "Send kids on adventures with their favorite characters in a space made just for them—free with your membership."
+        },
+        "section-6": {
+            "title": "Frequently Asked Questions",
+            "Accordion": [
+                {
+                    "title": "What can I watch on Netflix?",
+                    "content-1": "Netflix has an extensive library of feature films, documentaries, TV shows, anime, award-winning Netflix originals, and more. Watch as much as you want, anytime you want.",
+                    "link": "Check out some of our content."
+                },
+                {
+                    "title": "What is Netflix?",
+                    "content-1": "Netflix is a streaming service that offers a wide variety of award-winning TV shows, movies, anime, documentaries, and more on thousands of internet-connected devices.",
+                    "content-2": "You can watch as much as you want, whenever you want without a single commercial – all for one low monthly price. There's always something new to discover and new TV shows and movies are added every week!"
+                },
+                {
+                    "title": "How much does Netflix cost?",
+                    "content-1": "Watch Netflix on your smartphone, tablet, Smart TV, laptop, or streaming device, all for one fixed monthly fee. Plans range from 8,99 € to 17,99 € a month. No extra costs, no contracts."
+                },
+                {
+                    "title": "Where can I watch?",
+                    "content-1": "Watch anywhere, anytime. Sign in with your Netflix account to watch instantly on the web at netflix.com from your personal computer or on any internet-connected device that offers the Netflix app, including smart TVs, smartphones, tablets, streaming media players and game consoles.",
+                    "content-2": "You can also download your favorite shows with the iOS, Android, or Windows 10 app. Use downloads to watch while you're on the go and without an internet connection. Take Netflix with you anywhere."
+                },
+                {
+                    "title": "How do I cancel?",
+                    "content-1": "Netflix is flexible. There are no pesky contracts and no commitments. You can easily cancel your account online in two clicks. There are no cancellation fees – start or stop your account anytime."
+                },
+                {
+                    "title": "Is Netflix good for kids?",
+                    "content-1": "The Netflix Kids experience is included in your membership to give parents control while kids enjoy family-friendly TV shows and movies in their own space.",
+                    "content-2": "Kids profiles come with PIN-protected parental controls that let you restrict the maturity rating of content kids can watch and block specific titles you don’t want kids to see."
+                }
+            ],
+            "text": "Ready to watch? Enter your email to create or restart your membership.",
+            "input": {
+                "label": "Email adress",
+                "buttonText": "Get Started",
+                "helperText": "Email is required!"
+            }
+        },
+        "section-7": {
+            "title": "Questions? Call",
+            "tel": "0800-800-82",
+            "column-link": [
+                ["FAQ", "Investor Relations", "Ways to Watch", "Corporate Information", "Only on Netflix"],
+                ["Help Center", "Jobs", "Terms of Use", "Contact Us"],
+                ["Account", "Redeem Gift Cards", "Privacy", "Speed Test"],
+                ["Media Center", "Buy Gift Cards", "Cookie Preferences", "Legal Notices"]
+            ],
+            "copyright": "Netflix Belgium"
+        }
+    }
+}
