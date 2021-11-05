@@ -207,6 +207,38 @@
     }
 }
 
+.section-7  {
+    @include section;
+    padding-bottom: 0;
+    margin: 0 auto;
+    .footer-container {
+        margin-top: 0;
+        min-width: 190px;
+        width: 100%;
+        padding-bottom: 20px;
+        font-size: $font-size-normal;
+        color: $dim-gray;
+        .site-footer {
+            margin: 0 auto;
+            width: 815px;
+            display: grid;
+            grid-template-rows: 5% 80% 10% 5%;
+            align-content: space-between;
+            justify-content: start;
+            text-align: left;
+            .phone-number {
+                a {
+                    color: $dim-gray;
+                    text-decoration: none;
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+}
+
 .divider {
     display: block;
     min-width: 100vw;

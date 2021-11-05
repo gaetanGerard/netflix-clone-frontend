@@ -166,6 +166,13 @@ const HomeWelcome = () => {
                     </div>
                 </div>
                 <span className="divider"></span>
+                <div className="section-7">
+                    <div className="footer-container">
+                        <div className="site-footer">
+                            <Typography HTMLElement="p" classname="phone-number">{langData["section-7"].title} <a href="TO BE DEFINE">{langData["section-7"].tel}</a></Typography>
+                        </div>
+                    </div>
+                </div>
             </Fragment>
         )
     } else {
