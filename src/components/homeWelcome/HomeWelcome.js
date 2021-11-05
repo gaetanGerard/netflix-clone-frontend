@@ -11,9 +11,10 @@ import InputText from '../ui/InputText';
 // Import images
 import section2Mobile from '../../images/home/mobile-0819.jpg';
 import boxshot from '../../images/home/boxshot.png';
-import downloadIcon from '../../images/home/download-icon.gif';
+import devicePile from '../../images/home/device-pile.png';
 import tv from '../../images/home/tv.png';
 import tvVideo from '../../images/home/video-tv-0819.m4v';
+import videoDevice from '../../images/home/video-devices.m4v';
 
 // Import Styles
 import "../../styles/homeWelcome.scss";
@@ -85,8 +86,8 @@ const HomeWelcome = () => {
                         <div className="animation-container-img-container">
                             <img src={tv} alt="TV" />
                             <div className="animation-container-img-animation">
-                                <video autoplay muted loop>
-                                    <source src={tvVideo} type="video/m4v" />
+                                <video autoPlay muted loop>
+                                    <source src={tvVideo} />
                                 </video>
                             </div>
                         </div>
@@ -112,6 +113,25 @@ const HomeWelcome = () => {
                     <div className="animation-container-text">
                         <Typography HTMLElement="h1" classname="animation-container-text-title">{langData["section-3"].title}</Typography>
                         <Typography HTMLElement="h2" classname="animation-container-text-content">{langData["section-3"].text}</Typography>
+                    </div>
+                </div>
+            </div>
+            <span className="divider"></span>
+            <div className="section-4">
+                <div className="animation-container">
+                    <div className="animation-container-text">
+                        <Typography HTMLElement="h1" classname="animation-container-text-title">{langData["section-4"].title}</Typography>
+                        <Typography HTMLElement="h2" classname="animation-container-text-content">{langData["section-4"].text}</Typography>
+                    </div>
+                    <div className="animation-container-img">
+                        <div className="animation-container-img-container">
+                            <img src={devicePile} alt="Device Pile" />
+                            <div className="animation-container-img-animation animation-section-4">
+                                <video autoPlay muted loop>
+                                    <source src={videoDevice} />
+                                </video>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
