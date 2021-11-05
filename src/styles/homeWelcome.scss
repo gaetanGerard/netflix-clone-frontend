@@ -59,52 +59,7 @@
             font-weight: $font-weight-normal;
         }
         .email-form {
-            max-width: 950px;
-            padding-top: 0.85rem;
-            display: grid;
-            grid-template-rows: auto auto;
-            margin-top: 0;
-            text-align: center;
-            justify-content: center;
-            justify-items: center;
-            .title {
-                padding: 0 5% 20px 5%;
-                margin: 0 auto;
-                line-height: 1.1;
-                font-weight: $font-weight-normal;
-            }
-            .inputContainer {
-                display: grid;
-                grid-template-columns: auto auto;
-                justify-content: center;
-                max-height: 57px;
-                .submitForm-btn {
-                    box-sizing: border-box;
-                    color: white;
-                    background-color: $light-red;
-                    font-size: $font-size-large;
-                    padding: 0 1em;
-                    max-height: 57px;
-                    display: grid;
-                    grid-template-columns: auto auto;
-                    align-content: center;
-                    align-items: center;
-                    gap: 20px;
-                    .right-chevron {
-                        display: block;
-                        position: relative;
-                        width: 20px;
-                        height: 16px;
-                        background-image: url('../images/icones/right-chevron.svg');
-                        background-repeat: no-repeat;
-                        background-size: contain;
-                    }
-                    &:focus {
-                        background-color: darken($light-red, 10%);
-                        box-shadow: 0px 0px 0px 4px darken($light-red, 15%) inset;
-                    }
-                }
-            }
+            @include emailForm;
         }
     }
 }
@@ -248,52 +203,7 @@
         margin-bottom: 0.5rem;
     }
     .email-form {
-        max-width: 950px;
-        padding-top: 0.85rem;
-        display: grid;
-        grid-template-rows: auto auto;
-        margin-top: 0;
-        text-align: center;
-        justify-content: center;
-        justify-items: center;
-        .title {
-            padding: 0 5% 20px 5%;
-            margin: 0 auto;
-            line-height: 1.1;
-            font-weight: $font-weight-normal;
-        }
-        .inputContainer {
-            display: grid;
-            grid-template-columns: auto auto;
-            justify-content: center;
-            max-height: 57px;
-            .submitForm-btn {
-                box-sizing: border-box;
-                color: white;
-                background-color: $light-red;
-                font-size: $font-size-large;
-                padding: 0 1em;
-                max-height: 57px;
-                display: grid;
-                grid-template-columns: auto auto;
-                align-content: center;
-                align-items: center;
-                gap: 20px;
-                .right-chevron {
-                    display: block;
-                    position: relative;
-                    width: 20px;
-                    height: 16px;
-                    background-image: url('../images/icones/right-chevron.svg');
-                    background-repeat: no-repeat;
-                    background-size: contain;
-                }
-                &:focus {
-                    background-color: darken($light-red, 10%);
-                    box-shadow: 0px 0px 0px 4px darken($light-red, 15%) inset;
-                }
-            }
-        }
+        @include emailForm;
     }
 }
 
