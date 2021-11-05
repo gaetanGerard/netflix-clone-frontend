@@ -15,6 +15,7 @@ import devicePile from '../../images/home/device-pile.png';
 import tv from '../../images/home/tv.png';
 import tvVideo from '../../images/home/video-tv-0819.m4v';
 import videoDevice from '../../images/home/video-devices.m4v';
+import kids from '../../images/home/kids.png';
 
 // Import Styles
 import "../../styles/homeWelcome.scss";
@@ -132,6 +133,18 @@ const HomeWelcome = () => {
                                 </video>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <span className="divider"></span>
+            <div className="section-5">
+                <div className="animation-container">
+                    <div className="animation-container-img">
+                        <img src={kids} alt="Mobile device picture" />
+                    </div>
+                    <div className="animation-container-text">
+                        <Typography HTMLElement="h1" classname="animation-container-text-title">{langData["section-5"].title}</Typography>
+                        <Typography HTMLElement="h2" classname="animation-container-text-content">{langData["section-5"].text}</Typography>
                     </div>
                 </div>
             </div>
