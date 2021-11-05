@@ -149,6 +149,10 @@ const HomeWelcome = () => {
                 </div>
             </div>
             <span className="divider"></span>
+            <div className="section-6">
+                <Typography HTMLElement="h1" classname="animation-container-text-title">{langData["section-6"].title}</Typography>
+            </div>
+            <span className="divider"></span>
         </Fragment>
     )
 }
