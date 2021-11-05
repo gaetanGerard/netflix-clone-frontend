@@ -1,7 +1,7 @@
 @import "./variables.scss";
 
 @mixin label-active() {
-    font-size: 0.75rem;
+    font-size: $font-size-extra-small;
     transform: translateY(-14px);
   }
 
@@ -28,7 +28,7 @@
       }
       .form-field-label {
         color: $dim-gray;
-        font-weight: 400;
+        font-weight: $font-weight-normal;
         @include label-active();
       }
     }
@@ -54,8 +54,8 @@
 .form-field-label {
     color: $dim-gray;
     display: block;
-    font-size: 1.2rem;
-    font-weight: normal;
+    font-size: $font-size-medium;
+    font-weight: $font-weight-normal;
     left: 0;
     margin: 0;
     padding: 18px 12px 0 ;
@@ -91,7 +91,7 @@
     border-bottom: 1px solid #999;
     color: #333;
     display: block;
-    font-size: 1.2rem;
+    font-size: $font-size-medium;
     margin-top: 24px;
     outline: 0;
     padding: 0 12px 10px 12px;

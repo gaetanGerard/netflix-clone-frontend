@@ -1,0 +1,59 @@
+@import "./variables.scss";
+@import "./mixin.scss";
+
+.accordion-container {
+    width: 815px;
+    margin: 2em auto;
+    padding: 0;
+    .accordion-item {
+        margin: 0 0 8px 0;
+        text-align: center;
+        .accordion-item-header {
+            box-sizing: border-box;
+            padding: 0.8em 2.2em 0.8em 1.2em;
+            margin-bottom: 1px;
+            font-weight: $font-weight-normal;
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+            display: grid;
+            grid-template-columns: auto auto;
+            justify-content: space-between;
+            text-align: left;
+            background-color: $dark-slate-gray;
+            cursor: pointer;
+            font-size: $font-size-large;
+            img {
+                width: 1em;
+                height: 1em;
+                transform: rotate(45deg);
+            }
+        }
+        .open {
+            img {
+                transform: rotate(0deg);
+            }
+        }
+        .accordion-item-body {
+            visibility: hidden;
+            padding: 0;
+            max-height: 0;
+            opacity: 0;
+        }
+        .body-open {
+            visibility: visible;
+            width: 100%;
+            max-height: 1200px;
+            opacity: 1;
+            padding: 1.2em;
+            background-color: $dark-slate-gray;
+            box-sizing: border-box;
+            text-align: left;
+            p, a {
+                padding: .6em;
+                font-size: $font-size-large;
+                color: $white;
+            }
+        }
+    }
+}

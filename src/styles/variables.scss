@@ -23,4 +23,39 @@ $border-gray-transparent: rgba(255,255,255,.25);
 * Animation
 *
 */
-$animation-duration: 0.4s
+$animation-duration: 0.4s;
+
+/*
+*
+*
+* Font Size
+*
+*
+*/
+
+$font-size-extra-large: 3.125rem;
+$font-size-large: 1.625rem;
+$font-size-medium: 1.2rem;
+$font-size-normal-medium: 1.1rem;
+$font-size-normal: 1rem;
+$font-size-normal-small: .9rem;
+$font-size-small: .875rem;
+$font-size-extra-small: 0.75rem;
+
+/*
+*
+*
+* Font Weight
+*
+*
+*/
+
+$font-weight-extra-light: 100;
+$font-weight-light: 200;
+$font-weight-demi-light: 300;
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semi-bold: 600;
+$font-weight-bold: 700;
+$font-weight-black: 800;
+$font-weight-extra-black: 900;

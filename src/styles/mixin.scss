@@ -30,11 +30,11 @@
 }
 
 @mixin animationContainerTextTitle {
-    font-weight: bold;
+    font-weight: $font-weight-semi-bold;
     margin-bottom: .5rem;
 }
 
 @mixin animationContainerTextContent {
-    font-weight: 400;
+    font-weight: $font-weight-normal;
     margin: .75em 0 .25em;
 }
