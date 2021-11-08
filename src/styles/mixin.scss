@@ -87,3 +87,76 @@
         }
     }
 }
+
+@mixin emailForm850 {
+    .email-form {
+        width: 90%;
+        max-width: 90%;
+        margin: 0 auto;
+        .title {
+            padding: 0;
+            padding-bottom: 20px;
+            width: 90%;
+        }
+        .inputContainer {
+            grid-template-columns: 65% 35%;
+            width: 90%;
+            .form-container {
+                width: 100%;
+                .form-field {
+                    width: 100%;
+                    .form-field-control {
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@mixin emailForm650 {
+    .email-form {
+        width: 60%;
+        .title {
+            width: 60%;
+            font-size: $font-size-normal;
+        }
+        .inputContainer {
+            width: 60%;
+            grid-template-columns: 60% 40%;
+            .submitForm-btn {
+                font-size: $font-size-medium;
+                grid-gap: 5px;
+                padding: 0 .5em;
+            }
+        }
+    }
+}
+
+@mixin emailForm520 {
+    .email-form {
+        .inputContainer {
+            grid-template-columns: auto;
+            justify-content: center;
+            justify-items: center;
+            grid-gap: 15px;
+            .form-container {
+                width: 60%;
+                .form-field {
+                    .form-field-control {
+                        label {
+                            font-size: $font-size-normal;
+                        }
+                        input {
+                            font-size: $font-size-normal;
+                            width: 450px;
+                        }
+                    }
+                }
+            }
+            .submitForm-btn {
+                padding: .5em 1em;
+            }
+        }
+    }
+}

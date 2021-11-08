@@ -272,3 +272,142 @@
     min-height: 10px;
     background-color: $light-gray;
 }
+
+@media only screen and (max-width:850px) {
+    .section-1 {
+        .content {
+            @include emailForm850;
+        }
+    }
+    .section-6 {
+        margin: 0 auto;
+        .accordion-container {
+            width: 90%;
+        }
+        @include emailForm850;
+    }
+    .section-7 {
+        .footer-container {
+            .site-footer {
+                width: 90%;
+                grid-template-rows: auto auto auto auto;
+                .phone-number,
+                footer-country {
+                    width: 90%;
+                }
+                .site-footer-link {
+                    width: 80vw;
+                    grid-template-columns: repeat(2, 45%);
+                    gap: 15px;
+                }
+            }
+        }
+    }
+    .section-3,
+    .section-5,
+    .section-2,
+    .section-4 {
+        .animation-container {
+            width: 90%;
+        }
+    }
+}
+
+@media only screen and (max-width:650px) {
+    .section-1 {
+        .content {
+            .hero-card {
+                font-size: $font-size-large;
+            }
+            .our-story {
+                font-size: $font-size-medium;
+            }
+            @include emailForm650;
+        }
+    }
+    .section-6 {
+        @include emailForm650;
+        h1 {
+            font-size: $font-size-large;
+        }
+        .accordion-container {
+            .accordion-item {
+                .accordion-item-header {
+                    font-size: $font-size-medium;
+                }
+                .accordion-item-body {
+                    p, a {
+                        font-size: $font-size-medium;
+                    }
+                }
+            }
+        }
+    }
+    .section-3,
+    .section-5,
+    .section-2,
+    .section-4 {
+        .animation-container {
+            grid-template-columns: auto;
+            justify-content: center;
+            gap: 10px;
+            .animation-container-text {
+                height: 10rem;
+                padding-right: 0;
+                h1 {
+                    font-size: $font-size-large;
+                }
+                h2 {
+                    font-size: $font-size-medium;
+                }
+            }
+            .animation-container-img {
+                margin: 0 auto;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 520px) {
+    .section-1 {
+        .header {
+            margin: 0 1.5rem;
+            justify-content: space-between;
+            grid-gap: 5px;
+            .svg-icon-netflix-logo {
+                width: 6rem;
+                height: 1.9rem;
+            }
+            .signInAndLanguage {
+                width: 220px;
+                grid-gap: 5px;
+                justify-content: end;
+                .select-arrow {
+                    &::before {
+                        width: 10px;
+                        height: 10px;
+                    }
+                    select {
+                        width: 110px;
+                        font-size: $font-size-extra-small;
+                        padding: .5rem .5rem .5rem 1rem;
+                    }
+                }
+                .auth-btn {
+                    padding: 7px 14px;
+                    font-size: $font-size-extra-small;
+                }
+            }
+        }
+        .content {
+            @include emailForm520;
+        }
+    }
+    .section-6 {
+        @include emailForm520;
+        padding: 50px 0 75px 0;
+        .accordion-container {
+            width: 65%;
+        }
+    }
+}
