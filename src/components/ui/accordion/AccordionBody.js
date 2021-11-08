@@ -5,7 +5,7 @@ const AccordionBody = ({ classname, body }) => {
         <div className={classname}>
             <p>{body['content-1']}</p>
             {body['content-2'] ? (<p>{body['content-2']}</p>) : null }
-            {body['link'] ? (<a href="TO BE DEFINE">{body['link']}</a>) : null }
+            {body['link'] ? (<a href="/discover" target="_blank">{body['link']}</a>) : null }
         </div>
     )
 }

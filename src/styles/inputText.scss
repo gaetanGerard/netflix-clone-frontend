@@ -51,6 +51,17 @@
         }
     }
 }
+
+.errorStatus {
+  .inputContainer {
+    .form-container {
+      .helperText-show {
+          display: block;
+      }
+    }
+  }
+}
+
 .form-field-label {
     color: $dim-gray;
     display: block;
