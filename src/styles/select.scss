@@ -3,6 +3,7 @@
 .select-arrow {
     position: relative;
     display: grid;
+    width: min-content;
     &::before {
         position: absolute;
         width: 14px;

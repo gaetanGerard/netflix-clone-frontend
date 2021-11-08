@@ -222,7 +222,8 @@
             margin: 0 auto;
             width: 815px;
             display: grid;
-            grid-template-rows: 5% 80% 10% 5%;
+            grid-template-rows: 5% min-content 10% 5%;
+            grid-gap: 30px;
             align-content: space-between;
             justify-content: start;
             text-align: left;
@@ -234,6 +235,32 @@
                         text-decoration: underline;
                     }
                 }
+            }
+            .site-footer-link {
+                width: 815px;
+                display: grid;
+                grid-template-columns: repeat(auto-fit, 25%);
+                justify-content: space-between;
+                height: min-content;
+                .col {
+                    display: grid;
+                    grid-auto-flow: row;
+                    width: 100%;
+                    gap: 0;
+                    height: min-content;
+                    a {
+                        font-size: $font-size-footer;
+                        margin-bottom: 16px;
+                        color: $dim-gray;
+                        text-decoration: none;
+                        &:hover {
+                            text-decoration: underline;
+                        }
+                    }
+                }
+            }
+            .footer-country {
+                font-size: $font-size-footer;
             }
         }
     }

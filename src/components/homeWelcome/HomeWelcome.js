@@ -50,8 +50,6 @@ const HomeWelcome = () => {
         setLangData(data[e.target.value]);
     }
 
-    console.log(langData)
-
     if(langData !== undefined) {
         return (
             <Fragment>
@@ -170,6 +168,17 @@ const HomeWelcome = () => {
                     <div className="footer-container">
                         <div className="site-footer">
                             <Typography HTMLElement="p" classname="phone-number">{langData["section-7"].title} <a href="TO BE DEFINE">{langData["section-7"].tel}</a></Typography>
+                            <div className="site-footer-link">
+                                {langData["section-7"]["column-link"].map((col, i) => (
+                                    <div className="col" key={`footer-link-col${i++}`}>
+                                        {col.map((row, j) => (
+                                            <a href="TO BE DEFINE" className="row" key={`footer-link-row-${j++}`}>{row}</a>
+                                        ))}
+                                    </div>
+                                ))}
+                            </div>
+                            <Select options={languageOption} name="language" selected={language} onchange={(e) => changeLanguage(e)} />
+                            <Typography HTMLElement="p" classname="footer-country">{langData["section-7"].copyright}</Typography>
                         </div>
                     </div>
                 </div>
