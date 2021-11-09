@@ -3,12 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.scss';
 import App from './components/App';
 import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
 import {
   ApolloClient,
   InMemoryCache,
   createHttpLink
 } from "@apollo/client";
 import { setContext } from '@apollo/client/link/context';
+import store from './redux/store';
 
 const httpLink = createHttpLink({
   uri: 'TO CHANGE LATER',
@@ -53,9 +55,11 @@ const client = new ApolloClient({
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

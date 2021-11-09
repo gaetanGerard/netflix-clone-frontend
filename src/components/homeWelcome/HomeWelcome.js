@@ -2,6 +2,7 @@
 import React, { Fragment, useState, useEffect } from 'react'
 import validator from 'validator';
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux';
 
 // Import Custom Components
 import Logo from '../ui/Logo';
@@ -9,6 +10,9 @@ import Select from '../ui/Select';
 import Typography from '../ui/Typography';
 import InputText from '../ui/InputText';
 import Accordion from '../ui/accordion/Accordion';
+
+// Import Redux
+import { setApplicationLanguage } from '../../redux/utils/utils.actions';
 
 // Import images
 import section2Mobile from '../../images/home/mobile-0819.jpg';
@@ -26,9 +30,10 @@ import "../../styles/homeWelcome.scss";
 import data from "../../data/home.json";
 
 const HomeWelcome = () => {
-    const [language, setLanguage] = useState("Français");
-    const languageOption = ["Français", "Nederlands", "English"];
-    const [langData, setLangData] = useState(data[language]);
+    const dispatch = useDispatch();
+    const lang = useSelector((state) => state.utils.language);
+    const options = useSelector((state) => state.utils.languageOptions);
+    const [langData, setLangData] = useState(data[lang.name]);
     const [userEmail, setUserEmail] = useState(null);
     const [disabled, setDisabled] = useState(true);
 
@@ -70,8 +75,8 @@ const HomeWelcome = () => {
     }
 
     const changeLanguage = (e) => {
-        setLanguage(e.target.value);
         setLangData(data[e.target.value]);
+        dispatch(setApplicationLanguage(e.target.value))
     }
 
     const toggleClass = (arg, isNotValide) => {
@@ -87,7 +92,7 @@ const HomeWelcome = () => {
 
     }
 
-    useEffect(() => {}, [disabled])
+    useEffect(() => {}, [disabled, lang])
 
     if(langData !== undefined) {
         return (
@@ -96,7 +101,7 @@ const HomeWelcome = () => {
                     <div className="header">
                         <Logo classname="svg-icon svg-icon-netflix-logo nfLogo" />
                         <div className="signInAndLanguage">
-                            <Select options={languageOption} name="language" selected={language} onchange={(e) => changeLanguage(e)} />
+                            <Select options={options} name="language" selected={lang.name} onchange={(e) => changeLanguage(e)} />
                             <Link to="login" className="btn auth-btn">{langData["section-1"].loginButton}</Link>
                         </div>
                     </div>
@@ -216,7 +221,7 @@ const HomeWelcome = () => {
                                     </div>
                                 ))}
                             </div>
-                            <Select options={languageOption} name="language" selected={language} onchange={(e) => changeLanguage(e)} />
+                            <Select options={options} name="language" selected={lang.name} onchange={(e) => changeLanguage(e)} />
                             <Typography HTMLElement="p" classname="footer-country">{langData["section-7"].copyright}</Typography>
                         </div>
                     </div>

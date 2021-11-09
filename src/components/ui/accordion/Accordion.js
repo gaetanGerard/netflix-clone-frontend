@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 // Import Custom Components
 import AccordionItem from './AccordionItem';
