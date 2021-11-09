@@ -1,5 +1,7 @@
+import { Routes, Route } from "react-router-dom";
 // Import Custom Components
 import Home from './pages/Home';
+import Auth from './pages/Auth';
 // Import Style
 import '../styles/App.scss';
 
@@ -7,7 +9,11 @@ import '../styles/App.scss';
 const App = () => {
   return (
     <div>
-      <Home />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/register" element={<Auth />} />
+        <Route path="/login" element={<Auth />} />
+      </Routes>
     </div>
   );
 }

@@ -1,10 +1,10 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React, { Fragment, useState, useEffect } from 'react'
 import validator from 'validator';
+import { Link } from "react-router-dom";
 
 // Import Custom Components
 import Logo from '../ui/Logo';
-import Button from '../ui/Button';
 import Select from '../ui/Select';
 import Typography from '../ui/Typography';
 import InputText from '../ui/InputText';
@@ -36,22 +36,14 @@ const HomeWelcome = () => {
         document.title = langData.documentTitle
     }, [langData])
 
-
-    // TODO
-    const signIn = (e) => {
-        e.preventDefault();
-        // console.log(e);
-    }
-
     const onChangeUserEmail = (e) => {
         setUserEmail(e.target.value)
         const emailCheck = validator.isEmail(e.target.value);
         setDisabled(!emailCheck);
     }
 
-    // TODO
+    // TODO -> Redirect to register form
     const submitForm = (e) => {
-        e.preventDefault();
         const targetClassList = e.target.parentNode.parentNode.classList;
         if(userEmail) {
             // if email is valid
@@ -105,7 +97,7 @@ const HomeWelcome = () => {
                         <Logo classname="svg-icon svg-icon-netflix-logo nfLogo" />
                         <div className="signInAndLanguage">
                             <Select options={languageOption} name="language" selected={language} onchange={(e) => changeLanguage(e)} />
-                            <Button btnType="button" classname="btn auth-btn" onclick={(e) => signIn(e)}>{langData["section-1"].loginButton}</Button>
+                            <Link to="login" className="btn auth-btn">{langData["section-1"].loginButton}</Link>
                         </div>
                     </div>
                     <div className="content">
@@ -115,10 +107,10 @@ const HomeWelcome = () => {
                             <Typography HTMLElement="h3" classname="title">{langData["section-1"].text}</Typography>
                             <div className="inputContainer">
                                 <InputText fieldName="section-1-email" onChangeUserEmail={onChangeUserEmail} label={langData["section-1"].input.label} errorMsg={langData["section-1"].input.helperText} />
-                                <Button btnType="submit" classname="btn submitForm-btn"  disabled={disabled} onclick={(e) => submitForm(e)}>
+                                <Link to="/register" className={`btn submitForm-btn ${disabled ? "deactivate-link" : ""}`} onClick={(e) => submitForm(e)}>
                                     <span>{langData["section-1"].input.buttonText}</span>
                                     <span className="right-chevron"></span>
-                                </Button>
+                                </Link>
                             </div>
                         </div>
                     </div>
@@ -203,10 +195,10 @@ const HomeWelcome = () => {
                         <Typography HTMLElement="h3" classname="title">{langData["section-1"].text}</Typography>
                         <div className="inputContainer">
                             <InputText fieldName="section-1-email" onChangeUserEmail={onChangeUserEmail} userEmail={userEmail}   label={langData["section-6"].input.label} errorMsg={langData["section-6"].input.helperText} />
-                            <Button btnType="submit" classname="btn submitForm-btn" onclick={(e) => submitForm(e)}>
+                            <Link to="/register" className={`btn submitForm-btn ${disabled ? "deactivate-link" : ""}`} onClick={(e) => submitForm(e)}>
                                 <span>{langData["section-6"].input.buttonText}</span>
                                 <span className="right-chevron"></span>
-                            </Button>
+                            </Link>
                         </div>
                     </div>
                 </div>
