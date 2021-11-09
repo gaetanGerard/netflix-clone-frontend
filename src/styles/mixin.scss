@@ -8,6 +8,12 @@
     width: 100vw;
 }
 
+@mixin logo {
+    width: 10.4375rem;
+    height: 2.8125rem;
+    padding-top: 0;
+}
+
 @mixin btn {
     border: none;
 	background-color: transparent;

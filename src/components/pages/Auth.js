@@ -13,6 +13,9 @@ import Login from '../auth/Login';
 import Register from '../auth/Register';
 import Logout from '../auth/Logout';
 
+// Import styles
+import '../../styles/auth.scss';
+
 const Auth = () => {
     const lang = useSelector((state) => state.utils.language);
     const options = useSelector((state) => state.utils.languageOptions);

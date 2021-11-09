@@ -1,0 +1,102 @@
+@import "./variables.scss";
+@import "./mixin.scss";
+
+.login-container {
+    width: 100vw;
+    height: 100vh;
+    background-color: $black;
+    color: $white;
+    margin: 0;
+    padding: 0;
+    .login-wrapper {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../images/home/home-screen.jpg");
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: grid;
+        grid-template-rows: 10vh 65vh 25vh;
+        header {
+            display: grid;
+            align-content: center;
+            align-items: center;
+            svg {
+                margin-left: 3vw;
+                @include logo;
+            }
+        }
+        .login-body-container {
+            height: 100%;
+            width: 100%;
+            display: grid;
+            justify-content: center;
+            justify-items: center;
+            .login-body {
+                border-radius: 4px;
+                box-sizing: border-box;
+                margin-bottom: 25px;
+                width: 450px;
+                background-color: rgba(0, 0, 0, 0.75);
+            }
+        }
+        footer {
+            width: 100vw;
+            color: $dim-gray;
+            padding-bottom: 20px;
+            background-color: rgba(0, 0, 0, 0.75);
+            .site-footer {
+                display: grid;
+                grid-template-rows: auto auto auto;
+                grid-gap: 10px;
+                align-content: space-between;
+                margin: 0 auto;
+                width: 90%;
+                padding: 30px 0;
+                .phone-number {
+                    margin-bottom: 30px;
+                    a {
+                        color: $dim-gray;
+                        text-decoration: none;
+                        &:hover {
+                            text-decoration: underline;
+                        }
+                    }
+                }
+                .site-footer-link {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, 25%);
+                    justify-content: space-between;
+                    .col {
+                        display: grid;
+                        grid-auto-flow: rows;
+                        grid-gap: 20px;
+                        align-content: space-between;
+                        a {
+                            color: $dim-gray;
+                            text-decoration: none;
+                            font-size: $font-size-footer;
+                            &:hover {
+                                text-decoration: underline;
+                            }
+                        }
+                    }
+                }
+                .select-arrow {
+                    margin-top: 20px;
+                    &::before {
+                        background-color: $dim-gray;
+                        mask-image: url(../images/icones/world.svg);
+                    }
+                    select {
+                        border-color: $dim-gray;
+                        background-color: $black;
+                        color: $dim-gray;
+                        option {
+                            background-color: $black;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

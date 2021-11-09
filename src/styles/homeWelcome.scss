@@ -17,9 +17,7 @@
         justify-content: space-between;
         margin: 0 3.5rem;
         .svg-icon-netflix-logo {
-            width: 10.4375rem;
-            height: 2.8125rem;
-            padding-top: 0;
+            @include logo;
         }
         .signInAndLanguage {
             width: 260px;
@@ -39,6 +37,11 @@
                 border-radius: 3px;
                 display: grid;
                 align-content: center;
+            }
+            .select-arrow {
+                &::before {
+                    background-color: $white;
+                }
             }
         }
     }
@@ -261,6 +264,12 @@
                     }
                 }
             }
+            .select-arrow {
+                &::before {
+                    top: 60%;
+                    background-color: $white;
+                }
+            }
             .footer-country {
                 font-size: $font-size-footer;
             }
@@ -301,6 +310,11 @@
                     width: 80vw;
                     grid-template-columns: repeat(2, 45%);
                     gap: 15px;
+                }
+                .select-arrow {
+                    &::before {
+                        top: 50%;
+                    }
                 }
             }
         }
