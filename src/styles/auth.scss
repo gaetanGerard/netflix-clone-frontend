@@ -37,6 +37,55 @@
                 margin-bottom: 25px;
                 width: 450px;
                 background-color: rgba(0, 0, 0, 0.75);
+                padding: 60px;
+                display: grid;
+                grid-auto-flow: rows;
+                align-content: start;
+                justify-content: start;
+                grid-gap: 30px;
+                .title {
+                    font-weight: $font-weight-bold;
+                }
+                .form-wrapper {
+                    display: grid;
+                    grid-auto-flow: rows;
+                    align-content: space-between;
+                    grid-gap: 16px;
+                    .form-container {
+                        box-sizing: border-box;
+                        max-width: calc(450px - 120px);
+                        .form-field {
+                            .form-field-control {
+                                background-color: $dark-slate-gray;
+                                border-radius: 4px;
+                                label {
+                                    font-size: $font-size-normal-medium;
+                                    background-color: transparent;
+                                }
+                                input {
+                                    background-color: transparent;
+                                    border-bottom: 1px solid $dark-slate-gray;
+                                    color: $white;
+                                }
+                            }
+                            &--is-active {
+                                .form-field-control {
+                                &::after {
+                                    transform: scaleX(150);
+                                }
+                                .form-field-label {
+                                    color: $dim-gray;
+                                    font-weight: $font-weight-normal;
+                                    @include label-active();
+                                    }
+                                }
+                            }
+                        }
+                        .helperText {
+                            font-size: $font-size-footer;
+                        }
+                    }
+                }
             }
         }
         footer {

@@ -111,7 +111,7 @@ const HomeWelcome = () => {
                         <div className="email-form">
                             <Typography HTMLElement="h3" classname="title">{langData["section-1"].text}</Typography>
                             <div className="inputContainer">
-                                <InputText fieldName="section-1-email" onChangeUserEmail={onChangeUserEmail} label={langData["section-1"].input.label} errorMsg={langData["section-1"].input.helperText} />
+                                <InputText fieldName="section-1-email" type="text" name="userEmail" onChange={onChangeUserEmail} label={langData["section-1"].input.label} errorMsg={langData["section-1"].input.helperText} />
                                 <Link to="/register" className={`btn submitForm-btn ${disabled ? "deactivate-link" : ""}`} onClick={(e) => submitForm(e)}>
                                     <span>{langData["section-1"].input.buttonText}</span>
                                     <span className="right-chevron"></span>
@@ -199,7 +199,7 @@ const HomeWelcome = () => {
                     <div className="email-form">
                         <Typography HTMLElement="h3" classname="title">{langData["section-1"].text}</Typography>
                         <div className="inputContainer">
-                            <InputText fieldName="section-1-email" onChangeUserEmail={onChangeUserEmail} userEmail={userEmail}   label={langData["section-6"].input.label} errorMsg={langData["section-6"].input.helperText} />
+                            <InputText fieldName="section-1-email" name="userEmail" type="text" onChange={onChangeUserEmail} userEmail={userEmail}   label={langData["section-6"].input.label} errorMsg={langData["section-6"].input.helperText} />
                             <Link to="/register" className={`btn submitForm-btn ${disabled ? "deactivate-link" : ""}`} onClick={(e) => submitForm(e)}>
                                 <span>{langData["section-6"].input.buttonText}</span>
                                 <span className="right-chevron"></span>

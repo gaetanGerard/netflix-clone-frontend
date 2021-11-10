@@ -1,9 +1,5 @@
 @import "./variables.scss";
-
-@mixin label-active() {
-    font-size: $font-size-extra-small;
-    transform: translateY(-14px);
-  }
+@import "./mixin.scss";
 
 .form-container {
     text-align: left;
@@ -25,11 +21,11 @@
         //   border-bottom: 2px solid $dim-gray;
           transform: scaleX(150);
         }
-      }
-      .form-field-label {
-        color: $dim-gray;
-        font-weight: $font-weight-normal;
-        @include label-active();
+        .form-field-label {
+          color: $dim-gray;
+          font-weight: $font-weight-normal;
+          @include label-active();
+        }
       }
     }
     &--is-filled {

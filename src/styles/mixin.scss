@@ -14,6 +14,11 @@
     padding-top: 0;
 }
 
+@mixin label-active() {
+    font-size: $font-size-extra-small;
+    transform: translateY(-14px);
+}
+
 @mixin btn {
     border: none;
 	background-color: transparent;
