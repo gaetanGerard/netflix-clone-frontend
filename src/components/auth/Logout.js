@@ -14,9 +14,9 @@ const Logout = ({ language, data, changeLanguage, options, logout }) => {
     const footerData = data[language].footer;
     const bodyData = data[language].body;
 
-    // setTimeout(() => {
-    //     navigate("/", { replace: true})
-    // }, 30000);
+    setTimeout(() => {
+        navigate("/", { replace: true})
+    }, 30000);
 
     return (
         <div className="logout-container">
