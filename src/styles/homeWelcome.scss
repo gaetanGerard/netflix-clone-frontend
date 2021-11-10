@@ -284,6 +284,12 @@
     background-color: $light-gray;
 }
 
+@media only screen and (max-width:1024px) {
+    .section-1 {
+        height: 100%;
+    }
+}
+
 @media only screen and (max-width:850px) {
     .section-1 {
         height: 100%;
