@@ -96,7 +96,7 @@ const HomeWelcome = () => {
 
     if(langData !== undefined) {
         return (
-            <Fragment>
+            <div className="homeWelcome">
                 <div className="section-1">
                     <div className="header">
                         <Logo classname="svg-icon svg-icon-netflix-logo nfLogo" />
@@ -226,7 +226,7 @@ const HomeWelcome = () => {
                         </div>
                     </div>
                 </div>
-            </Fragment>
+            </div>
         )
     } else {
         return (

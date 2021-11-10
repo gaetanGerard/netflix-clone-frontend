@@ -286,12 +286,17 @@
 
 @media only screen and (max-width:850px) {
     .section-1 {
+        height: 100%;
         .content {
             @include emailForm850;
         }
     }
     .section-6 {
         margin: 0 auto;
+        h1 {
+            width: 80%;
+            justify-self: center;
+        }
         .accordion-container {
             width: 90%;
         }
@@ -331,6 +336,7 @@
 
 @media only screen and (max-width:650px) {
     .section-1 {
+        height: 100%;
         .content {
             .hero-card {
                 font-size: $font-size-large;
@@ -344,9 +350,11 @@
     .section-6 {
         @include emailForm650;
         h1 {
+            width: 80%;
             font-size: $font-size-large;
         }
         .accordion-container {
+            width: 80%;
             .accordion-item {
                 .accordion-item-header {
                     font-size: $font-size-medium;
@@ -385,6 +393,9 @@
 }
 
 @media only screen and (max-width: 520px) {
+    .homeWelcome {
+        width: 100vw;
+    }
     .section-1 {
         .header {
             margin: 0 1.5rem;
@@ -423,7 +434,44 @@
         @include emailForm520;
         padding: 50px 0 75px 0;
         .accordion-container {
-            width: 65%;
+            width: 60%;
+        }
+    }
+}
+
+@media only screen and (max-width: 415px) {
+    .homeWelcome {
+        overflow-x: hidden;
+    }
+    .section-1 {
+        height: 100%;
+        .header {
+            margin: 0 .5rem;
+            .signInAndLanguage {
+                width: 100%;
+                .select-arrow {
+                    &::before {
+                        top: 35%;
+                    }
+                    select {
+                        padding: 0 0 0 1rem;
+                        line-height: 1;
+                        width: min-content;
+                        height: 32px;
+                    }
+                }
+                .auth-btn {
+                    height: 24px;
+                    padding: 4px 6px;
+                }
+            }
+        }
+    }
+    .section-2 {
+        .animation-container {
+            .animation-container-text {
+                height: 12rem;
+            }
         }
     }
 }

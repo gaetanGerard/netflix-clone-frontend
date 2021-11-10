@@ -11,11 +11,13 @@
     .login-wrapper {
         width: 100%;
         height: 100%;
+        min-height: 100vh;
+        max-height: min-content;
         background: linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("../images/home/home-screen.jpg");
         background-repeat: no-repeat;
         background-size: cover;
         display: grid;
-        grid-template-rows: 10vh 65vh 25vh;
+        grid-template-rows: 8vh 72vh 20vh;
         header {
             display: grid;
             align-content: center;
@@ -85,13 +87,95 @@
                             font-size: $font-size-footer;
                         }
                     }
+                    .login-btn {
+                        background-color: $light-red;
+                        color: $white;
+                        font-size: $font-size-normal;
+                        border-radius: 4px;
+                        font-weight: $font-weight-bold;
+                        margin: 24px 0 12px;
+                        padding: 16px;
+                        max-width: calc(450px - 120px);
+                        text-align: center;
+                    }
+                    .rememberOrHelp {
+                        color: $dim-gray;
+                        display: grid;
+                        grid-template-columns: auto auto;
+                        justify-content: space-between;
+                        font-size: $font-size-footer;
+                        .checkbox {
+                            display: grid;
+                            grid-template-columns: auto auto;
+                            align-content: center;
+                            align-items: center;
+                            grid-gap: 5px;
+                            position: relative;
+                            input[type="checkbox"] {
+                                width: 16px;
+                                height: 16px;
+                                border-radius: 2px;
+                                background-color: $dim-gray;
+                                cursor: pointer;
+                            }
+                        }
+                        a {
+                            color: $dim-gray;
+                            text-decoration: none;
+                            &:hover {
+                                text-decoration: underline;
+                            }
+                        }
+                    }
+                }
+                .other-login-method {
+                    display: grid;
+                    gap: 15px;
+                    color: $dim-gray;
+                    .with-fb {
+                        display: grid;
+                        grid-template-columns: auto auto;
+                        justify-content: start;
+                        grid-gap: 5px;
+                        font-size: $font-size-footer;
+                        align-items: center;
+                        .fb-icon {
+                            width: 20px;
+                            height: 20px;
+                            background-image: url("../images/login/facebook.png");
+                            background-repeat: no-repeat;
+                            background-size: cover;
+                        }
+                    }
+                    .new-to-netflix {
+                        display: grid;
+                        grid-template-columns: auto auto;
+                        justify-content: start;
+                        grid-gap: 5px;
+                        a {
+                            text-decoration: none;
+                            color: $white;
+                            &:hover {
+                                text-decoration: underline;
+                            }
+                        }
+                    }
+                    .captcha {
+                        font-size: $font-size-footer;
+                        a {
+                            color: $royal-blue;
+                            text-decoration: none;
+                            &:hover {
+                                text-decoration: underline;
+                            }
+                        }
+                    }
                 }
             }
         }
         footer {
             width: 100vw;
             color: $dim-gray;
-            padding-bottom: 20px;
             background-color: rgba(0, 0, 0, 0.75);
             .site-footer {
                 display: grid;
@@ -99,10 +183,9 @@
                 grid-gap: 10px;
                 align-content: space-between;
                 margin: 0 auto;
-                width: 90%;
-                padding: 30px 0;
+                width: 40%;
                 .phone-number {
-                    margin-bottom: 30px;
+                    margin: 10px 0;
                     a {
                         color: $dim-gray;
                         text-decoration: none;
@@ -115,6 +198,7 @@
                     display: grid;
                     grid-template-columns: repeat(auto-fit, 25%);
                     justify-content: space-between;
+                    gap: 10px;
                     .col {
                         display: grid;
                         grid-auto-flow: rows;
@@ -131,7 +215,7 @@
                     }
                 }
                 .select-arrow {
-                    margin-top: 20px;
+                    margin-top: 10px;
                     &::before {
                         background-color: $dim-gray;
                         mask-image: url(../images/icones/world.svg);
@@ -143,6 +227,91 @@
                         option {
                             background-color: $black;
                         }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 1281px) {
+    .login-container {
+        height: 100%;
+        .login-wrapper {
+            min-height: 100vh;
+            height: 100%;
+            grid-template-rows: 8% 71% 21%;
+            .login-body-container {
+                align-self: center;
+                .login-body {
+                    margin-bottom: 75px;
+                }
+            }
+            footer {
+                align-self: end;
+                height: max-content;
+                .site-footer {
+                    grid-gap: 5px;
+                    padding: 10px 0;
+                }
+            }
+        }
+    }
+}
+
+
+@media only screen and (max-width: 550px) {
+    .login-container {
+        height: 100%;
+        .login-wrapper {
+            height: 100%;
+            grid-template-rows: auto auto auto;
+            .login-body-container {
+                .login-body {
+                    justify-content: center;
+                    justify-items: center;
+                    width: 100%;
+                    background-color: $black;
+                    border-radius: 0;
+                    padding: 60px 0;
+                    height: 650px;
+                    .form-wrapper {
+                        .form-container {
+                            width: 320px;
+                        }
+                        .login-btn {
+                            box-sizing: border-box;
+                            width: 320px;
+                        }
+                    }
+                    .other-login-method {
+                        margin: 0 1vw;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 281px) {
+    .login-container {
+        .login-wrapper {
+            .login-body-container {
+                .login-body {
+                    .form-wrapper {
+                        .form-container {
+                            width: 275px;
+                        }
+                        .login-btn {
+                            width: 275px;
+                        }
+                    }
+                }
+            }
+            footer {
+                .site-footer {
+                    .site-footer-link {
+                        grid-template-columns: auto auto;
                     }
                 }
             }
