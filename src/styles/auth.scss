@@ -142,7 +142,7 @@
                         .fb-icon {
                             width: 20px;
                             height: 20px;
-                            background-image: url("../images/login/facebook.png");
+                            background-image: url("../images/auth/facebook.png");
                             background-repeat: no-repeat;
                             background-size: cover;
                         }
@@ -173,64 +173,68 @@
                 }
             }
         }
-        footer {
-            width: 100vw;
-            color: $dim-gray;
-            background-color: rgba(0, 0, 0, 0.75);
-            .site-footer {
-                display: grid;
-                grid-template-rows: auto auto auto;
-                grid-gap: 10px;
-                align-content: space-between;
-                margin: 0 auto;
-                width: 40%;
-                .phone-number {
-                    margin: 10px 0;
-                    a {
-                        color: $dim-gray;
-                        text-decoration: none;
-                        &:hover {
-                            text-decoration: underline;
-                        }
-                    }
-                }
-                .site-footer-link {
-                    display: grid;
-                    grid-template-columns: repeat(auto-fit, 25%);
-                    justify-content: space-between;
-                    gap: 10px;
-                    .col {
-                        display: grid;
-                        grid-auto-flow: rows;
-                        grid-gap: 20px;
-                        align-content: space-between;
-                        a {
-                            color: $dim-gray;
-                            text-decoration: none;
-                            font-size: $font-size-footer;
-                            &:hover {
-                                text-decoration: underline;
-                            }
-                        }
-                    }
-                }
-                .select-arrow {
-                    margin-top: 10px;
-                    &::before {
-                        background-color: $dim-gray;
-                        mask-image: url(../images/icones/world.svg);
-                    }
-                    select {
-                        border-color: $dim-gray;
-                        background-color: $black;
-                        color: $dim-gray;
-                        option {
-                            background-color: $black;
-                        }
-                    }
-                }
-            }
+    }
+}
+
+.logout-container {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    align-content: space-between;
+    background-image: url("../images/auth/logout.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    header {
+        height: 90px;
+        display: grid;
+        align-content: center;
+        align-items: center;
+        grid-template-columns: auto auto;
+        justify-content: space-between;
+        svg {
+            margin-left: 3vw;
+            @include logo;
         }
+        .signIn-btn {
+            margin-right: 3vw;
+            background-color: $light-red;
+            color: $white;
+            font-size: 1rem;
+            border-radius: 4px;
+            padding: 7px 17px;
+            text-align: center;
+        }
+
+    }
+    .logout-body {
+        width: 350px;
+        background-color: $light-gray;
+        padding: 30px 45px;
+        color: $dark-slate-gray;
+        line-height: 1.5;
+        justify-self: center;
+        display: grid;
+        align-content: space-between;
+        grid-gap: 20px;
+        h2 {
+            font-size: 2em;
+            font-weight: $font-size-normal-medium;
+        }
+        .info-btn {
+            box-sizing: border-box;
+            font-size: 20px;
+            padding: 10px 2em;
+            min-width: 112px;
+            min-height: 48px;
+            background-color: $royal-blue;
+            color: $white;
+            text-align: center;
+            box-shadow: 0 1px 0 rgb(0, 0, 0 / 55%);
+            background-image: linear-gradient(to bottom,#0080ff,#0277ec);
+            border-radius: 2px;
+            letter-spacing: .1px;
+        }
+
     }
 }
 
@@ -257,10 +261,54 @@
             }
         }
     }
+    .logout-container {
+        height: 100vh;
+        header {
+            justify-content: space-between;
+            a {
+                svg {
+                    width: 5rem;
+                    height: 1.4rem;
+                }
+            }
+            .signIn-btn {
+                margin-right: 3%;
+            }
+        }
+        footer {
+            justify-self: end;
+        }
+    }
+}
+
+@media (max-width: 823px) {
+    .logout-container {
+        height: 100%;
+        header {
+            width: 100vw;
+            justify-content: space-between;
+            gap: 5px;
+            .signIn-btn  {
+                margin-right: 3vw;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .logout-container {
+        height: 100vh;
+    }
+}
+
+@media only screen and (max-width: 736px) {
+    .logout-container {
+        height: 100%;
+    }
 }
 
 
-@media only screen and (max-width: 550px) {
+@media only screen and (max-width: 567px) {
     .login-container {
         height: 100%;
         .login-wrapper {
@@ -291,6 +339,41 @@
             }
         }
     }
+    .logout-container {
+        height: 100vh;
+        .logout-body {
+            width: 95%;
+            box-sizing: border-box;
+            padding: 20px 15px;
+        }
+        footer {
+            .site-footer {
+                .site-footer-link {
+                    grid-template-columns: auto auto;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 415px) {
+    .logout-container {
+        height: 100vh;
+        header {
+            width: 100vw;
+            justify-content: space-between;
+            gap: 5px;
+            .signIn-btn  {
+                margin-right: 3vw;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 320px) {
+    .logout-container {
+        height: 100%;
+    }
 }
 
 @media only screen and (max-width: 281px) {
@@ -314,6 +397,20 @@
                         grid-template-columns: auto auto;
                     }
                 }
+            }
+        }
+    }
+    .logout-container {
+        header {
+            justify-content: space-between;
+            a {
+                svg {
+                    width: 5rem;
+                    height: 1.4rem;
+                }
+            }
+            .signIn-btn {
+                margin-right: 3%;
             }
         }
     }

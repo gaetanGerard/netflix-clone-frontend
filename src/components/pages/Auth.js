@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 // Import Redux
 import { setApplicationLanguage } from '../../redux/utils/utils.actions';
-import { login } from '../../redux/auth/auth.actions';
+import { login, logout } from '../../redux/auth/auth.actions';
 
 // Import language data
 import data from '../../data/auth.json';

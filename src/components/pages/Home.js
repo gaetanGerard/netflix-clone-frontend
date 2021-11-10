@@ -1,11 +1,19 @@
-import React from 'react'
+import React from 'react';
+import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux';
+
+// Import Redux
+import { logout } from '../../redux/auth/auth.actions';
 
 // Import custom Components
 
 const Home = () => {
+    const dispatch = useDispatch();
+
     return (
         <div>
-            Protected Home
+            <p>Protected Home</p>
+            <Link to="/logout" onClick={() => dispatch(logout)}>Logout</Link>
         </div>
     )
 }

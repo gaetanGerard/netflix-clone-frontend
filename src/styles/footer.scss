@@ -1,0 +1,62 @@
+@import "./variables.scss";
+@import "./mixin.scss";
+
+footer {
+    width: 100vw;
+    color: $dim-gray;
+    background-color: rgba(0, 0, 0, 0.75);
+    .site-footer {
+        display: grid;
+        grid-template-rows: auto auto auto;
+        grid-gap: 10px;
+        align-content: space-between;
+        margin: 0 auto;
+        width: 60%;
+        padding-bottom: 10px;
+        .phone-number {
+            margin: 10px 0;
+            a {
+                color: $dim-gray;
+                text-decoration: none;
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+        .site-footer-link {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, 20%);
+            justify-content: space-between;
+            gap: 10px;
+            .col {
+                display: grid;
+                grid-auto-flow: rows;
+                grid-gap: 20px;
+                align-content: space-between;
+                a {
+                    color: $dim-gray;
+                    text-decoration: none;
+                    font-size: $font-size-footer;
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+        .select-arrow {
+            margin-top: 10px;
+            &::before {
+                background-color: $dim-gray;
+                mask-image: url(../images/icones/world.svg);
+            }
+            select {
+                border-color: $dim-gray;
+                background-color: $black;
+                color: $dim-gray;
+                option {
+                    background-color: $black;
+                }
+            }
+        }
+    }
+}
