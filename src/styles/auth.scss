@@ -238,6 +238,244 @@
     }
 }
 
+.register-container {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    align-content: space-between;
+    header {
+        height: 90px;
+        display: grid;
+        align-content: center;
+        align-items: center;
+        grid-template-columns: auto auto;
+        justify-content: space-between;
+        border-bottom: 1px solid #dbdbdb;
+        svg {
+            margin-left: 3vw;
+            @include logo;
+        }
+        .login-link {
+            margin-right: 3vw;
+            font-weight: $font-weight-bold;
+            font-size: $font-size-normal-medium;
+            line-height: 90px;
+            color: $dark-slate-gray;
+            text-decoration: none;
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+    footer {
+        border-top: 1px solid #dbdbdb;
+        opacity: 1;
+        margin-top: 0;
+        background: #f3f3f3;
+        .site-footer {
+            width: 90%;
+            margin: 0 auto;
+            padding-top: 30px;
+            .select-arrow {
+                select {
+                    background-color: $white;
+                    color: $dim-gray;
+                    option {
+                        background-color: $white;
+                        color: $dim-gray;
+                    }
+                }
+            }
+        }
+    }
+    .stepper {
+        width: 500px;
+        height: 600px;
+        position: relative;
+        overflow: hidden;
+        display: inline-block;
+        justify-self: center;
+      }
+
+    .stepper-selector {
+        color: $dark-slate-gray;
+        position: absolute;
+        height: 100%;
+        display: inline-flex;
+        top:0;
+        .step-wrapper {
+            width: 600px;
+            height: 100%;
+            .step {
+                height: 600px;
+                width: 100%;
+                display: grid;
+                grid-auto-flow: row;
+                justify-content: center;
+                justify-items: center;
+                align-content: center;
+                align-items: center;
+                background: #fff;
+                .stepHeader {
+                    text-align: center;
+                    p {
+                        text-transform: uppercase;
+                        font-size: $font-size-footer;
+                        font-weight: $font-weight-demi-light;
+                        span {
+                            font-weight: $font-weight-semi-bold;
+                        }
+                    }
+                    h2 {
+                        max-width: 340px;
+                        font-size: 23px;
+                        font-weight: $font-weight-semi-bold;
+                        margin: 0.4em 0;
+                    }
+                }
+                .next-btn {
+                    min-height: 48px;
+                    font-weight: $font-weight-normal;
+                    font-size: 17px;
+                    border-radius: 2px;
+                    line-height: 1;
+                    min-width: 110px;
+                    padding: 0.75rem 25.33px;
+                    width: 100%;
+                    color: $white;
+                    background-color: $light-red;
+                }
+            }
+            .stepItem-0 {
+                width: 100%;
+                margin: 0 auto;
+                grid-gap: 20px;
+                .step-container {
+                    width: 60%;
+                    .step-img {
+                        margin: 0 auto;
+                        width: 260px;
+                        height: 90px;
+                        background-image: url("../images/auth/register-step-1-Devices.png");
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                        align-self: end;
+                    }
+                    .stepBody {
+                        font-size: 17px;
+                        text-align: center;
+                        p {
+                            line-height: 1.2;
+                            margin: 15px 0;
+                        }
+                    }
+                }
+            }
+
+            .stepItem-1 {
+                width: 100%;
+                margin: 0 auto;
+                grid-gap: 20px;
+                .step-container {
+                    width: 80%;
+                    .stepHeader {
+                        text-align: left;
+                        h2 {
+                            max-width: 440px;
+                        }
+                    }
+                    .stepBody {
+                        max-width: 440px;
+                        text-align: left;
+                        justify-content: start;
+                        justify-items: start;
+                        justify-self: start;
+                        h3 {
+                            font-size: 19px;
+                        }
+                        .simpleForm {
+                            margin: 10px 0 20px;
+                            .form-container {
+                                margin-bottom: 10px;
+                                .form-field {
+                                    &-control {
+                                        background-color: transparent;
+                                        border: 1px solid #dbdbdb;
+                                        border-radius: 2px;
+                                    }
+                                    &--is-empty {
+                                        .form-field-control {
+                                            border-color: $dark-red;
+                                            &::after {
+                                                border-bottom: 0px;
+                                                transform: scaleX(0);
+                                            }
+                                        }
+                                    }
+                                }
+                                .helperText {
+                                    color: $dark-red;
+                                }
+                            }
+                            .checkbox {
+                                margin: 8px 0;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .stepItem-2 {
+                margin: 0 auto;
+                grid-gap: 20px;
+                .step-container {
+                    display: grid;
+                    justify-content: center;
+                    justify-items: center;
+                    width: 80%;
+                    .stepHeader {
+                        display: grid;
+                        justify-content: center;
+                        text-align: center;
+                        h2 {
+                            width: 100%;
+                        }
+                    }
+                    .stepBody {
+                        margin: 15px 0 20px 0;
+                        .register-list {
+                            display: grid;
+                            align-content: space-between;
+                            grid-gap: 20px;
+                            width: 70%;
+                            margin: 0 auto;
+                            li {
+                                font-size: 17px;
+                                display: grid;
+                                align-content: center;
+                                align-items: center;
+                                grid-template-columns: auto auto;
+                                justify-content: start;
+                                grid-gap: 20px;
+                                line-height: 1.2;
+                                svg {
+                                    width: 24px;
+                                    height: 24px;
+                                    stroke: $light-red;
+                                }
+                            }
+                        }
+                    }
+                    .next-btn {
+                        width: 80%;
+                        margin: 0 auto;
+                    }
+                }
+            }
+        }
+    }
+}
+
 @media only screen and (max-width: 1281px) {
     .login-container {
         height: 100%;

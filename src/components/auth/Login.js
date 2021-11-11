@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 
 // Import Custom Components
-import Select from '../ui/Select';
 import Typography from '../ui/Typography';
 import InputText from '../ui/InputText';
 import Footer from "../ui/Footer";
