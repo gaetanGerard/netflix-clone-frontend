@@ -1,0 +1,7 @@
+type UTILS_ACTION_TYPES = {
+    APPLICATION_LANGUAGE: string
+}
+
+export const UtilsActionTypes: UTILS_ACTION_TYPES = {
+    APPLICATION_LANGUAGE: 'APPLICATION_LANGUAGE'
+}

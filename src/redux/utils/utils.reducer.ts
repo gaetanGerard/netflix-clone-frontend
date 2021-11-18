@@ -1,6 +1,16 @@
 import { UtilsActionTypes } from './utils.types';
 
-const INITIAL_STATE = {
+type LanguageType = {
+    name: string,
+    iso: string
+}
+
+type INITIAL_STATE_TYPE = {
+    language: LanguageType,
+    languageOptions: string[]
+}
+
+const INITIAL_STATE: INITIAL_STATE_TYPE = {
     language: {
         name: "Français",
         iso: "fr-FR"

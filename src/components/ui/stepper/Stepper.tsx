@@ -1,12 +1,17 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, FC } from 'react';
 
 // Import Custom Components
 import StepItem from "./StepItem";
 
-const Stepper = ({ steps, onChange }) => {
-    let [currentStep, setCurrentStep] = useState(1);
-    const [stepLength] = useState(Object.entries(steps).length);
-    const stepperSelector = useRef(null);
+type StepperProps = {
+    steps: Object,
+    onChange: (e: any) => void,
+}
+
+const Stepper: FC<StepperProps> = ({ steps, onChange }: StepperProps): JSX.Element => {
+    let [currentStep, setCurrentStep] = useState<number>(1);
+    const [stepLength] = useState<number>(Object.entries(steps).length);
+    const stepperSelector = useRef<HTMLDivElement>(null);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {moveStepper();}, [currentStep])

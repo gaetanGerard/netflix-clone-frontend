@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 // Import Redux
 import { setApplicationLanguage } from '../../redux/utils/utils.actions';
 import { login } from '../../redux/auth/auth.actions';
+import { RootState } from "../../redux/root-reducer";
 
 // Import language data
 import data from '../../data/auth.json';
@@ -17,17 +18,19 @@ import Logout from '../auth/Logout';
 // Import styles
 import '../../styles/auth.scss';
 
+
+
 const Auth = () => {
-    const lang = useSelector((state) => state.utils.language);
-    const options = useSelector((state) => state.utils.languageOptions);
+    const lang = useSelector((state: RootState) => state.utils.language);
+    const options = useSelector((state: RootState) => state.utils.languageOptions);
     const dispatch = useDispatch()
     let location = useLocation();
 
-    const changeLanguage = (e) => {
+    const changeLanguage = (e: any) => {
         dispatch(setApplicationLanguage(e.target.value))
     }
 
-    const onSubmit = (data) => {
+    const onSubmit = (data: object) => {
         dispatch(login(data))
     }
 

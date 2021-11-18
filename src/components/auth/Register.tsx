@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, FC, ChangeEvent } from 'react';
 import { Link } from "react-router-dom"
 
 // Import Custom Components
@@ -6,14 +6,21 @@ import Stepper from "../ui/stepper/Stepper";
 import Footer from "../ui/Footer";
 import Logo from "../ui/Logo";
 
-const Register = ({ language, data, changeLanguage, options }) => {
-    const [userEmail, setUserEmail] = useState(null);
-    const [password, setPassword] = useState(null);
-    const [specialOffers, setSpecialOffers] = useState(false);
+type RegisterProps = {
+    language: string,
+    data: any,
+    changeLanguage: (e?: ChangeEvent<HTMLSelectElement> | undefined) => void
+    options: string[]
+}
+
+const Register: FC<RegisterProps> = ({ language, data, changeLanguage, options }): JSX.Element => {
+    const [userEmail, setUserEmail] = useState<string | null>(null);
+    const [password, setPassword] = useState<string | null>(null);
+    const [specialOffers, setSpecialOffers] = useState<boolean>(false);
     document.title = data[language].documentTitle;
     const register = data[language]
 
-    const onChange = (e) => {
+    const onChange = (e: ChangeEvent<HTMLInputElement>) => {
         if(e.target.name === "userEmail") setUserEmail(e.target.value);
         if(e.target.name === "password") setPassword(e.target.value);
         if(e.target.name === "specialOffers") setSpecialOffers(e.target.checked)
@@ -21,7 +28,7 @@ const Register = ({ language, data, changeLanguage, options }) => {
 
     const userData = {userEmail, password, specialOffers}
 
-    console.log(userData)
+    console.log(userData);
 
     return (
         <div className="register-container">

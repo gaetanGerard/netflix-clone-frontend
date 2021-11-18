@@ -1,6 +1,17 @@
 import { AuthActionTypes } from './auth.types';
 
-const INITIAL_STATE = {
+type USER = {
+    userEmail: string,
+    password: string,
+    rememberMe?: boolean,
+    specialOffers?: boolean
+}
+
+type INITIAL_STATE_TYPE = {
+    user: USER | null
+}
+
+const INITIAL_STATE: INITIAL_STATE_TYPE = {
     user: null
 }
 

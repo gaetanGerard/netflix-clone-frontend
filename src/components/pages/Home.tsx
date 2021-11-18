@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 
@@ -7,7 +7,7 @@ import { logout } from '../../redux/auth/auth.actions';
 
 // Import custom Components
 
-const Home = () => {
+const Home: FC = (): JSX.Element => {
     const dispatch = useDispatch();
 
     return (

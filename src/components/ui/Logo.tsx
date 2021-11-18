@@ -1,6 +1,10 @@
-import React from 'react'
+import React from 'react';
 
-const Logo = ({ classname }) => {
+type LogoProps = {
+    classname: string
+}
+
+const Logo = ({ classname }: LogoProps): JSX.Element => {
     return (
         <svg viewBox="0 0 111 30" className={classname}
             xmlns="http://www.w3.org/2000/svg" focusable="false">

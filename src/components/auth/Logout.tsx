@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC, ChangeEvent } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 
 // Import custom Component
@@ -6,7 +6,14 @@ import Logo from "../ui/Logo";
 import Footer from "../ui/Footer";
 import Typography from "../ui/Typography";
 
-const Logout = ({ language, data, changeLanguage, options, logout }) => {
+type LogoutProps = {
+    language: string,
+    data: any,
+    changeLanguage: (e?: ChangeEvent<HTMLSelectElement> | undefined) => void,
+    options: string[],
+}
+
+const Logout: FC<LogoutProps> = ({ language, data, changeLanguage, options }): JSX.Element => {
     document.title = data[language].documentTitle;
     const navigate = useNavigate();
 
@@ -26,8 +33,8 @@ const Logout = ({ language, data, changeLanguage, options, logout }) => {
             </header>
             <div className="logout-body">
                 <Typography HTMLElement="h2" classname="title">{bodyData.title}</Typography>
-                <Typography HTMLElement="p">{bodyData["text-1"]}</Typography>
-                <Typography HTMLElement="p">{bodyData["text-2"]}</Typography>
+                <Typography HTMLElement="p">{bodyData["text1"]}</Typography>
+                <Typography HTMLElement="p">{bodyData["text2"]}</Typography>
                 <Link to={bodyData["goNow-link"].to} className="btn info-btn">{bodyData["goNow-link"].text}</Link>
             </div>
             <Footer data={footerData} options={options} language={language} changeLanguage={changeLanguage} />

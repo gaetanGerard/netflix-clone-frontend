@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import React, { Fragment, useState, useEffect } from 'react'
+import React, { Fragment, useState, useEffect, ChangeEvent } from 'react'
 import validator from 'validator';
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
@@ -13,6 +13,7 @@ import Accordion from '../ui/accordion/Accordion';
 
 // Import Redux
 import { setApplicationLanguage } from '../../redux/utils/utils.actions';
+import { RootState } from "../../redux/root-reducer";
 
 // Import images
 import section2Mobile from '../../images/home/mobile-0819.jpg';
@@ -29,27 +30,27 @@ import "../../styles/homeWelcome.scss";
 // Import Data
 import data from "../../data/home.json";
 
-const HomeWelcome = () => {
+const HomeWelcome = (): JSX.Element => {
     const dispatch = useDispatch();
-    const lang = useSelector((state) => state.utils.language);
-    const options = useSelector((state) => state.utils.languageOptions);
+    const lang = useSelector((state: RootState) => state.utils.language);
+    const options = useSelector((state: RootState) => state.utils.languageOptions);
     const [langData, setLangData] = useState(data[lang.name]);
-    const [userEmail, setUserEmail] = useState(null);
-    const [disabled, setDisabled] = useState(true);
+    const [userEmail, setUserEmail] = useState<string | null>(null);
+    const [disabled, setDisabled] = useState<boolean>(true);
 
     useEffect(() => {
         document.title = langData.documentTitle
     }, [langData])
 
-    const onChangeUserEmail = (e) => {
+    const onChangeUserEmail = (e: ChangeEvent<HTMLInputElement>) => {
         setUserEmail(e.target.value)
         const emailCheck = validator.isEmail(e.target.value);
         setDisabled(!emailCheck);
     }
 
     // TODO -> Redirect to register form
-    const submitForm = (e) => {
-        const targetClassList = e.target.parentNode.parentNode.classList;
+    const submitForm = (e: any) => {
+        const targetClassList = e.target.parentNode!.parentNode!.classList;
         if(userEmail) {
             // if email is valid
             const emailCheck = validator.isEmail(userEmail);
@@ -74,7 +75,7 @@ const HomeWelcome = () => {
         }
     }
 
-    const changeLanguage = (e) => {
+    const changeLanguage = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setLangData(data[e.target.value]);
         dispatch(setApplicationLanguage(e.target.value))
     }
@@ -199,7 +200,7 @@ const HomeWelcome = () => {
                     <div className="email-form">
                         <Typography HTMLElement="h3" classname="title">{langData["section-1"].text}</Typography>
                         <div className="inputContainer">
-                            <InputText fieldName="section-1-email" name="userEmail" type="text" onChange={onChangeUserEmail} userEmail={userEmail}   label={langData["section-6"].input.label} errorMsg={langData["section-6"].input.helperText} />
+                            <InputText fieldName="section-1-email" name="userEmail" type="text" onChange={onChangeUserEmail} label={langData["section-6"].input.label} errorMsg={langData["section-6"].input.helperText} />
                             <Link to="/register" className={`btn submitForm-btn ${disabled ? "deactivate-link" : ""}`} onClick={(e) => submitForm(e)}>
                                 <span>{langData["section-6"].input.buttonText}</span>
                                 <span className="right-chevron"></span>
@@ -213,7 +214,7 @@ const HomeWelcome = () => {
                         <div className="site-footer">
                             <Typography HTMLElement="p" classname="phone-number">{langData["section-7"].title} <a href={`tel:${langData["section-7"].tel}`}>{langData["section-7"].tel}</a></Typography>
                             <div className="site-footer-link">
-                                {langData["section-7"]["column-link"].map((col, i) => (
+                                {langData["section-7"]["column-link"].map((col: string[], i: number) => (
                                     <div className="col" key={`footer-link-col${i++}`}>
                                         {col.map((row, j) => (
                                             <a href="TO BE DEFINE" className="row" key={`footer-link-row-${j++}`}>{row}</a>

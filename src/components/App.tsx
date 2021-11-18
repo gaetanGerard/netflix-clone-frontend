@@ -1,3 +1,4 @@
+import { FC } from 'react';
 import { Routes, Route } from "react-router-dom";
 // Import Custom Components
 import HomeWelcome from './homeWelcome/HomeWelcome';
@@ -9,7 +10,7 @@ import NotFound from "./pages/NotFound"
 import '../styles/App.scss';
 
 
-const App = () => {
+const App: FC = (): JSX.Element => {
   return (
     <div>
       <Routes>

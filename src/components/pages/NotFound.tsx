@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { Link } from "react-router-dom";
 
 // Import Custom Components
@@ -8,7 +8,7 @@ import Typography from "../ui/Typography";
 // Import styles
 import "../../styles/notFound.scss";
 
-const NotFound = () => {
+const NotFound: FC<{}> = () => {
     return (
         <div className="notFound-container">
             <header>

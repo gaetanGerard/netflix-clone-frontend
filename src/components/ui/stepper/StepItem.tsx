@@ -1,15 +1,55 @@
-import React, { Fragment } from 'react';
+/* eslint-disable @typescript-eslint/no-redeclare */
+import React, { Fragment, ChangeEvent } from 'react';
 
 // Import Custom Component
 import InputText from '../InputText';
 
 // Import image
-import check from "../../../images/auth/register-section-2-check.svg";
+// import check from "../../../images/auth/register-section-2-check.svg";
 
-const StepItem = ({ item, nextStep, isFirst, isLast, currentStep, step, classname, onChange }) => {
+type StepLevelProps = {
+    text1: string,
+    num1: number,
+    text2: string,
+    num2: number
+}
+
+type UserInputProps = {
+    label: string,
+    errorMsg: string
+}
+
+type UserorPasswordInputProps = {
+    userInput: UserInputProps,
+    passwordInput: UserInputProps
+}
+
+type StepItem = {
+    img: boolean,
+    stepLevel: StepLevelProps,
+    title: string,
+    text: string,
+    subtitle1: string,
+    subtitle2: string,
+    list: string[],
+    stepBtn: string
+    input: UserorPasswordInputProps
+    checkbox: string
+}
+
+type StepItemProps = {
+    item: [string, StepItem],
+    nextStep: () => void,
+    isFirst: boolean,
+    isLast: boolean,
+    currentStep: number,
+    step: number,
+    classname: string,
+    onChange: (e: ChangeEvent<HTMLInputElement>) => void
+}
+
+const StepItem = ({ item, nextStep, isFirst, isLast, currentStep, step, classname, onChange }: StepItemProps): JSX.Element => {
     const data = item[1];
-
-    // console.log(data)
 
     return (
         <div className="step-wrapper">
@@ -17,7 +57,7 @@ const StepItem = ({ item, nextStep, isFirst, isLast, currentStep, step, classnam
                 <div className="step-container">
                     {data.img ? (<div className="step-img"></div>) : null}
                     <div className="stepHeader">
-                        <p className="stepOn">{data.stepLevel["text-1"]} <span>{data.stepLevel["num-1"]}</span> {data.stepLevel["text-2"]} <span>{data.stepLevel["num-2"]}</span></p>
+                        <p className="stepOn">{data.stepLevel["text1"]} <span>{data.stepLevel["num1"]}</span> {data.stepLevel["text2"]} <span>{data.stepLevel["num2"]}</span></p>
                         <h2>{data.title}</h2>
                     </div>
                     <div className="stepBody">
@@ -40,7 +80,7 @@ const StepItem = ({ item, nextStep, isFirst, isLast, currentStep, step, classnam
                             <ul className="register-list">
                                 {data.list.map((item, i) => (
                                     <li key={`register-step-2-list-${i++}`}>
-                                        <svg viewBox="0 0 24 24" class="checkmark-group--icon" aria-hidden="true">
+                                        <svg viewBox="0 0 24 24" className="checkmark-group--icon" aria-hidden="true">
                                             <path fill="currentColor" d="M3.707 12.293l-1.414 1.414L8 19.414 21.707 5.707l-1.414-1.414L8 16.586z"></path>
                                         </svg>
                                         {item}
