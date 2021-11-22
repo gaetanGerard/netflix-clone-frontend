@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-redeclare */
-import React, { Fragment, ChangeEvent } from 'react';
+import React, { Fragment, ChangeEvent, useState } from 'react';
 
 // Import Custom Component
 import InputText from '../InputText';
@@ -50,6 +50,11 @@ type StepItemProps = {
 
 const StepItem = ({ item, nextStep, isFirst, isLast, currentStep, step, classname, onChange }: StepItemProps): JSX.Element => {
     const data = item[1];
+    const [activeColumn, setActiveColumn] = useState<string | null>(null);
+
+    const selectedColumn = (name) => {
+        setActiveColumn(name);
+    }
 
     return (
         <div className="step-wrapper">
@@ -59,6 +64,18 @@ const StepItem = ({ item, nextStep, isFirst, isLast, currentStep, step, classnam
                     <div className="stepHeader">
                         <p className="stepOn">{data.stepLevel["text1"]} <span>{data.stepLevel["num1"]}</span> {data.stepLevel["text2"]} <span>{data.stepLevel["num2"]}</span></p>
                         <h2>{data.title}</h2>
+                        {data["header-list"] ? (
+                            <ul className="register-list">
+                                {data["header-list"].map((item, i) => (
+                                    <li key={`register-step-2-list-${i++}`}>
+                                        <svg viewBox="0 0 24 24" className="checkmark-group--icon" aria-hidden="true">
+                                            <path fill="currentColor" d="M3.707 12.293l-1.414 1.414L8 19.414 21.707 5.707l-1.414-1.414L8 16.586z"></path>
+                                        </svg>
+                                        {item}
+                                    </li>
+                                ))}
+                            </ul>
+                        ) : null}
                     </div>
                     <div className="stepBody">
                         {data.text ? (<p>{data.text}</p>) : null}
@@ -87,6 +104,41 @@ const StepItem = ({ item, nextStep, isFirst, isLast, currentStep, step, classnam
                                     </li>
                                 ))}
                             </ul>
+                        ) : null}
+                        {data["subscription-plan"] ? (
+                            <div className="subscription-container">
+                                <div className="row row-header">
+                                    <div className="column"></div>
+                                    {data["subscription-plan"].map((col, i) => (<div className={`column column-header ${activeColumn === col.name ? "active" : ""}`} onClick={e => selectedColumn(col.name)} key={`row-header-${i++}`}><span>{col.name}</span></div>))}
+                                </div>
+                                <div className="row row-with-border">
+                                    <div className="column column-label">{data["subscription-row-label"][0]}</div>
+                                    {data["subscription-plan"].map((col, i) => (<div className={`column ${activeColumn === col.name ? "active" : ""}`} onClick={e => selectedColumn(col.name)} key={`row-pricing-${i++}`}>{col.pricing}</div>))}
+                                </div>
+                                <div className="row row-with-border">
+                                    <div className="column column-label">{data["subscription-row-label"][1]}</div>
+                                    {data["subscription-plan"].map((col, i) => (<div className={`column ${activeColumn === col.name ? "active" : ""}`} onClick={e => selectedColumn(col.name)} key={`row-videoQuality-${i++}`}>{col.videoQuality}</div>))}
+                                </div>
+                                <div className="row row-with-border">
+                                    <div className="column column-label">{data["subscription-row-label"][2]}</div>
+                                    {data["subscription-plan"].map((col, i) => (<div className={`column ${activeColumn === col.name ? "active" : ""}`} onClick={e => selectedColumn(col.name)} key={`row-Resolution-${i++}`}>{col.Resolution}</div>))}
+                                </div>
+                                <div className="row">
+                                    <div className="column column-label">{data["subscription-row-label"][3]}</div>
+                                    {data["subscription-plan"].map((col, i) => (
+                                    <div className={`column ${activeColumn === col.name ? "active" : ""}`} onClick={e => selectedColumn(col.name)} key={`row-allDevice-${i++}`}>
+                                        <svg viewBox="0 0 24 24" className="checkmark-group--icon" aria-hidden="true">
+                                            <path fill="currentColor" d="M3.707 12.293l-1.414 1.414L8 19.414 21.707 5.707l-1.414-1.414L8 16.586z"></path>
+                                        </svg>
+                                    </div>))}
+                                </div>
+                            </div>
+                        ) : null}
+                        {data["disclaimer"] ? (
+                            <div className="small-container">
+                                <p>{data["disclaimer"].text1} <a href="/">{data["disclaimer"]["link-1"].text}</a></p>
+                                <p>{data["disclaimer"].text2}</p>
+                            </div>
                         ) : null}
                     </div>
                     <button onClick={nextStep} className={`btn ${isLast ? "complete-btn" : "next-btn"}`}>{data.stepBtn}</button>

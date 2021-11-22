@@ -230,7 +230,7 @@
             color: $white;
             text-align: center;
             box-shadow: 0 1px 0 rgb(0, 0, 0 / 55%);
-            background-image: linear-gradient(to bottom,#0080ff,#0277ec);
+            background-image: linear-gradient(to bottom,$blue-gradient-value-1,$blue-gradient-value-2);
             border-radius: 2px;
             letter-spacing: .1px;
         }
@@ -250,7 +250,7 @@
         align-items: center;
         grid-template-columns: auto auto;
         justify-content: space-between;
-        border-bottom: 1px solid #dbdbdb;
+        border-bottom: 1px solid $light-gray;
         svg {
             margin-left: 3vw;
             @include logo;
@@ -268,10 +268,10 @@
         }
     }
     footer {
-        border-top: 1px solid #dbdbdb;
+        border-top: 1px solid $light-gray;
         opacity: 1;
         margin-top: 0;
-        background: #f3f3f3;
+        background: $light-gray-background;
         .site-footer {
             width: 90%;
             margin: 0 auto;
@@ -289,7 +289,7 @@
         }
     }
     .stepper {
-        width: 500px;
+        width: 100vw;
         height: 600px;
         position: relative;
         overflow: hidden;
@@ -304,8 +304,7 @@
         display: inline-flex;
         top:0;
         .step-wrapper {
-            width: 600px;
-            height: 100%;
+            width: 100vw;
             .step {
                 height: 600px;
                 width: 100%;
@@ -315,7 +314,7 @@
                 justify-items: center;
                 align-content: center;
                 align-items: center;
-                background: #fff;
+                background: $white;
                 .stepHeader {
                     text-align: center;
                     p {
@@ -347,11 +346,11 @@
                 }
             }
             .stepItem-0 {
-                width: 100%;
+                width: 70%;
                 margin: 0 auto;
                 grid-gap: 20px;
                 .step-container {
-                    width: 60%;
+                    width: 40%;
                     .step-img {
                         margin: 0 auto;
                         width: 260px;
@@ -400,7 +399,7 @@
                                 .form-field {
                                     &-control {
                                         background-color: transparent;
-                                        border: 1px solid #dbdbdb;
+                                        border: 1px solid $light-gray;
                                         border-radius: 2px;
                                     }
                                     &--is-empty {
@@ -468,6 +467,137 @@
                     }
                     .next-btn {
                         width: 80%;
+                        margin: 0 auto;
+                    }
+                }
+            }
+
+            .stepItem-3 {
+                margin: 0 auto;
+                grid-gap: 20px;
+                width: 100vw;
+                height: 600px;
+                align-content: start;
+                align-items: start;
+                overflow-y: scroll;
+                .step-container {
+                    display: grid;
+                    justify-content: start;
+                    justify-items: start;
+                    width: 70vw;
+                    height: 600px;
+                    .stepHeader {
+                        display: grid;
+                        justify-content: start;
+                        text-align: left;
+                        h2 {
+                            width: 100%;
+                            max-width: 100%;
+                        }
+                        .register-list {
+                            display: grid;
+                            align-content: space-between;
+                            grid-gap: 5px;
+                            width: 100%;
+                            margin: 0 auto;
+                            li {
+                                font-size: 17px;
+                                display: grid;
+                                align-content: center;
+                                align-items: center;
+                                grid-template-columns: auto auto;
+                                justify-content: start;
+                                grid-gap: 20px;
+                                line-height: 1.2;
+                                svg {
+                                    width: 24px;
+                                    height: 24px;
+                                    stroke: $light-red;
+                                }
+                            }
+                        }
+                    }
+                    .stepBody {
+                        margin: 15px 0 20px 0;
+                        .subscription-container {
+                            .row {
+                                color: $dim-gray;
+                                display: grid;
+                                grid-template-columns: 40% 20% 20% 20%;
+                                justify-items: center;
+                                height: 61px;
+                                align-items: center;
+                                user-select: none;
+                                &-header {
+                                    height: 114px;
+                                }
+                                .column {
+                                    font-weight: $font-weight-bold;
+                                    svg {
+                                        width: 24px;
+                                        height: 24px;
+                                        stroke: $dim-gray;
+                                    }
+                                    &-label {
+                                        color: $dark-gray;
+                                        justify-self: start;
+                                        font-weight: $font-weight-semi-bold;
+                                    }
+                                    &.active {
+                                        color: $dark-red;
+                                        svg {
+                                            stroke: $dark-red;
+                                        }
+                                    }
+                                    &-header {
+                                        display: grid;
+                                        justify-content: center;
+                                        align-content: center;
+                                        width: 90px;
+                                        height: 90px;
+                                        background-color: $dark-red;
+                                        color: $white;
+                                        opacity: .6;
+                                        position: relative;
+                                        &.active {
+                                            opacity: 1;
+                                            color: $white;
+                                            &:before {
+                                                content: "";
+                                                position: absolute;
+                                                bottom: -22%;
+                                                margin-left: -10px;
+                                                left: 50%;
+                                                z-index: 100;
+                                                border: solid 10px transparent;
+                                                border-right-color: red;
+                                                transform: rotate(-90deg);
+                                            }
+                                        }
+                                    }
+                                }
+                                &-with-border {
+                                    border-bottom: 1px solid $light-gray;
+                                }
+                            }
+                        }
+                        .small-container {
+                            font-size: $font-size-footer;
+                            padding: 5px 0;
+                            p {
+                                padding: 5px 0;
+                                a {
+                                    text-decoration: none;
+                                    color: $royal-blue;
+                                    &:hover {
+                                        text-decoration: underline;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .next-btn {
+                        width: 40%;
                         margin: 0 auto;
                     }
                 }

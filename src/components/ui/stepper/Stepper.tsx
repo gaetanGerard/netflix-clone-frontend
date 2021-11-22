@@ -16,6 +16,8 @@ const Stepper: FC<StepperProps> = ({ steps, onChange }: StepperProps): JSX.Eleme
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {moveStepper();}, [currentStep])
 
+    // Next step will have to recover data from step 1 (userEmail, password, specialOffers)
+    // and recover plan on step 2
     const nextStep = () => {
         const nextStep = currentStep + 1;
         if(currentStep <= stepLength - 1) {

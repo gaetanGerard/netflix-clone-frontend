@@ -71,7 +71,7 @@
     transition: all $animation-duration;
 }
 .form-field-control {
-    background: #eee;
+    background: $dark-white;
     overflow: hidden;
     position: relative;
     width: 100%;
@@ -95,8 +95,8 @@
     appearance: none;
     background: transparent;
     border: 0;
-    border-bottom: 1px solid #999;
-    color: #333;
+    border-bottom: 1px solid $gray-999;
+    color: $dark-gray;
     display: block;
     font-size: $font-size-medium;
     margin-top: 24px;
