@@ -1,8 +1,19 @@
 import { AuthActionTypes } from './auth.types';
 
 type USER = {
-    userEmail: string,
+    _id: string,
+    username: string,
+    email: string,
     password: string,
+    token: string,
+    firstname: string,
+    lastname: string,
+    date_of_birth: string,
+    gender: number,
+    profile_pic: string,
+    description: string,
+    created_at: string,
+    updated_at: string,
     rememberMe?: boolean,
     specialOffers?: boolean
 }
@@ -20,7 +31,7 @@ const authReducer = (state = INITIAL_STATE, action) => {
         case AuthActionTypes.LOGIN:
             return {
                 ...state,
-                user: action.payload
+                user: action.payload,
             }
         case AuthActionTypes.LOGOUT:
             return {

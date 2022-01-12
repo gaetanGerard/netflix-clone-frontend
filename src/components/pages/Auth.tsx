@@ -4,7 +4,6 @@ import { useSelector, useDispatch } from 'react-redux';
 
 // Import Redux
 import { setApplicationLanguage } from '../../redux/utils/utils.actions';
-import { login } from '../../redux/auth/auth.actions';
 import { RootState } from "../../redux/root-reducer";
 
 // Import language data
@@ -30,15 +29,11 @@ const Auth = () => {
         dispatch(setApplicationLanguage(e.target.value))
     }
 
-    const onSubmit = (data: object) => {
-        dispatch(login(data))
-    }
-
     switch (location.pathname) {
         case "/login":
             return (
                 <Fragment>
-                    <Login language={lang.name} data={data.login} onSubmit={onSubmit} changeLanguage={changeLanguage} options={options} />
+                    <Login language={lang.name} loginData={data.login} changeLanguage={changeLanguage} options={options} />
                 </Fragment>
             )
         case "/register":

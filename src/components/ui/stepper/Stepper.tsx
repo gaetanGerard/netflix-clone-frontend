@@ -33,6 +33,7 @@ const Stepper: FC<StepperProps> = ({ steps, onChange }: StepperProps): JSX.Eleme
         }
     }
 
+
     return (
         <div className="stepper stepper-wrapper">
             <div className="stepper-selector" ref={stepperSelector}>

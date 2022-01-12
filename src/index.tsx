@@ -1,37 +1,42 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
 import App from './components/App';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-// import {
-//   ApolloClient,
-//   InMemoryCache,
-//   createHttpLink
-// } from "@apollo/client";
-// import { setContext } from '@apollo/client/link/context';
+import {
+  ApolloClient,
+  InMemoryCache,
+  createHttpLink,
+  ApolloProvider
+} from "@apollo/client";
+import { setContext } from '@apollo/client/link/context';
 import store from './redux/store';
 
-// const httpLink = createHttpLink({
-//   uri: 'TO CHANGE LATER',
-// });
+const httpLink = createHttpLink({
+  uri: 'http://localhost:4000/graphql',
+});
 
-// const authLink = setContext((_, { headers }) => {
-//   // get the authentication token from local storage if it exists
-//   const token = localStorage.getItem('token');
-//   // return the headers to the context so httpLink can read them
-//   return {
-//     headers: {
-//       ...headers,
-//       authorization: token ? `${token}` : "",
-//     }
-//   }
-// });
+// Improve Server for retrieve with the token generated when the user logged in
+// https://www.apollographql.com/docs/apollo-server/security/authentication/#outside-of-graphql
 
-// const client = new ApolloClient({
-//   link: authLink.concat(httpLink),
-//   cache: new InMemoryCache()
-// });
+const authLink = setContext((_, { headers }) => {
+  // get the authentication token from local storage if it exists
+  const token = localStorage.getItem('token');
+  // return the headers to the context so httpLink can read them
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `${token}` : "",
+    }
+  }
+});
+
+export const client = new ApolloClient({
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache()
+});
 
 // const GET_MOVIE = gql `
 //   query Query {
@@ -52,14 +57,15 @@ import store from './redux/store';
 //   return <p>There is some data, check console</p>
 // }
 
-
 ReactDOM.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </Provider>
+    <ApolloProvider client={client}>
+      <Provider store={store}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </Provider>
+    </ApolloProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

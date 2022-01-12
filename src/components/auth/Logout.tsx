@@ -1,5 +1,10 @@
-import React, { FC, ChangeEvent } from 'react';
+import React, { FC, ChangeEvent, useEffect } from 'react';
 import { Link, useNavigate } from "react-router-dom";
+import { client } from '../../index';
+import { useSelector, useDispatch } from 'react-redux';
+// Import redux
+import { RootState } from "../../redux/root-reducer";
+import { logout } from '../../redux/auth/auth.actions';
 
 // Import custom Component
 import Logo from "../ui/Logo";
@@ -14,6 +19,8 @@ type LogoutProps = {
 }
 
 const Logout: FC<LogoutProps> = ({ language, data, changeLanguage, options }): JSX.Element => {
+    const dispatch = useDispatch();
+    const user = useSelector((state: RootState) => state.auth.user);
     document.title = data[language].documentTitle;
     const navigate = useNavigate();
 
@@ -24,6 +31,12 @@ const Logout: FC<LogoutProps> = ({ language, data, changeLanguage, options }): J
     setTimeout(() => {
         navigate("/", { replace: true})
     }, 30000);
+
+    useEffect(() => {
+        localStorage.removeItem("token");
+        if(!localStorage.getItem('token')) dispatch(logout());
+        client.resetStore();
+    }, [])
 
     return (
         <div className="logout-container">

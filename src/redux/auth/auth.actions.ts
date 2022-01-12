@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { AuthActionTypes } from './auth.types';
 
 export const login = (data) => {
