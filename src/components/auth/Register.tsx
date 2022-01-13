@@ -1,5 +1,5 @@
 import React, { useState, FC, ChangeEvent } from 'react';
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
 // Import Custom Components
 import Stepper from "../ui/stepper/Stepper";
@@ -17,6 +17,7 @@ const Register: FC<RegisterProps> = ({ language, data, changeLanguage, options }
     const [userEmail, setUserEmail] = useState<string | null>(null);
     const [password, setPassword] = useState<string | null>(null);
     const [specialOffers, setSpecialOffers] = useState<boolean>(false);
+    const [subscriptionPlan, setSubscriptionPlan] = useState<string | null>(null);
     document.title = data[language].documentTitle;
     const register = data[language]
 
@@ -26,9 +27,7 @@ const Register: FC<RegisterProps> = ({ language, data, changeLanguage, options }
         if(e.target.name === "specialOffers") setSpecialOffers(e.target.checked)
     }
 
-    const userData = {userEmail, password, specialOffers}
-
-    console.log(userData);
+    const userData = {userEmail, password, specialOffers, subscriptionPlan}
 
     return (
         <div className="register-container">
@@ -36,7 +35,7 @@ const Register: FC<RegisterProps> = ({ language, data, changeLanguage, options }
                 <Link to="/"><Logo classname="svg-icon svg-icon-netflix-logo nfLogo" /></Link>
                 <Link to={register.header.link.to} className="login-link">{register.header.link.text}</Link>
             </header>
-            <Stepper steps={register.body} onChange={onChange} />
+            <Stepper steps={register.body} onChange={onChange} userData={userData} setSubscriptionPlan={setSubscriptionPlan} />
             <Footer data={register.footer} options={options} language={language} changeLanguage={changeLanguage} />
         </div>
     )

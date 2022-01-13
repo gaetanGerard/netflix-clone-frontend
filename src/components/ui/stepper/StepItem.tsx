@@ -46,14 +46,16 @@ type StepItemProps = {
     step: number,
     classname: string,
     onChange: (e: ChangeEvent<HTMLInputElement>) => void
+    setSubscriptionPlan: (string) => void
 }
 
-const StepItem = ({ item, nextStep, isFirst, isLast, currentStep, step, classname, onChange }: StepItemProps): JSX.Element => {
+const StepItem = ({ item, nextStep, isFirst, isLast, currentStep, step, classname, onChange, setSubscriptionPlan }: StepItemProps): JSX.Element => {
     const data = item[1];
     const [activeColumn, setActiveColumn] = useState<string | null>(null);
 
     const selectedColumn = (name) => {
         setActiveColumn(name);
+        setSubscriptionPlan(name);
     }
 
     return (

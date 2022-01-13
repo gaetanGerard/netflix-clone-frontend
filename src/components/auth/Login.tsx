@@ -1,7 +1,10 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useState, FC, ChangeEvent } from 'react';
 import { Link, useNavigate } from "react-router-dom";
-import { gql, useLazyQuery } from '@apollo/client';
+import { useLazyQuery } from '@apollo/client';
+
+// Import utils
+import { LOGIN_USER } from '../../utils/query';
 
 // Import Custom Components
 import Typography from '../ui/Typography';
@@ -10,12 +13,6 @@ import Footer from "../ui/Footer";
 
 // Import Logo
 import Logo from '../ui/Logo';
-
-type UserDataProps = {
-    userEmail: string | null,
-    password: string | null,
-    rememberMe: boolean
-}
 
 type LoginProps = {
     language: string,
@@ -30,27 +27,7 @@ const Login: FC<LoginProps> = ({ language, loginData, changeLanguage, options })
     const [userEmail, setUserEmail] = useState<string | null>(null);
     const [password, setPassword] = useState<string | null>(null);
     const [rememberMe, setRememberMe] = useState<boolean>(true);
-    const LOGIN_USER = gql`
-    query Query($email: String!, $password: String!) {
-            loginUser(email: $email, password: $password) {
-                _id
-                username
-                token
-                email
-                password
-                firstname
-                lastname
-                date_of_birth
-                gender
-                profile_pic
-                description
-                created_at
-                updated_at
-                rememberMe
-                specialOffers
-            }
-        }
-    `;
+
     const [login, { loading, error, data}] = useLazyQuery (LOGIN_USER);
 
     const onChange = (e: ChangeEvent<HTMLInputElement>) => {
