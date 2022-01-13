@@ -2,7 +2,6 @@ import { AuthActionTypes } from './auth.types';
 
 type USER = {
     _id: string,
-    username: string,
     email: string,
     password: string,
     token: string,
