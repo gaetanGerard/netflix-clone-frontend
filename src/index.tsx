@@ -38,25 +38,6 @@ export const client = new ApolloClient({
   cache: new InMemoryCache()
 });
 
-// const GET_MOVIE = gql `
-//   query Query {
-//     getMovie(id: "181812") {
-//       title
-//     }
-//   }
-// `;
-
-// function Movie() {
-//   const { loading, error, data } = useQuery(GET_MOVIE);
-
-//   if(loading) return <p>Loading...</p>
-//   if(error) return <p>Error: {error.graphQLErrors[0].message}</p>
-
-//   console.log(data);
-
-//   return <p>There is some data, check console</p>
-// }
-
 ReactDOM.render(
   <React.StrictMode>
     <ApolloProvider client={client}>

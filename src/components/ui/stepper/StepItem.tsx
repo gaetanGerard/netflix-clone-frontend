@@ -45,11 +45,12 @@ type StepItemProps = {
     currentStep: number,
     step: number,
     classname: string,
+    disabled: boolean
     onChange: (e: ChangeEvent<HTMLInputElement>) => void
     setSubscriptionPlan: (string) => void
 }
 
-const StepItem = ({ item, nextStep, isFirst, isLast, currentStep, step, classname, onChange, setSubscriptionPlan }: StepItemProps): JSX.Element => {
+const StepItem = ({ item, nextStep, isFirst, isLast, currentStep, step, classname, onChange, setSubscriptionPlan, disabled }: StepItemProps): JSX.Element => {
     const data = item[1];
     const [activeColumn, setActiveColumn] = useState<string | null>(null);
 
@@ -143,7 +144,7 @@ const StepItem = ({ item, nextStep, isFirst, isLast, currentStep, step, classnam
                             </div>
                         ) : null}
                     </div>
-                    <button onClick={nextStep} className={`btn ${isLast ? "complete-btn" : "next-btn"}`}>{data.stepBtn}</button>
+                    <button onClick={nextStep} className={`btn ${isLast ? "complete-btn" : "next-btn"} ${disabled ? "btn-disabled" : ""}`} disabled={disabled}>{data.stepBtn}</button>
                 </div>
             </div>
         </div>

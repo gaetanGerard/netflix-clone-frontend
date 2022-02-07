@@ -20,6 +20,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "noImplicitAny": false,
+    "useUnknownInCatchVariables": false
   },
   "include": [
     "src",
