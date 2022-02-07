@@ -8,9 +8,9 @@
     width: 100vw;
 }
 
-@mixin logo {
-    width: 10.4375rem;
-    height: 2.8125rem;
+@mixin logo($width: 10.4375rem, $height: 2.8125rem) {
+    width: $width;
+    height: $height;
     padding-top: 0;
 }
 

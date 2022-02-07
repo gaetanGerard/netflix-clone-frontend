@@ -40,7 +40,7 @@ const { loading, error, data } = useQuery(GET_USER, {errorPolicy: 'ignore'});
         <Route path="/login" element={<Auth />} />
         <Route path="/logout" element={<Auth />} />
         <Route path="/home" element={<RequiredAuth><Home /></RequiredAuth>} />
-        <Route path="/profiles" element={<RequiredAuth><Profiles /></RequiredAuth>} />
+        <Route path="/profiles/manage" element={<RequiredAuth><Profiles /></RequiredAuth>} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>

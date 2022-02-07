@@ -18,6 +18,14 @@ export const LOGIN_USER = gql`
             rememberMe
             specialOffers
             subscriptionPlan
+            profiles {
+              p_name
+              kid
+              language
+              profile_pic
+              autoplay_next_episode
+              autoplay_preview
+            }
         }
     }
 `;
@@ -38,6 +46,14 @@ export const GET_USER = gql`
       rememberMe
       specialOffers
       subscriptionPlan
+      profiles {
+        p_name
+        kid
+        language
+        profile_pic
+        autoplay_next_episode
+        autoplay_preview
+      }
     }
   }
 `;

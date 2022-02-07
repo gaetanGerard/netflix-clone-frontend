@@ -1,0 +1,197 @@
+{
+    "Français": {
+        "manage_profile": {
+            "title": "Gérer les profiles",
+            "btn_add": "Ajouter un profile",
+            "btn_complete": "Terminer"
+        },
+        "edit_profile": {
+            "title": "Modifier le profile",
+            "language": {
+                "title": "Langue",
+                "lang_array": [
+                    "Bahasa Indonesia",
+                    "Bahasa Melayu",
+                    "Dansk",
+                    "Deutsch",
+                    "English",
+                    "Español",
+                    "Français",
+                    "Hrvatski",
+                    "Italiano",
+                    "Magyar",
+                    "Nederlands",
+                    "Norsk bokmål",
+                    "Polski",
+                    "Português",
+                    "Română",
+                    "Suomi",
+                    "Svenska",
+                    "Tiếng Việt",
+                    "Türkçe",
+                    "Čeština",
+                    "Ελληνικά",
+                    "Русский",
+                    "Українська",
+                    "עברית",
+                    "العربية",
+                    "हिन्दी",
+                    "ไทย",
+                    "中文",
+                    "日本語",
+                    "한국어"
+                ]
+            },
+            "maturity_settings": {
+                "title": "Paramètre de visionage",
+                "maturity": [
+                    "Tout public",
+                    "Adulte",
+                    "Enfant",
+                    "7+"
+                ],
+                "kid_content": "Afficher uniquement les titres notés 7+ et moins pour ce profil.",
+                "adults_content": "Afficher uniquement les titres notés Adulte et moins pour ce profil.",
+                "btn_edit": "Modifier"
+            },
+            "autoplay": {
+                "title": "Contrôle de lecture automatique",
+                "autoplay_next_episode": "Lire automatiquement le prochain épisode sur tout les appareils",
+                "autoplay_preview": "Lire automatiquement les bande annonce lors du parcours sur tout les appareils."
+            },
+            "btn_complete": "Enregistrer",
+            "btn_cancel": "Annuler",
+            "btn_delete": "Supprimer le profile"
+        }
+    },
+    "English": {
+        "manage_profile": {
+            "title": "Manage Profiles",
+            "btn_add": "Add Profile",
+            "btn_complete": "Done"
+        },
+        "edit_profile": {
+            "title": "Edit profile",
+            "language": {
+                "title": "Language",
+                "lang_array": [
+                    "Bahasa Indonesia",
+                    "Bahasa Melayu",
+                    "Dansk",
+                    "Deutsch",
+                    "English",
+                    "Español",
+                    "Français",
+                    "Hrvatski",
+                    "Italiano",
+                    "Magyar",
+                    "Nederlands",
+                    "Norsk bokmål",
+                    "Polski",
+                    "Português",
+                    "Română",
+                    "Suomi",
+                    "Svenska",
+                    "Tiếng Việt",
+                    "Türkçe",
+                    "Čeština",
+                    "Ελληνικά",
+                    "Русский",
+                    "Українська",
+                    "עברית",
+                    "العربية",
+                    "हिन्दी",
+                    "ไทย",
+                    "中文",
+                    "日本語",
+                    "한국어"
+                ]
+            },
+            "maturity_settings": {
+                "title": "Maturity Settings",
+                "maturity": [
+                    "All Maturity Ratings",
+                    "Adult",
+                    "Kid",
+                    "7+"
+                ],
+                "kid_content": "Only show rated 7+ and below for this profile.",
+                "adults_content": "Show titles of all maturity ratings for this profile.",
+                "btn_edit": "Edit"
+            },
+            "autoplay": {
+                "title": "Autoplay controls",
+                "autoplay_next_episode": "Autoplay next episode in a series on all devices.",
+                "autoplay_preview": "Autoplay previews while browsing on all devices."
+            },
+            "btn_complete": "Save",
+            "btn_cancel": "Cancel",
+            "btn_delete": "Delete Profile"
+        }
+    },
+    "Nederlands": {
+        "manage_profile": {
+            "title": "Profielen beheren",
+            "btn_add": "Profiel toevoegen",
+            "btn_complete": "Gedaan"
+        },
+        "edit_profile": {
+            "title": "Bewerk profiel",
+            "language": {
+                "title": "Taal",
+                "lang_array": [
+                    "Bahasa Indonesia",
+                    "Bahasa Melayu",
+                    "Dansk",
+                    "Deutsch",
+                    "English",
+                    "Español",
+                    "Français",
+                    "Hrvatski",
+                    "Italiano",
+                    "Magyar",
+                    "Nederlands",
+                    "Norsk bokmål",
+                    "Polski",
+                    "Português",
+                    "Română",
+                    "Suomi",
+                    "Svenska",
+                    "Tiếng Việt",
+                    "Türkçe",
+                    "Čeština",
+                    "Ελληνικά",
+                    "Русский",
+                    "Українська",
+                    "עברית",
+                    "العربية",
+                    "हिन्दी",
+                    "ไทย",
+                    "中文",
+                    "日本語",
+                    "한국어"
+                ]
+            },
+            "maturity_settings": {
+                "title": "Volwassenheidsinstellingen",
+                "maturity": [
+                    "Alle volwassenheidsclassificaties",
+                    "Volwassen",
+                    "Kind",
+                    "7+"
+                ],
+                "kid_content": "Toon alleen beoordeeld 7+ en lager voor dit profiel.",
+                "adults_content": "Toon titels van alle leeftijdsclassificaties voor dit profiel.",
+                "btn_edit": "Bewerk"
+            },
+            "autoplay": {
+                "title": "Besturing voor automatisch afspelen",
+                "autoplay_next_episode": "Speel de volgende aflevering in een serie automatisch af op alle apparaten.",
+                "autoplay_preview": "Autoplay-voorbeelden tijdens het browsen op alle apparaten."
+            },
+            "btn_complete": "Sparen",
+            "btn_cancel": "Annuleren",
+            "btn_delete": "Verwijder profiel"
+        }
+    }
+}

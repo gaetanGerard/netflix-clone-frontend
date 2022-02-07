@@ -1,0 +1,41 @@
+@import "./variables.scss";
+@import "./mixin.scss";
+
+.profiles-container {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 100px auto;
+    background-color: $profile-bg;
+
+    header {
+        height: 90px;
+        display: grid;
+        align-content: center;
+        align-items: center;
+        grid-template-columns: auto auto;
+        justify-content: space-between;
+        background: linear-gradient(rgba($black, 0.5) 10%, rgba($black, 0.01) 90%);
+        a {
+            svg {
+                margin-left: 3vw;
+                @include logo($width: calc(10.4375rem / 1.5), $height: calc(2.8125rem / 1.5));
+            }
+        }
+    }
+
+    .profiles-content {
+        display: grid;
+        justify-content: center;
+        justify-items: center;
+        align-content: start;
+        align-items: center;
+        padding-top: 200px;
+        h2 {
+            font-size: $font-size-extra-large;
+            font-weight: $font-weight-medium;
+            color: $white;
+            margin-bottom: 0.67em;
+        }
+    }
+}

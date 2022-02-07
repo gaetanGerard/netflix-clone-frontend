@@ -43,7 +43,7 @@ const Login: FC<LoginProps> = ({ language, loginData, changeLanguage, options })
 
     if(!localStorage.getItem('token') && loading) return <div>Loading...</div>
     if(!localStorage.getItem('token') && error) return <div>Error...</div>
-    if(localStorage.getItem('token')) navigate("/home")
+    if(localStorage.getItem('token')) navigate("/profiles/manage")
 
     if(data) {
         localStorage.setItem("token", data.loginUser.token);
