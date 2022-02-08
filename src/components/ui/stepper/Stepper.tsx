@@ -68,7 +68,7 @@ const Stepper: FC<StepperProps> = ({ steps, onChange, userData, setSubscriptionP
             setUserInputError(error.graphQLErrors[0].extensions.userInputError);
         }
         if(!loading && data && !error) {
-            navigate('/profiles/manage');
+            navigate('/profiles/browse');
             localStorage.setItem('token', data.registerUser.token);
         }
 

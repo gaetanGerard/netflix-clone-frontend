@@ -6,7 +6,7 @@ import "../../styles/inputText.scss";
 type InputTextProps = {
   fieldName: string,
   label: string,
-  errorMsg: string,
+  errorMsg?: string,
   onChange: (e: ChangeEvent<HTMLInputElement>) => void,
   type: string,
   name: string,

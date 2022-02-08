@@ -1,5 +1,10 @@
 {
     "Français": {
+        "browse_profile": {
+            "title": "Qui regarde ?",
+            "btn_add": "Ajouter un Profile",
+            "btn_edit": "Gérer les Profiles"
+        },
         "manage_profile": {
             "title": "Gérer les profiles",
             "btn_add": "Ajouter un profile",
@@ -62,9 +67,23 @@
             "btn_complete": "Enregistrer",
             "btn_cancel": "Annuler",
             "btn_delete": "Supprimer le profile"
+        },
+        "add_profile": {
+            "title": "Ajouter un Profile",
+            "content": "Ajouter un profile pour un autre utilisateur regardant Netflix.",
+            "input_name": "Nom",
+            "checkbox_kid": "Enfant",
+            "checkbox_helper_text": "Si sélectionner, ce profile ne pourra visionner seulement les titres notés 7+ et moins.",
+            "btn_continue": "Continuer",
+            "btn_cancel": "Annuler"
         }
     },
     "English": {
+        "browse_profile": {
+            "title": "Who's watching?",
+            "btn_add": "Add Profile",
+            "btn_edit": "Manage Profiles"
+        },
         "manage_profile": {
             "title": "Manage Profiles",
             "btn_add": "Add Profile",
@@ -127,9 +146,23 @@
             "btn_complete": "Save",
             "btn_cancel": "Cancel",
             "btn_delete": "Delete Profile"
+        },
+        "add_profile": {
+            "title": "Add Profile",
+            "content": "Add a profile for another person watching Netflix.",
+            "input_name": "Name",
+            "checkbox_kid": "Kid",
+            "checkbox_helper_text": "If selected, this profile will only see TV shows and movies rated for ages 7+ and below.",
+            "btn_continue": "Continue",
+            "btn_cancel": "Cancel"
         }
     },
     "Nederlands": {
+        "browse_profile": {
+            "title": "Wie kijkt?",
+            "btn_add": "Geen profiel meer",
+            "btn_edit": "Profielen voor Gerer les"
+        },
         "manage_profile": {
             "title": "Profielen beheren",
             "btn_add": "Profiel toevoegen",
@@ -192,6 +225,15 @@
             "btn_complete": "Sparen",
             "btn_cancel": "Annuleren",
             "btn_delete": "Verwijder profiel"
+        },
+        "add_profile": {
+            "title": "Profiel toevoegen",
+            "content": "Voeg een profiel toe voor een autre utilisateur met betrekking tot Netflix.",
+            "input_name": "naam",
+            "checkbox_kid": "Kind",
+            "checkbox_helper_text": "Indien geselecteerd, ziet dit profiel alleen tv-programma's en films die zijn geclassificeerd voor kinderen van 7 jaar en ouder.",
+            "btn_continue": "doorgaan",
+            "btn_cancel": "annuleren"
         }
     }
 }

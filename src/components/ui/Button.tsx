@@ -5,7 +5,7 @@ type BtnProps = {
     classname: string,
     children: ReactNode,
     onclick: () => void,
-    disabled: boolean
+    disabled?: boolean
 }
 
 const Button = ({ btnType, classname, children, onclick, disabled }: BtnProps): JSX.Element => {
