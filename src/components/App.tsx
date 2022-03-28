@@ -20,6 +20,7 @@ import NotFound from "./pages/NotFound"
 import Profiles from "./pages/Profiles";
 import ProfileAdd from "./profiles/ProfileAdd";
 import ProfilesEdit from "./profiles/ProfilesEdit";
+import ProfileEdit from "./profiles/ProfileEdit";
 // Import Style
 import '../styles/App.scss';
 
@@ -45,6 +46,7 @@ const App: FC = (): JSX.Element => {
         <Route path="/profiles/browse" element={<RequiredAuth><Profiles /></RequiredAuth>} />
         <Route path="/profiles/add" element={<RequiredAuth><ProfileAdd /></RequiredAuth>} />
         <Route path="/profiles/manage" element={<RequiredAuth><ProfilesEdit /></RequiredAuth>} />
+        <Route path="/profiles/edit" element={<RequiredAuth><ProfileEdit /></RequiredAuth>} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>

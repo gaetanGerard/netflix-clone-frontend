@@ -79,6 +79,23 @@
                         fill: $dim-gray;
                     }
                 }
+                .profile_pic_container_edit {
+                    position: relative;
+                    background-color: black;
+                    svg {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        z-index: 1;
+                        width: 30%;
+                        height: 30%;
+                        fill: antiquewhite;
+                        transform: translate(-50%, -50%);
+                    }
+                    .profile_pic  {
+                        opacity: 0.6;
+                    }
+                }
                 &:hover {
                     color: $white;
                     .profile_pic_container {
@@ -111,6 +128,16 @@
             &:hover {
                 color: $white;
                 border-color: $white;
+            }
+        }
+
+        .btn_manage_profile {
+            text-transform: uppercase;
+            color: $dark-slate-gray;
+            &:hover {
+                border-color: $red-logo;
+                background-color: $red-logo !important;
+                color: $white;
             }
         }
     }

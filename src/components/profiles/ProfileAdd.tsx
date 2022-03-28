@@ -70,18 +70,11 @@ const onClick = () => {
   newArr.push(data);
 
   addNewProfile({ variables: { userDetail: { profiles: newArr } } });
-  // navigate("/profiles/browse");
-  /*
-  *
-  *
-  * After payload send i recieve data that should update the information of the current user in redux before
-  * navigating to the browse page.
-  *
-  *
-  *
-  *
-  */
 
+  if(!loading && data) {
+    navigate("/profiles/browse");
+    reset();
+  }
 }
 
 
