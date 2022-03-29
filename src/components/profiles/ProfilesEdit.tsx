@@ -40,8 +40,6 @@ const ProfilesEdit = () => {
         }
     }, [data, user])
 
-    console.log(user);
-
     if(loading) return <div>Loading...</div>;
     if(error) return <div>Error...</div>;
     return (

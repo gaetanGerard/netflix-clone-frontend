@@ -10,14 +10,17 @@ type InputTextProps = {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void,
   type: string,
   name: string,
-  classname?: string
+  classname?: string,
+  FCClassname?: string,
+  value?: string,
+  labelActivate?: boolean
 }
 
-const InputText = ({fieldName, label, errorMsg, onChange, type, name, classname}: InputTextProps): JSX.Element => {
+const InputText = ({fieldName, label, errorMsg, onChange, type, name, classname, value, FCClassname, labelActivate}: InputTextProps): JSX.Element => {
 
-    const setActive = (event: any, active: boolean) => {
+    const setActive = (active: boolean, event?: any) => {
           const formField = event.target.parentNode!.parentNode! as HTMLElement
-          if (active) {
+          if (active && labelActivate) {
             formField!.classList.add('form-field--is-active')
             if(event.target.value === '') {
               formField!.parentNode!.children[1].classList.remove('helperText-hide');
@@ -43,13 +46,14 @@ const InputText = ({fieldName, label, errorMsg, onChange, type, name, classname}
         }
       }
 
+      if(labelActivate === undefined) labelActivate = true;
 
     return (
         <div className="form-container">
             <div className="form-field">
-                <div className="form-field-control">
-                    <label htmlFor={fieldName} className="form-field-label">{label}</label>
-                    <input id={fieldName} type={type ? type : "text"} name={name} className={`form-field-input ${classname ? classname : ""}`} onChange={e => onChange(e)} onBlur={el => setActive(el, false)} onFocus={el => setActive(el, true)} />
+                <div className={`form-field-control ${FCClassname ? FCClassname : ""}`}>
+                    {labelActivate ? <label htmlFor={fieldName} className="form-field-label">{label}</label> : null}
+                    <input id={fieldName} type={type ? type : "text"} defaultValue={value ? value : ""} name={name} className={`form-field-input ${classname ? classname : ""}`} onChange={e => onChange(e)} onBlur={el => setActive(false, el)} onFocus={el => setActive(true, el)} />
                 </div>
             </div>
             <p className="helperText helperText-hide">{errorMsg}</p>

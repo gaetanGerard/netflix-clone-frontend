@@ -70,26 +70,6 @@
     top: 0;
     transition: all $animation-duration;
 }
-.form-field-control {
-    background: $dark-white;
-    overflow: hidden;
-    position: relative;
-    width: 100%;
-
-    &::after {
-    //   border-bottom: 2px solid $dim-gray;
-      bottom: 0;
-      content: "";
-      display: block;
-      left: 0;
-      margin: 0 auto;
-      position: absolute;
-      right: 0;
-      transform: scaleX(0);
-      transition: all $animation-duration;
-      width: 1%;
-    }
-}
 .form-field-input,
 .form-field-textarea {
     appearance: none;
@@ -106,4 +86,36 @@
 }
 .form-field-textarea {
     height: 150px;
+}
+
+.form-field-control {
+  background: $dark-white;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+
+  &.dim {
+    background: $dim-gray;
+    input {
+      color: $white;
+      border: none;
+      margin-top: 0;
+      padding: 8px 12px;
+      font-size: $font-size-large;
+    }
+  }
+
+  &::after {
+  //   border-bottom: 2px solid $dim-gray;
+    bottom: 0;
+    content: "";
+    display: block;
+    left: 0;
+    margin: 0 auto;
+    position: absolute;
+    right: 0;
+    transform: scaleX(0);
+    transition: all $animation-duration;
+    width: 1%;
+  }
 }

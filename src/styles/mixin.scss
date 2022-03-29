@@ -57,6 +57,58 @@
     margin: .75em 0 .25em;
 }
 
+@mixin autoPlayCheckbox($boxSize: 56px, $color: $white, $inputPadding: 27px, $checkedX: -8px, $checkedY: 8px, $fontSize: 48px) {
+    display: grid;
+    grid-template-columns: $boxSize auto;
+    grid-gap: 10px;
+    align-content: center;
+    align-items: center;
+    color: $color;
+    input {
+        appearance: none;
+        background-color: transparent;
+        border: 1px solid $dim-gray;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+        padding: $inputPadding;
+        display: inline-block;
+        position: relative;
+        &:active {
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
+        }
+        &:checked {
+            background-color: transparent;
+            border: 1px solid #adb8c0;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1);
+            color: $dim-gray;
+            &:after {
+                content: '\2714';
+                font-size: $fontSize;
+                position: absolute;
+                top: $checkedX;
+                left: $checkedY;
+                color: $dim-gray;
+            }
+        }
+    }
+}
+
+@mixin btnProfile($bgColor: transparent, $borderColor: $dim-gray, $color: $dim-gray, $fontSize: $font-size-medium, $hoverBorderColor: $white, $hoverColor: $white, $hoverBGColor: transparent) {
+    font-size: $fontSize;
+    letter-spacing: 2px;
+    margin: 2em, 0 1em 0;
+    padding: 0.5em 1.5em;
+    color: $color;
+    background-color: $bgColor;
+    transition: $profiles-transition;
+    text-align: center;
+    border: 1px solid $borderColor;
+    &:hover {
+        background-color: $hoverBGColor;
+        border-color: $hoverBorderColor;
+        color: $white;
+    }
+}
+
 @mixin emailForm {
     max-width: 950px;
     padding-top: 0.85rem;
