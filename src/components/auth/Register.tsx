@@ -6,11 +6,14 @@ import Stepper from "../ui/stepper/Stepper";
 import Footer from "../ui/Footer";
 import Logo from "../ui/Logo";
 
+// Import Types
+import { LanguageOptions } from '../../types/languageTypes';
+
 type RegisterProps = {
     language: string,
     data: any,
     changeLanguage: (e?: ChangeEvent<HTMLSelectElement> | undefined) => void
-    options: string[]
+    options: LanguageOptions[]
 }
 
 const Register: FC<RegisterProps> = ({ language, data, changeLanguage, options }): JSX.Element => {

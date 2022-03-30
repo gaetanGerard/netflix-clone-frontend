@@ -14,11 +14,14 @@ import Footer from "../ui/Footer";
 // Import Logo
 import Logo from '../ui/Logo';
 
+// Import Types
+import { LanguageOptions } from '../../types/languageTypes';
+
 type LoginProps = {
     language: string,
     loginData: any,
     changeLanguage: (e: ChangeEvent<HTMLSelectElement> | undefined) => void,
-    options: string[]
+    options: LanguageOptions[]
 }
 
 const Login: FC<LoginProps> = ({ language, loginData, changeLanguage, options }): JSX.Element => {

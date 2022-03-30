@@ -19,6 +19,9 @@ interface Props {
 }
 
 export default function ProfileBody(props: Props) {
+
+    console.log(props.user);
+
   return (
     <div className="profiles-content">
         <h2>{props.appLang.title}</h2>
@@ -28,7 +31,7 @@ export default function ProfileBody(props: Props) {
                     <Link to={props.edit ? "/profiles/edit" : "TO CHANGE"} state={{ profileName: profile.p_name }} className="profile-item" key={`${profile.p_name}_${index++}`}>
                         <div className={props.edit ? "profile_pic_container profile_pic_container_edit" : "profile_pic_container"}>
                             {props.edit ? <Edit classname="svg-icon svg-icon-edit" /> : null}
-                            <img className="profile_pic" src={profile.profile_pic ? props.profile_pic[profile.profile_pic] : props.profile_pic[index++]} alt="Profile"/>
+                            <img className="profile_pic" src={props.profile_pic[profile.profile_pic]} alt="Profile"/>
                         </div>
                         <p>{profile.p_name}</p>
                     </Link>
@@ -40,7 +43,7 @@ export default function ProfileBody(props: Props) {
                 <p>{props.appLang.btn_add}</p>
             </div>
         </div>
-        {props.edit ? (<button className="btn_edit_profile btn_manage_profile">{props.appLang.btn_complete}</button>) : (<Link to="/profiles/manage" className="btn_edit_profile">{props.appLang.btn_edit}</Link>)}
+        {props.edit ? (<Link to="/profiles/browse" className="btn_edit_profile btn_manage_profile">{props.appLang.btn_complete}</Link>) : (<Link to="/profiles/manage" className="btn_edit_profile">{props.appLang.btn_edit}</Link>)}
     </div>
   )
 }

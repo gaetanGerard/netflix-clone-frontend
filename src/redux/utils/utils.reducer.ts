@@ -1,49 +1,54 @@
 import { UtilsActionTypes } from './utils.types';
 
 type LanguageType = {
-    name: string,
+    label: string,
+    iso: string
+}
+
+type LanguageOptions = {
+    label: string,
     iso: string
 }
 
 type INITIAL_STATE_TYPE = {
     language: LanguageType,
-    languageOptions: string[]
+    languageOptions: LanguageOptions[]
 }
 
 const INITIAL_STATE: INITIAL_STATE_TYPE = {
     language: {
-        name: "Français",
+        label: "Français",
         iso: "fr-FR"
     },
-    languageOptions: ["Français", "Nederlands", "English"]
+    languageOptions: [{label: "Français", iso: "fr-FR"}, {label: "Nederlands", iso: "nl-NL"}, {label: "English", iso: "en-EN"}]
 }
 
 const utilsReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case UtilsActionTypes.APPLICATION_LANGUAGE:
             switch (action.payload) {
-                case "Nederlands":
+                case "nl-NL":
                     return {
                         ...state,
                         language: {
-                            name: "Nederlands",
+                            label: "Nederlands",
                             iso: "nl-BE"
                         }
                     }
-                case "English":
+                case "en-EN":
                     return {
                         ...state,
                         language: {
-                            name: "English",
+                            label: "English",
                             iso: "en-EN"
                         }
                     }
-                case "Français":
+                case "fr-FR":
                 default:
                     return {
                         ...state,
                         language: {
-                            name: "Français",
+                            label: "Français",
                             iso: "fr-FR"
                         }
                     }

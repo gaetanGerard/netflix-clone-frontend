@@ -3,7 +3,8 @@
 
 .profiles-container {
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
+    height: 100%;
     display: grid;
     grid-template-rows: 100px auto;
     background-color: $profile-bg;
@@ -133,6 +134,7 @@
 
         .btn_manage_profile {
             text-transform: uppercase;
+            background-color: $white;
             color: $dark-slate-gray;
             &:hover {
                 border-color: $red-logo;
@@ -243,6 +245,7 @@
         justify-content: center;
         grid-auto-rows: min-content;
         grid-gap: 25px;
+        margin-bottom: 25px;
         h2 {
             font-size: $font-size-extra-large;
             font-weight: $font-weight-bold;
@@ -261,12 +264,8 @@
                 .profile_pic {
                     box-sizing: border-box;
                     border-radius: 4px;
-                    height: 10vw;
-                    width: 10vw;
-                    max-height: 200px;
-                    max-width: 200px;
-                    min-height: 125px;
-                    min-width: 125px;
+                    height: 125px;
+                    width: 125px;
                     object-fit: cover;
                 }
                 .right-content-section {

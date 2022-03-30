@@ -30,7 +30,7 @@ import { User } from '../../types/userTypes';
 const ProfilesEdit = () => {
   const language = useSelector((state: RootState) => state.utils.language);
     const [user, setUser] = useState<User|null>(null)
-    const [appLang, setAppLang] = useState<any>(dataProfile[language.name]);
+    const [appLang, setAppLang] = useState<any>(dataProfile[language.iso]);
 
     const { loading, error, data } = useQuery(GET_USER, {errorPolicy: 'ignore'});
 

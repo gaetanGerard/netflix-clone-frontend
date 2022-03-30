@@ -27,7 +27,7 @@ const ProfileAdd = ({}: Props) => {
   const navigate = useNavigate();
   const language = useSelector((state: RootState) => state.utils.language);
   const user = useSelector((state: RootState) => state.auth.user);
-  const [appLang, setAppLang] = useState(dataProfile[language.name]);
+  const [appLang, setAppLang] = useState(dataProfile[language.iso]);
   const [profileName, setProfileName] = useState<string | null>(null);
   const [profileKid, setProfileKid] = useState<boolean>(false);
   const [picNum, setPicNum] = useState<number>(0);

@@ -34,13 +34,13 @@ const HomeWelcome = (): JSX.Element => {
     const dispatch = useDispatch();
     const lang = useSelector((state: RootState) => state.utils.language);
     const options = useSelector((state: RootState) => state.utils.languageOptions);
-    const [langData, setLangData] = useState(data[lang.name]);
+    const [langData, setLangData] = useState(data[lang.iso]);
     const [userEmail, setUserEmail] = useState<string | null>(null);
     const [disabled, setDisabled] = useState<boolean>(true);
 
     useEffect(() => {
         document.title = langData.documentTitle
-    }, [langData])
+    }, [langData, lang])
 
     const onChangeUserEmail = (e: ChangeEvent<HTMLInputElement>) => {
         setUserEmail(e.target.value)
@@ -102,7 +102,7 @@ const HomeWelcome = (): JSX.Element => {
                     <div className="header">
                         <Logo classname="svg-icon svg-icon-netflix-logo nfLogo" />
                         <div className="signInAndLanguage">
-                            <Select options={options} name="language" selected={lang.name} onchange={(e) => changeLanguage(e)} />
+                            <Select options={options} name="language" selected={lang.label} onchange={(e) => changeLanguage(e)} />
                             <Link to="login" className="btn auth-btn">{langData["section-1"].loginButton}</Link>
                         </div>
                     </div>
@@ -222,7 +222,7 @@ const HomeWelcome = (): JSX.Element => {
                                     </div>
                                 ))}
                             </div>
-                            <Select options={options} name="language" selected={lang.name} onchange={(e) => changeLanguage(e)} />
+                            <Select options={options} name="language" selected={lang.label} onchange={(e) => changeLanguage(e)} />
                             <Typography HTMLElement="p" classname="footer-country">{langData["section-7"].copyright}</Typography>
                         </div>
                     </div>

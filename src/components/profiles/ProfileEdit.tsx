@@ -1,7 +1,8 @@
+/* eslint-disable @typescript-eslint/no-redeclare */
 import React, { useState, useEffect, ChangeEvent, Fragment } from 'react';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { useQuery } from "@apollo/client";
+import { useQuery, useMutation } from "@apollo/client";
 
 // Import redux
 import { RootState } from "../../redux/root-reducer";
@@ -17,6 +18,7 @@ import { profile_pic } from "../../utils/images";
 
 // Import utils
 import { GET_USER } from '../../utils/query';
+import { ADD_NEW_PROFILE } from "../../utils/mutation";
 
 // Import interfaces
 import { User, Profile } from '../../types/userTypes';
@@ -35,12 +37,17 @@ const ProfileEdit = () => {
     const navigate = useNavigate();
     const { profileName } = location.state;
     const [user, setUser] = useState<User|null>(null)
-    const [appLang, setAppLang] = useState<any>(dataProfile[language.name]);
+    const [appLang, setAppLang] = useState<any>(dataProfile[language.iso]);
     const [newProfileName, setNewProfileName] = useState<string | null>(null);
-    const [profileKid, setProfileKid] = useState<boolean>(false);
-    const [langProfile, setLangProfile] = useState<string>(language.name);
+    const [autoPlayNext, setAutoPlayNext] = useState<boolean|null>(null);
+    const [autoPlayPreview, setAutoPlayPreview] = useState<boolean|null>(null);
+    const [langProfile, setLangProfile] = useState<string>(language.label);
 
     const { loading, error, data } = useQuery(GET_USER, {errorPolicy: 'ignore'});
+
+    const [updateProfile, updatedProfile] = useMutation(ADD_NEW_PROFILE, { errorPolicy: 'all' });
+
+
 
     useEffect(() => {
         if(data) {
@@ -48,24 +55,9 @@ const ProfileEdit = () => {
         }
     }, [data, user])
 
-    if(loading) return <div>Loading...</div>;
-    if(error) return <div>Error...</div>;
-
     if((profileName === undefined)|| (profileName === null)) {
         navigate('/profiles/manage');
     }
-
-    /*
-    *
-    *
-    * I have to implement this feature
-    * 1) retrieve the user profile array
-    * 2) populate form with information from the matching profile
-    * 3) when click for save so copy the array and update it with the new information
-    * 4) save the new array with the update user mutation
-    * like that i can with update user mutation update profile information but also remove a profile from the user profile array
-    *
-    */
 
     const currentProfile = user?.profiles.find((profile: Profile) => {
         return profile.p_name === profileName;
@@ -75,14 +67,10 @@ const ProfileEdit = () => {
         return profile.p_name === profileName;
     })!;
 
-    //console.log(user);
-    //console.log(profileName)
-    //console.log(currentProfile)
-    //console.log(indexOfProfile)
-
     const onChange = (e: ChangeEvent<HTMLInputElement>) => {
       if(e.target.name === "pName") setNewProfileName(e.target.value);
-      if(e.target.name === "kid") setProfileKid(e.target.checked);
+      if(e.target.name === "autoPlayNextEpisode") setAutoPlayNext(e.target.checked);
+      if(e.target.name === "autoPlayPreview") setAutoPlayPreview(e.target.checked);
     }
 
     const changeLanguage = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -90,10 +78,77 @@ const ProfileEdit = () => {
     }
 
     const onClick = () => {
-      console.log("click");
+      const profileData = {
+        p_name: newProfileName ? newProfileName : currentProfile.p_name,
+        kid: currentProfile.kid,
+        language: langProfile ? langProfile : currentProfile.language,
+        profile_pic: currentProfile.profile_pic,
+        autoplay_next_episode: autoPlayNext !== null ? autoPlayNext : currentProfile.autoplay_next_episode,
+        autoplay_preview: autoPlayPreview !== null ? autoPlayPreview : currentProfile.autoplay_preview
+      }
+
+      if(user) {
+        const newArrayExcludingCurrentProfile = user.profiles.filter(profile => {
+          return profile.p_name !== profileName;
+        })
+
+        const newArr = newArrayExcludingCurrentProfile.map(({__typename, ...rest}: any) => {
+          return rest;
+        });
+
+        newArr.push(profileData);
+
+        updateProfile({ variables: { userDetail: { profiles: newArr } } });
+
+        console.log(updatedProfile);
+
+        if(!updatedProfile.loading) {
+          navigate("/profiles/manage");
+          updatedProfile.reset();
+        }
+      }
+
+
     }
 
-    const disabled = false;
+    const onDelete = () => {
+      if(user) {
+        const newArrayExcludingCurrentProfile = user.profiles.filter(profile => {
+          return profile.p_name !== profileName;
+        })
+
+        const newArr = newArrayExcludingCurrentProfile.map(({__typename, ...rest}: any) => {
+          return rest;
+        });
+
+        updateProfile({ variables: { userDetail: { profiles: newArr } } });
+
+        console.log(updatedProfile);
+
+        if(!updatedProfile.loading) {
+          navigate("/profiles/manage");
+          updatedProfile.reset();
+        }
+      }
+    }
+
+  if(loading) return <div>Loading...</div>;
+  if(error) return <div>Error...</div>;
+
+  console.log(language.label)
+
+  /*
+  *
+  *
+  *
+  * I need to fix Select display default value in language select but also in profile edit
+  *
+  *
+  *
+  *
+  *
+  *
+  */
 
   if(currentProfile === undefined) return <div>Profile not found</div>;
   return (
@@ -110,7 +165,7 @@ const ProfileEdit = () => {
               <InputText fieldName="profile-name-edit" FCClassname="dim" labelActivate={false} type="text" name="pName"   onChange={onChange} label={appLang.add_profile.input_name} value={profileName} />
               <div className="right-content-section-content">
                   <Typography HTMLElement="h4" classname="title">{appLang.edit_profile.language.title}</Typography>
-                  <Select options={appLang.edit_profile.language.lang_array} name="language" selected={langProfile} onchange={(e) => changeLanguage(e)} />
+                  <Select options={appLang.edit_profile.language.lang_array} name="language" selected={language.label} onchange={(e) => changeLanguage(e)} />
               </div>
             </div>
           </div>
@@ -159,9 +214,9 @@ const ProfileEdit = () => {
           </div>
         </div>
         <div className="btn-container">
-          <Button btnType="submit" classname="btn btn-save" onclick={onClick} disabled={disabled}>{appLang.edit_profile.btn_complete}</Button>
+          <Button btnType="submit" classname="btn btn-save" onclick={onClick}>{appLang.edit_profile.btn_complete}</Button>
           <Link to="/profiles/manage" className="btn" >{appLang.edit_profile.btn_cancel}</Link>
-          {indexOfProfile === 0 ? null : <Button btnType="submit" classname="btn" onclick={onClick} disabled={disabled}>{appLang.edit_profile.btn_delete}</Button>}
+          {indexOfProfile === 0 ? null : <Button btnType="submit" classname="btn" onclick={onDelete}>{appLang.edit_profile.btn_delete}</Button>}
         </div>
       </div>
     </div>

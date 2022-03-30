@@ -6,9 +6,12 @@ import Select from "./Select";
 // Import Styles
 import "../../styles/footer.scss";
 
+// Import Types
+import { LanguageOptions } from '../../types/languageTypes';
+
 type FooterProps = {
     data: any,
-    options: string[],
+    options: LanguageOptions[],
     language: string,
     changeLanguage: (e?: ChangeEvent<HTMLSelectElement> | undefined) => void,
 }

@@ -1,5 +1,5 @@
 {
-    "Français": {
+    "fr-FR": {
         "documentTitle": "Netflix Belgique - Regardez des séries TV en ligne, Regardez des films en ligne",
         "section-1": {
             "title": "Films, séries TV et bien plus en illimité.",
@@ -95,7 +95,7 @@
             "copyright": "Netflix Belgique"
         }
     },
-    "Nederlands": {
+    "nl-NL": {
         "documentTitle": "Netflix België - Kijk series online, kijk films online",
         "section-1": {
             "title": "Onbeperkt series, films en meer kijken.",
@@ -191,7 +191,7 @@
             "copyright": "Netflix België"
         }
     },
-    "English": {
+    "en-EN": {
         "documentTitle": "Netflix Belgium - Watch TV Shows Online, Watch Movies Online",
         "section-1": {
             "title": "Unlimited movies, TV shows, and more.",

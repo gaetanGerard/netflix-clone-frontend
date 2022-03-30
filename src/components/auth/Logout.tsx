@@ -11,11 +11,14 @@ import Logo from "../ui/Logo";
 import Footer from "../ui/Footer";
 import Typography from "../ui/Typography";
 
+// Import Types
+import { LanguageOptions } from '../../types/languageTypes';
+
 type LogoutProps = {
     language: string,
     data: any,
     changeLanguage: (e?: ChangeEvent<HTMLSelectElement> | undefined) => void,
-    options: string[],
+    options: LanguageOptions[],
 }
 
 const Logout: FC<LogoutProps> = ({ language, data, changeLanguage, options }): JSX.Element => {

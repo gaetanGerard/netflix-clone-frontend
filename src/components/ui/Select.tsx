@@ -3,8 +3,13 @@ import React, { ChangeEvent } from 'react';
 // Import Styles
 import "../../styles/select.scss";
 
+interface Option {
+    label: string,
+    iso: string
+}
+
 type SelectProps = {
-    options: string[],
+    options: Option[],
     onchange: (e: ChangeEvent<HTMLSelectElement>) => void,
     selected: string,
     name: string
@@ -13,11 +18,10 @@ type SelectProps = {
 const Select = ({options, onchange, selected, name}: SelectProps): JSX.Element => {
     return (
         <div className="select-arrow">
-            <select name={name} onChange={onchange} value={selected ? selected : ''}>
+            <select name={name} onChange={onchange} defaultValue={selected ? selected : ''}>
                 {options.map((option, i) => (
-                    <option value={option} key={i++}>{option}</option>
+                    <option value={option.iso} selected={option.label === selected ? true : false} key={i++}>{option.label}</option>
                 ))}
-
             </select>
         </div>
     )
