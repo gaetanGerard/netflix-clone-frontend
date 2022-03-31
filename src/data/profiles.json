@@ -25,7 +25,7 @@
                     {"label": "Hrvatski", "iso": "hr-HR"},
                     {"label": "Italiano", "iso": "it-IT"},
                     {"label": "Magyar", "iso": "hu-HU"},
-                    {"label": "Nederlands", "iso": "nl-NL"},
+                    {"label": "Nederlands", "iso": "nl-BE"},
                     {"label": "Norsk bokmål", "iso": "nb-NB"},
                     {"label": "Polski", "iso": "pl-PL"},
                     {"label": "Português", "iso": "prt-T"},
@@ -104,7 +104,7 @@
                     {"label": "Hrvatski", "iso": "hr-HR"},
                     {"label": "Italiano", "iso": "it-IT"},
                     {"label": "Magyar", "iso": "hu-HU"},
-                    {"label": "Nederlands", "iso": "nl-NL"},
+                    {"label": "Nederlands", "iso": "nl-BE"},
                     {"label": "Norsk bokmål", "iso": "nb-NB"},
                     {"label": "Polski", "iso": "pl-PL"},
                     {"label": "Português", "iso": "prt-T"},
@@ -157,7 +157,7 @@
             "btn_cancel": "Cancel"
         }
     },
-    "nl-NL": {
+    "nl-BE": {
         "browse_profile": {
             "title": "Wie kijkt?",
             "btn_add": "Geen profiel meer",
@@ -183,7 +183,7 @@
                     {"label": "Hrvatski", "iso": "hr-HR"},
                     {"label": "Italiano", "iso": "it-IT"},
                     {"label": "Magyar", "iso": "hu-HU"},
-                    {"label": "Nederlands", "iso": "nl-NL"},
+                    {"label": "Nederlands", "iso": "nl-BE"},
                     {"label": "Norsk bokmål", "iso": "nb-NB"},
                     {"label": "Polski", "iso": "pl-PL"},
                     {"label": "Português", "iso": "prt-T"},

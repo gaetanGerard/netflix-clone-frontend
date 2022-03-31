@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import { FC, useEffect } from 'react';
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { useQuery } from "@apollo/client";
 
@@ -9,6 +9,7 @@ import { GET_USER } from '../utils/query';
 
 // Import redux
 import { login } from '../redux/auth/auth.actions';
+import { selectProfile } from '../redux/profile/profile.action';
 import { RootState } from "../redux/root-reducer";
 
 // Import Custom Components
@@ -27,12 +28,26 @@ import '../styles/App.scss';
 
 const App: FC = (): JSX.Element => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
   const user = useSelector((state: RootState) => state.auth.user);
+  const p = useSelector((state: RootState) => state.profile.profile);
 
   const { loading, error, data } = useQuery(GET_USER, {errorPolicy: 'ignore'});
 
   useEffect(() => {
     if(data && !user && localStorage.getItem('token')) dispatch(login(data.getUser));
+    const profile = JSON.parse(localStorage.getItem('profileSave') || '{}');
+
+    console.log(location);
+
+    if(profile && p === null) {
+      dispatch(selectProfile(profile));
+      if(!location.pathname.includes("/profiles")) {
+        navigate("/home");
+      }
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, user, data])
 
   return (

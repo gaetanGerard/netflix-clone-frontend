@@ -24,6 +24,7 @@ type LogoutProps = {
 const Logout: FC<LogoutProps> = ({ language, data, changeLanguage, options }): JSX.Element => {
     const dispatch = useDispatch();
     const user = useSelector((state: RootState) => state.auth.user);
+    console.log(language)
     document.title = data[language].documentTitle;
     const navigate = useNavigate();
 
@@ -37,6 +38,7 @@ const Logout: FC<LogoutProps> = ({ language, data, changeLanguage, options }): J
 
     useEffect(() => {
         localStorage.removeItem("token");
+        localStorage.removeItem("profileSave");
         if(!localStorage.getItem('token')) dispatch(logout());
         client.resetStore();
     }, [])

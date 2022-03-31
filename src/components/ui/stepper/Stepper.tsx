@@ -43,7 +43,7 @@ const Stepper: FC<StepperProps> = ({ steps, onChange, userData, setSubscriptionP
             setCurrentStep(nextStep);
         }
         if(currentStep === stepLength) {
-            register({ variables: { email: userData.userEmail, password: userData.password, specialOffers: userData.specialOffers, subscriptionPlan: userData.subscriptionPlan } })
+            register({ variables: { email: userData.userEmail, password: userData.password, specialOffers: userData.specialOffers, subscriptionPlan: userData.subscriptionPlan, profiles: [] } })
         }
     }
 

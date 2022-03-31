@@ -20,14 +20,14 @@ const INITIAL_STATE: INITIAL_STATE_TYPE = {
         label: "Français",
         iso: "fr-FR"
     },
-    languageOptions: [{label: "Français", iso: "fr-FR"}, {label: "Nederlands", iso: "nl-NL"}, {label: "English", iso: "en-EN"}]
+    languageOptions: [{label: "Français", iso: "fr-FR"}, {label: "Nederlands", iso: "nl-BE"}, {label: "English", iso: "en-EN"}]
 }
 
 const utilsReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case UtilsActionTypes.APPLICATION_LANGUAGE:
             switch (action.payload) {
-                case "nl-NL":
+                case "nl-BE":
                     return {
                         ...state,
                         language: {

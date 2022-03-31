@@ -33,19 +33,19 @@ const Auth = () => {
         case "/login":
             return (
                 <Fragment>
-                    <Login language={lang.label} loginData={data.login} changeLanguage={changeLanguage} options={options} />
+                    <Login language={lang.iso} loginData={data.login} changeLanguage={changeLanguage} options={options} />
                 </Fragment>
             )
         case "/register":
             return (
                 <Fragment>
-                    <Register language={lang.label} data={data.register} changeLanguage={changeLanguage} options={options}  />
+                    <Register language={lang.iso} data={data.register} changeLanguage={changeLanguage} options={options}  />
                 </Fragment>
             )
         case "/logout":
             return (
                 <Fragment>
-                    <Logout language={lang.label} data={data.logout} changeLanguage={changeLanguage} options={options}  />
+                    <Logout language={lang.iso} data={data.logout} changeLanguage={changeLanguage} options={options}  />
                 </Fragment>
             )
         default:
