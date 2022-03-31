@@ -12,15 +12,19 @@ type SelectProps = {
     options: Option[],
     onchange: (e: ChangeEvent<HTMLSelectElement>) => void,
     selected: string,
-    name: string
+    name: string,
 }
 
+type CurrentChoice = Option | undefined;
+
 const Select = ({options, onchange, selected, name}: SelectProps): JSX.Element => {
+    const currentChoice  = options.find(option => option.label === selected);
+
     return (
         <div className="select-arrow">
-            <select name={name} onChange={onchange} defaultValue={selected ? selected : ''}>
+            <select name={name} onChange={onchange} value={selected ? currentChoice?.iso : ''}>
                 {options.map((option, i) => (
-                    <option value={option.iso} selected={option.label === selected ? true : false} key={i++}>{option.label}</option>
+                    <option value={option.iso} key={i++}>{option.label}</option>
                 ))}
             </select>
         </div>

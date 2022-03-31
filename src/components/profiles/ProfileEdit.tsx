@@ -41,7 +41,7 @@ const ProfileEdit = () => {
     const [newProfileName, setNewProfileName] = useState<string | null>(null);
     const [autoPlayNext, setAutoPlayNext] = useState<boolean|null>(null);
     const [autoPlayPreview, setAutoPlayPreview] = useState<boolean|null>(null);
-    const [langProfile, setLangProfile] = useState<string>(language.label);
+    const [langProfile, setLangProfile] = useState<string|null>(null);
 
     const { loading, error, data } = useQuery(GET_USER, {errorPolicy: 'ignore'});
 
@@ -132,23 +132,11 @@ const ProfileEdit = () => {
       }
     }
 
+
+  const currentProfileLanguage = currentProfile ? appLang.edit_profile.language.lang_array.find(item => item.iso === currentProfile.language) : null;
+
   if(loading) return <div>Loading...</div>;
   if(error) return <div>Error...</div>;
-
-  console.log(language.label)
-
-  /*
-  *
-  *
-  *
-  * I need to fix Select display default value in language select but also in profile edit
-  *
-  *
-  *
-  *
-  *
-  *
-  */
 
   if(currentProfile === undefined) return <div>Profile not found</div>;
   return (
@@ -165,7 +153,7 @@ const ProfileEdit = () => {
               <InputText fieldName="profile-name-edit" FCClassname="dim" labelActivate={false} type="text" name="pName"   onChange={onChange} label={appLang.add_profile.input_name} value={profileName} />
               <div className="right-content-section-content">
                   <Typography HTMLElement="h4" classname="title">{appLang.edit_profile.language.title}</Typography>
-                  <Select options={appLang.edit_profile.language.lang_array} name="language" selected={language.label} onchange={(e) => changeLanguage(e)} />
+                  <Select options={appLang.edit_profile.language.lang_array} name="language" selected={langProfile ? langProfile : currentProfileLanguage.label} onchange={(e) => changeLanguage(e)} />
               </div>
             </div>
           </div>

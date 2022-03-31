@@ -19,9 +19,6 @@ interface Props {
 }
 
 export default function ProfileBody(props: Props) {
-
-    console.log(props.user);
-
   return (
     <div className="profiles-content">
         <h2>{props.appLang.title}</h2>
