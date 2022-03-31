@@ -16,6 +16,9 @@ const Home: FC = (): JSX.Element => {
     const dispatch = useDispatch();
     const profile = location.state;
     const p = useSelector((state: RootState) => state.profile.profile);
+    const token = localStorage.getItem('token');
+
+    // if(!token && !localStorage.getItem('profileSave')) navigate('/');
 
     if(profile) {
         if(profile.profile) {
@@ -40,9 +43,6 @@ const Home: FC = (): JSX.Element => {
             navigate("/profiles/browse");
         }
     }
-
-    // console.log("from location.state : " + profile)
-    // console.log(p);
 
     return (
         <div>

@@ -24,7 +24,6 @@ type LogoutProps = {
 const Logout: FC<LogoutProps> = ({ language, data, changeLanguage, options }): JSX.Element => {
     const dispatch = useDispatch();
     const user = useSelector((state: RootState) => state.auth.user);
-    console.log(language)
     document.title = data[language].documentTitle;
     const navigate = useNavigate();
 

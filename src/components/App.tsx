@@ -39,9 +39,7 @@ const App: FC = (): JSX.Element => {
     if(data && !user && localStorage.getItem('token')) dispatch(login(data.getUser));
     const profile = JSON.parse(localStorage.getItem('profileSave') || '{}');
 
-    console.log(location);
-
-    if(profile && p === null) {
+    if(Object.entries(profile).length > 0 && p === null) {
       dispatch(selectProfile(profile));
       if(!location.pathname.includes("/profiles")) {
         navigate("/home");

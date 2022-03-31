@@ -100,8 +100,6 @@ const ProfileEdit = () => {
 
         updateProfile({ variables: { userDetail: { profiles: newArr } } });
 
-        console.log(updatedProfile);
-
         if(!updatedProfile.loading) {
           navigate("/profiles/manage");
           updatedProfile.reset();
@@ -122,8 +120,6 @@ const ProfileEdit = () => {
         });
 
         updateProfile({ variables: { userDetail: { profiles: newArr } } });
-
-        console.log(updatedProfile);
 
         if(!updatedProfile.loading) {
           navigate("/profiles/manage");
