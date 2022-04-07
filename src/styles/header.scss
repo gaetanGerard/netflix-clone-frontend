@@ -25,6 +25,7 @@
             display: grid;
             grid-auto-flow: column;
             gap: 20px;
+            align-items: center;
             li {
                 a {
                     text-decoration: none;
@@ -38,6 +39,9 @@
                     &:hover {
                         color: $dim-gray;
                     }
+                }
+                .header-icons {
+                    fill: $white;
                 }
             }
         }

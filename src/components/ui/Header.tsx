@@ -6,6 +6,8 @@ import '../../styles/header.scss';
 
 // Import Custom Components
 import Logo from './Logo';
+import Notification from './icons/Notification';
+import SearchIcon from './icons/Search';
 
 
 
@@ -40,9 +42,9 @@ const Header = (props: Props) => {
                 <li><NavLink to="/my-list" className={({ isActive }) => isActive ? 'active' : ''}>My List</NavLink></li>
             </ul>
             <ul className="navigation-items">
-                <li>Search</li>
+                <li><SearchIcon classname="header-icons" /></li>
                 <li>Kids</li>
-                <li>Notification</li>
+                <li><Notification classname="header-icons" /></li>
                 <li>Profile</li>
             </ul>
         </div>
