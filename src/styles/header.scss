@@ -39,9 +39,43 @@
                     &:hover {
                         color: $dim-gray;
                     }
+                    &.btn-back-to-profile {
+                        background-color: $red-logo;
+                        padding: 6px 24px;
+                        border-radius: 4px;
+                        font-weight: $font-weight-semi-bold;
+                        &:hover {
+                            color: $white;
+                            background-color: darken($red-logo, 10%);
+                        }
+                    }
                 }
                 .header-icons {
                     fill: $white;
+                }
+                &.dropdown-btn, &.profile-img {
+                    display: grid;
+                    grid-template-columns: auto auto;
+                    align-content: center;
+                    align-items: center;
+                    gap: 10px;
+                    cursor: pointer;
+                    img {
+                        width: 32px;
+                        height: 32px;
+                        border-radius: 4px;
+                    }
+                    .header-icons-arrow {
+                        transition: 0.2s;
+                    }
+                    &:hover {
+                        .header-icons-arrow {
+                            transform: rotate(180deg);
+                        }
+                    }
+                }
+                &.profile-img {
+                    pointer-events: none;
                 }
             }
         }
