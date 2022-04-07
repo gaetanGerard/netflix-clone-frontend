@@ -5,16 +5,16 @@
     height: 68px;
     box-sizing: border-box;
     display: grid;
-    grid-template-columns: 167px auto;
+    grid-template-columns: 120px auto;
     gap: 20px;
     align-content: center;
-    padding: 0 5%;
+    padding: 0 3%;
     background-color: transparent;
     position: sticky;
     top: 0;
     z-index: 100;
     .svg-icon-netflix-logo {
-        @include logo;
+        @include logo($width: calc(10.4375rem / 1.75), $height: calc(2.8125rem / 1.75));
     }
     .navigation-container {
         display: grid;

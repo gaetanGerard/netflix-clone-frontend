@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 
 // Import Styles
 import '../../styles/header.scss';
@@ -30,7 +30,7 @@ const Header = (props: Props) => {
 
   return (
     <div className={scrolled ? "header-container scrolled" : "header-container"}>
-        <Logo classname="svg-icon svg-icon-netflix-logo nfLogo" />
+        <Link to="/home"><Logo classname="svg-icon svg-icon-netflix-logo nfLogo" /></Link>
         <div className="navigation-container">
             <ul className="navigation-items">
                 <li><NavLink to="/home" className={({ isActive }) => isActive ? 'active' : ''}>Home</NavLink></li>

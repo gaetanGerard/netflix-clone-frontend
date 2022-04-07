@@ -20,6 +20,7 @@ import { RootState } from "../../redux/root-reducer";
 import Header from '../ui/Header';
 
 const Home: FC = (): JSX.Element => {
+    document.title = "Home - Netflix" //! to update when add language json
     const location: any = useLocation();
     const navigate = useNavigate();
     const dispatch = useDispatch();

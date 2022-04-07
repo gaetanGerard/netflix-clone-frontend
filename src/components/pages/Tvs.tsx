@@ -9,6 +9,7 @@ import Header from '../ui/Header';
 type Props = {}
 
 const Tvs = (props: Props) => {
+  document.title = "Tv - Netflix" //! to update when add language json
   return (
     <div className="home-container">
         <Header />
