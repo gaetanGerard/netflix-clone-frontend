@@ -1,0 +1,11 @@
+@import "./variables.scss";
+@import "./mixin.scss";
+
+.home-container {
+    min-width: 100vw;
+    min-height: 100vh;
+    height: 100%;
+    width: 100%;
+    background-color: $profile-bg;
+    position: relative;
+}

@@ -22,6 +22,11 @@ import Profiles from "./pages/Profiles";
 import ProfileAdd from "./profiles/ProfileAdd";
 import ProfilesEdit from "./profiles/ProfilesEdit";
 import ProfileEdit from "./profiles/ProfileEdit";
+import Tvs from "./pages/Tvs";
+import Movies from "./pages/Movies";
+import NewAndPopular from './pages/NewAndPopular';
+import MyList from './pages/MyList';
+
 // Import Style
 import '../styles/App.scss';
 
@@ -60,6 +65,10 @@ const App: FC = (): JSX.Element => {
         <Route path="/profiles/add" element={<RequiredAuth><ProfileAdd /></RequiredAuth>} />
         <Route path="/profiles/manage" element={<RequiredAuth><ProfilesEdit /></RequiredAuth>} />
         <Route path="/profiles/edit" element={<RequiredAuth><ProfileEdit /></RequiredAuth>} />
+        <Route path="/tv" element={<RequiredAuth><Tvs /></RequiredAuth>} />
+        <Route path="/movies" element={<RequiredAuth><Movies /></RequiredAuth>} />
+        <Route path="/new-and-popular" element={<RequiredAuth><NewAndPopular /></RequiredAuth>} />
+        <Route path="/my-list" element={<RequiredAuth><MyList /></RequiredAuth>} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>

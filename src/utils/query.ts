@@ -57,3 +57,48 @@ export const GET_USER = gql`
     }
   }
 `;
+
+export const DISCOVERS = gql `
+  query Query($media: String, $language: String, $sortBy: String, $primaryReleaseDateGte: String, $page: Int) {
+    getDiscover(media: $media, language: $language, sortBy: $sortBy, primaryReleaseDateGTE: $primaryReleaseDateGte, page: $page) {
+      page
+      results {
+        ... on MoviesDiscover {
+          id
+          adult
+          genre_ids
+          backdrop_path
+          original_language
+          original_title
+          overview
+          popularity
+          poster_path
+          release_date
+          title
+          video
+          vote_average
+          vote_count
+          media_type
+        }
+        ... on TVDiscover {
+          id
+          poster_path
+          popularity
+          backdrop_path
+          vote_average
+          overview
+          first_air_date
+          origin_country
+          genre_ids
+          original_language
+          vote_count
+          name
+          original_name
+          media_type
+        }
+      }
+      total_pages
+      total_results
+    }
+  }
+`;

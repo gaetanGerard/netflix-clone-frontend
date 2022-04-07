@@ -1,0 +1,48 @@
+@import "./variables.scss";
+@import "./mixin.scss";
+
+.header-container {
+    height: 68px;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 167px auto;
+    gap: 20px;
+    align-content: center;
+    padding: 0 5%;
+    background-color: transparent;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    .svg-icon-netflix-logo {
+        @include logo;
+    }
+    .navigation-container {
+        display: grid;
+        grid-template-columns: auto auto;
+        justify-content: space-between;
+        align-content: center;
+        .navigation-items {
+            display: grid;
+            grid-auto-flow: column;
+            gap: 20px;
+            li {
+                a {
+                    text-decoration: none;
+                    font-size: $font-size-normal-small;
+                    color: white;
+                    transition: $profiles-transition;
+                    &.active {
+                        font-weight: $font-weight-bold;
+                        pointer-events: none;
+                    }
+                    &:hover {
+                        color: $dim-gray;
+                    }
+                }
+            }
+        }
+    }
+    &.scrolled {
+        background-color: $profile-bg;
+    }
+}
