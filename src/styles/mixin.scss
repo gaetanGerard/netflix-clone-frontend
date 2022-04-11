@@ -109,6 +109,28 @@
     }
 }
 
+@mixin dropDownHeader($padding: 5px 20px 20px 20px) {
+    display: none;
+    opacity: 0;
+    padding: $padding;
+    position: absolute;
+    top: 68px;
+    right: 0;
+}
+
+@mixin dropDownHeaderAfter($right: 40px, $top: 62px, $borderSize: 6px, $borderColor: $dim-gray) {
+    position: absolute;
+    right: $right;
+    margin-left: -20px;
+    top: $top;
+    width: 0;
+    height: 0;
+    content:'';
+    border-left: $borderSize solid transparent;
+    border-right: $borderSize solid transparent;
+    border-bottom: $borderSize solid $borderColor;
+}
+
 @mixin emailForm {
     max-width: 950px;
     padding-top: 0.85rem;
