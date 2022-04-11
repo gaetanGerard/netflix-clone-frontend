@@ -30,8 +30,10 @@ type Props = {}
 
 const Header = (props: Props) => {
     const [scrolled, setScrolled] = useState<boolean>(false);
+    const [searchBtn, setSearchBtn] = useState<boolean>(false);
     const [kidProfile, setKidProfile] = useState<Profile|null>(null);
     const [dropDownProfile, setDropDownProfile] = useState<Profile[]|null>(null);
+    const [searchInput, setSearchInput] = useState<string>('');
     const p = useSelector((state: RootState) => state.profile.profile);
     const u = useSelector((state: RootState) => state.auth.user);
 
@@ -72,11 +74,7 @@ const Header = (props: Props) => {
         }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [u, kidProfile, p])
-
-    // console.log(p);
-    // console.log(kidProfile);
-    // console.log(dropDownProfile);
+    }, [u, kidProfile, p, searchBtn])
 
     const notificationsData = [
         {
@@ -130,7 +128,17 @@ const Header = (props: Props) => {
                 <li><NavLink to="/my-list" className={({ isActive }) => isActive ? 'active' : ''}>My List</NavLink></li>
             </ul>
             <ul className="navigation-items">
-                <li><button className="btn"><SearchIcon classname="header-icons" /></button></li>
+                <li>
+                    { searchBtn ? (
+                        <div className="search-box">
+                            <SearchIcon classname="header-icons" />
+                            <input type="text" placeholder="Titles,people,genre" autoFocus onBlur={() => {setSearchBtn(false); setSearchInput('')}} onChange={e => setSearchInput(e.target.value)} />
+                        </div>
+                    ) :
+                    (
+                        <button className="btn" onClick={() => setSearchBtn(true)}><SearchIcon classname="header-icons" /></button>
+                    )}
+                </li>
                 {p.profile.kid ? null : (<li><Link to="/home" state={{ profileName: kidProfile !== null ? kidProfile.p_name : null, profile: kidProfile }}>Kids</Link></li>)}
                 {p.profile.kid ? null : (
                     <li className="dropdown-btn notifications-header">
