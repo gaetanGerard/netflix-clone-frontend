@@ -1,0 +1,152 @@
+{
+    "fr-FR": {
+        "left": ["Accueil", "Séries", "Films", "Nouveautés les plus regardées", "Ma liste"],
+        "right": {
+            "searchInput": "Titres,personnes,genres",
+            "kids": "Jeunesse",
+            "notifications": [
+                {
+                    "type": "Nouveauté",
+                    "title": "Retour dans l'espace",
+                    "date": "Il y a 4 jours",
+                    "picture": "return_to_space.jpg"
+                },
+                {
+                    "type": "Nouveauté",
+                    "title": "L'ultimatum: On se marie ou c'est fini",
+                    "date": "Il y a 4 jours",
+                    "picture": "ultimatum.jpg"
+                },
+                {
+                    "type": "Nouveauté",
+                    "title": "Trivia Quest",
+                    "date": "Il y a 1 semaine",
+                    "picture": "trivia_quest.jpg"
+                },
+                {
+                    "type": "Nouveauté",
+                    "title": "The Weekend Away",
+                    "date": "Il y a 1 mois",
+                    "picture": "the_weekend_away.jpg"
+                },
+                {
+                    "type": "Top 10 d'aujourd'hui: Belgique",
+                    "title": "Regarder tous les titres",
+                    "date": "Il y a 1 mois",
+                    "picture": "top_10.jpg"
+                },
+                {
+                    "type": "Nouveauté",
+                    "title": "Le Cuphead Show !",
+                    "date": "Il y a 1 mois",
+                    "picture": "new_arrival.jpg"
+                }
+            ],
+            "profile": {
+                "manageProfile": "Gérer les profiles",
+                "account": "Compte",
+                "help": "Centre d'aide",
+                "logout": "Se déconnecter"
+            },
+            "kid_exit_btn": "Quitter la section Jeunesse"
+        }
+    },
+    "en-US": {
+        "left": ["Home", "TV Shows", "Movies", "New & Popular", "My List"],
+        "right": {
+            "searchInput": "Titles,peoples,genres",
+            "kids": "Kids",
+            "notifications": [
+                {
+                    "type": "New Arrival",
+                    "title": "Return to Space",
+                    "date": "4 days ago",
+                    "picture": "return_to_space.jpg"
+                },
+                {
+                    "type": "New Arrival",
+                    "title": "The Ultimatum: Marry or Move On",
+                    "date": "4 days ago",
+                    "picture": "ultimatum.jpg"
+                },
+                {
+                    "type": "New Arrival",
+                    "title": "Trivia Quest",
+                    "date": "1 week ago",
+                    "picture": "trivia_quest.jpg"
+                },
+                {
+                    "type": "New Arrival",
+                    "title": "The Weekend Away",
+                    "date": "1 month ago",
+                    "picture": "the_weekend_away.jpg"
+                },
+                {
+                    "type": "Top 10 Today: Belgium",
+                    "title": "Watch Them All",
+                    "date": "1 month ago",
+                    "picture": "top_10.jpg"
+                },
+                {
+                    "type": "New Arrival",
+                    "title": "The Cuphead Show",
+                    "date": "1 month ago",
+                    "picture": "new_arrival.jpg"
+                }
+            ],
+            "profile": {
+                "manageProfile": "Manage Profile",
+                "account": "Account",
+                "help": "Help Center",
+                "logout": "Sign out of Netflix"
+            },
+            "kid_exit_btn": "Exit Kids"
+        }
+    },
+    "nl-BE": {
+        "left": ["Homepagina", "Series", "Films", "Nieuw en populair", "Mijn lijst"],
+        "right": {
+            "searchInput": "Titels,personen,genres",
+            "kids": "Kids",
+            "notifications": [
+                {
+                    "type": "Nieuwkommer",
+                    "title": "Return to Space",
+                    "date": "4 dagen geleden",
+                    "picture": "return_to_space.jpg"
+                },
+                {
+                    "type": "Nieuwkommer",
+                    "title": "The Ultimatum: Marry or Move On",
+                    "date": "4 dagen geleden",
+                    "picture": "ultimatum.jpg"
+                },
+                {
+                    "type": "Nieuwkommer",
+                    "title": "The Weekend Away",
+                    "date": "1 maand geleden",
+                    "picture": "the_weekend_away.jpg"
+                },
+                {
+                    "type": "De Top 10 van vandaag: België",
+                    "title": "Kijk alles",
+                    "date": "1 maand geleden",
+                    "picture": "top_10.jpg"
+                },
+                {
+                    "type": "Nieuwkommer",
+                    "title": "The Cuphead Show!",
+                    "date": "1 maand geleden",
+                    "picture": "new_arrival.jpg"
+                }
+            ],
+            "profile": {
+                "manageProfile": "Profielen beheren",
+                "account": "Account",
+                "help": "Helpcentrum",
+                "logout": "uitloggen"
+            },
+            "kid_exit_btn": "Kids afsluiten"
+        }
+    }
+}

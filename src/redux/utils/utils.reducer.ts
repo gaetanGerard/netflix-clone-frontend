@@ -20,7 +20,7 @@ const INITIAL_STATE: INITIAL_STATE_TYPE = {
         label: "Français",
         iso: "fr-FR"
     },
-    languageOptions: [{label: "Français", iso: "fr-FR"}, {label: "Nederlands", iso: "nl-BE"}, {label: "English", iso: "en-EN"}]
+    languageOptions: [{label: "Français", iso: "fr-FR"}, {label: "Nederlands", iso: "nl-BE"}, {label: "English", iso: "en-US"}]
 }
 
 const utilsReducer = (state = INITIAL_STATE, action) => {
@@ -35,12 +35,12 @@ const utilsReducer = (state = INITIAL_STATE, action) => {
                             iso: "nl-BE"
                         }
                     }
-                case "en-EN":
+                case "en-US":
                     return {
                         ...state,
                         language: {
                             label: "English",
-                            iso: "en-EN"
+                            iso: "en-US"
                         }
                     }
                 case "fr-FR":

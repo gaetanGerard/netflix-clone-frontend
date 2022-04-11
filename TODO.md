@@ -1,2 +1,1 @@
-# Update route /profiles/manage to best UX road (depending of if a new user dont have profiles so him should be redirect to /profiles/manage but if the user
-# already have a profile so first profile of the list should be set and redirect to protected home)
+# When user update the profile language its should update the app language too for match the current language
