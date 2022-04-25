@@ -68,6 +68,9 @@ const Home: FC = (): JSX.Element => {
     }, [resultDiscoverMovies.data, resultDiscoverSeries.data])
 
 
+    console.log(p)
+
+
     // console.log(discoveredMovies)
     // console.log(discoveredSeries);
     // console.log(p)
