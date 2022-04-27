@@ -46,7 +46,7 @@ const Header = (props: Props) => {
 
     const changeBackground: () => void = () => {
         if(window.scrollY > 66) {
-            console.log(window.scrollY);
+            //console.log(window.scrollY);
             setScrolled(true);
         } else {
             setScrolled(false);

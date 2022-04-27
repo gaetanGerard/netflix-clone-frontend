@@ -18,6 +18,7 @@ import { RootState } from "../../redux/root-reducer";
 
 // Import Custom Components
 import Header from '../ui/Header';
+import FeaturedListItem from '../ui/FeaturedListItem';
 
 const Home: FC = (): JSX.Element => {
     document.title = "Home - Netflix" //! to update when add language json
@@ -68,12 +69,9 @@ const Home: FC = (): JSX.Element => {
     }, [resultDiscoverMovies.data, resultDiscoverSeries.data])
 
 
-    console.log(p)
-
-
     // console.log(discoveredMovies)
     // console.log(discoveredSeries);
-    // console.log(p)
+    // console.log(p.profile.my_list)
 
     /*
     *
@@ -88,7 +86,7 @@ const Home: FC = (): JSX.Element => {
     *       - Popular on Netflix (let use popular movies and series)
     *       - Trending Now (use the same from TMDB)
     *       - New Releases (use the same from TMDB)
-    *       - Hollywood Movies (to think later as i have no idead for the moment)
+    *       - Hollywood Movies (to think later as i have no idea for the moment)
     *       - Only on Netflix (use movies/series produce by netflix)
     *       - Adult Animation (use cartoon with the adult tag)
     *       - European Documenary (use doc documentary)
@@ -126,12 +124,19 @@ const Home: FC = (): JSX.Element => {
     * 4) its the footer reuse the component for this part
     */
 
+    if(p) {
+        return (
+            <div className="home-container">
+                <Header />
+                <FeaturedListItem myList={p.profile.my_list} />
+            </div>
+        )
+    } else {
+        return (
+            <div>Loading...</div>
+        )
+    }
 
-    return (
-        <div className="home-container">
-            <Header />
-        </div>
-    )
 }
 
 export default Home
