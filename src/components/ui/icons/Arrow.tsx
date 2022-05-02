@@ -2,7 +2,7 @@
 import React from 'react';
 
 type Props = {
-    classname: string;
+    classname?: string;
 };
 
 const Arrow = ({ classname }: Props): JSX.Element => {

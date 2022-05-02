@@ -1,10 +1,11 @@
 import React, { useState, useEffect, ChangeEvent } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useMutation } from '@apollo/client';
 import { Link, useNavigate } from "react-router-dom";
 
 // Import redux
 import { RootState } from "../../redux/root-reducer";
+import { login } from "../../redux/auth/auth.actions";
 
 // Import Custom Components
 import Logo from "../ui/Logo";
@@ -23,8 +24,10 @@ import { ADD_NEW_PROFILE } from "../../utils/mutation";
 
 type Props = {};
 
+// eslint-disable-next-line no-empty-pattern
 const ProfileAdd = ({}: Props) => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const language = useSelector((state: RootState) => state.utils.language);
   const user = useSelector((state: RootState) => state.auth.user);
   const [appLang, setAppLang] = useState(dataProfile[language.iso]);
@@ -39,6 +42,7 @@ const ProfileAdd = ({}: Props) => {
 
 useEffect(() => {
   setPicNum(randNum);
+// eslint-disable-next-line react-hooks/exhaustive-deps
 }, [])
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -54,28 +58,28 @@ useEffect(() => {
 
 const onClick = () => {
   let arr = [...user.profiles];
-  const data = {
+  const newData = {
     p_name: profileName,
     kid: profileKid,
     language: language.iso,
     profile_pic: picNum,
     autoplay_next_episode: true,
-    autoplay_preview: true
+    autoplay_preview: true,
+    my_list: []
   }
 
-  const newArr = arr.map(({__typename, ...rest}: any) => {
-    return rest;
-  });
+  arr.push(newData);
 
-  newArr.push(data);
+  addNewProfile({ variables: { userDetail: { profiles: arr } } });
+}
 
-  addNewProfile({ variables: { userDetail: { profiles: newArr } } });
-
-  if(!loading && data) {
+useEffect(() => {
+  if(data && !loading) {
+    dispatch(login(data.updateUser))
     navigate("/profiles/browse");
     reset();
   }
-}
+}, [data, dispatch, loading, navigate, reset])
 
 
   return (

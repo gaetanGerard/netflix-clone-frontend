@@ -1,11 +1,12 @@
 /* eslint-disable @typescript-eslint/no-redeclare */
 import React, { useState, useEffect, ChangeEvent, Fragment } from 'react';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useQuery, useMutation } from "@apollo/client";
 
 // Import redux
 import { RootState } from "../../redux/root-reducer";
+import { login } from "../../redux/auth/auth.actions";
 
 // Import style
 import '../../styles/profiles.scss';
@@ -33,37 +34,28 @@ import Button from '../ui/Button';
 
 const ProfileEdit = () => {
     const language = useSelector((state: RootState) => state.utils.language);
+    const u = useSelector((state: RootState) => state.auth.user);
     const location: any = useLocation();
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const { profileName } = location.state;
-    const [user, setUser] = useState<User|null>(null)
     const [appLang, setAppLang] = useState<any>(dataProfile[language.iso]);
     const [newProfileName, setNewProfileName] = useState<string | null>(null);
     const [autoPlayNext, setAutoPlayNext] = useState<boolean|null>(null);
     const [autoPlayPreview, setAutoPlayPreview] = useState<boolean|null>(null);
     const [langProfile, setLangProfile] = useState<string|null>(null);
 
-    const { loading, error, data } = useQuery(GET_USER, {errorPolicy: 'ignore'});
-
     const [updateProfile, updatedProfile] = useMutation(ADD_NEW_PROFILE, { errorPolicy: 'all' });
-
-
-
-    useEffect(() => {
-        if(data) {
-            setUser(data.getUser)
-        }
-    }, [data, user])
 
     if((profileName === undefined)|| (profileName === null)) {
         navigate('/profiles/manage');
     }
 
-    const currentProfile = user?.profiles.find((profile: Profile) => {
+    const currentProfile = u?.profiles.find((profile: Profile) => {
         return profile.p_name === profileName;
     })!;
 
-    const indexOfProfile = user?.profiles.findIndex((profile: Profile) => {
+    const indexOfProfile = u?.profiles.findIndex((profile: Profile) => {
         return profile.p_name === profileName;
     })!;
 
@@ -87,8 +79,8 @@ const ProfileEdit = () => {
         autoplay_preview: autoPlayPreview !== null ? autoPlayPreview : currentProfile.autoplay_preview
       }
 
-      if(user) {
-        const newArrayExcludingCurrentProfile = user.profiles.filter(profile => {
+      if(u) {
+        const newArrayExcludingCurrentProfile = u.profiles.filter(profile => {
           return profile.p_name !== profileName;
         })
 
@@ -99,19 +91,14 @@ const ProfileEdit = () => {
         newArr.push(profileData);
 
         updateProfile({ variables: { userDetail: { profiles: newArr } } });
-
-        if(!updatedProfile.loading) {
-          navigate("/profiles/manage");
-          updatedProfile.reset();
-        }
       }
 
 
     }
 
     const onDelete = () => {
-      if(user) {
-        const newArrayExcludingCurrentProfile = user.profiles.filter(profile => {
+      if(u) {
+        const newArrayExcludingCurrentProfile = u.profiles.filter(profile => {
           return profile.p_name !== profileName;
         })
 
@@ -120,19 +107,19 @@ const ProfileEdit = () => {
         });
 
         updateProfile({ variables: { userDetail: { profiles: newArr } } });
-
-        if(!updatedProfile.loading) {
-          navigate("/profiles/manage");
-          updatedProfile.reset();
-        }
       }
     }
 
+    useEffect(() => {
+      if(updatedProfile.data && !updatedProfile.loading) {
+        dispatch(login(updatedProfile.data.updateUser))
+        navigate("/profiles/manage");
+        updatedProfile.reset();
+      }
+    }, [updatedProfile, dispatch, navigate])
+
 
   const currentProfileLanguage = currentProfile ? appLang.edit_profile.language.lang_array.find(item => item.iso === currentProfile.language) : null;
-
-  if(loading) return <div>Loading...</div>;
-  if(error) return <div>Error...</div>;
 
   if(currentProfile === undefined) return <div>Profile not found</div>;
   return (

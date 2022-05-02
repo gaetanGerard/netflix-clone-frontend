@@ -69,7 +69,7 @@ const Home: FC = (): JSX.Element => {
     }, [resultDiscoverMovies.data, resultDiscoverSeries.data])
 
 
-    // console.log(discoveredMovies)
+    //console.log(discoveredMovies)
     // console.log(discoveredSeries);
     // console.log(p.profile.my_list)
 

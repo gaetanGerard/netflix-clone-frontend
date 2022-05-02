@@ -31,6 +31,17 @@ export const ADD_NEW_PROFILE = gql`
                 profile_pic
                 autoplay_next_episode
                 autoplay_preview
+                my_list {
+                    id
+                    title
+                    name
+                    media_type
+                    poster_path
+                    backdrop_path
+                    overview
+                    genre_ids
+                    vote_average
+                }
             }
         }
     }

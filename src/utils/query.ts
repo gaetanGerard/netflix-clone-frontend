@@ -54,18 +54,8 @@ export const GET_USER = gql`
         autoplay_next_episode
         autoplay_preview
         my_list {
-        ... on MovieList {
           id
           title
-          media_type
-          poster_path
-          backdrop_path
-          overview
-          genre_ids
-          vote_average
-        }
-        ... on TVList {
-          id
           name
           media_type
           poster_path
@@ -74,7 +64,6 @@ export const GET_USER = gql`
           genre_ids
           vote_average
         }
-      }
       }
     }
   }
