@@ -128,7 +128,7 @@ const Home: FC = (): JSX.Element => {
         return (
             <div className="home-container">
                 <Header />
-                <FeaturedListItem myList={p.profile.my_list} />
+                <FeaturedListItem myList={p.profile.my_list !== null ? p.profile.my_list : []} />
             </div>
         )
     } else {

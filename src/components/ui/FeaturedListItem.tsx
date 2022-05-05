@@ -36,8 +36,6 @@ const FeaturedListItem = ({myList}: Props) => {
         setRandomItem(item)
     }, [item])
 
-    // console.log(randomItem);
-
     const onclick = (e) => {
         console.log(e.target.name)
     }
