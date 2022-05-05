@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from "react-router-dom";
 
 // Import Custom Components
 import Typography from './Typography';
@@ -6,18 +7,10 @@ import Button from './Button';
 import Arrow from './icons/Arrow';
 import EpisodeList from './icons/EpisodeList';
 import Information from './icons/Information';
+import MaturityRating from './icons/MaturityRating';
 
-type ListItem = {
-    backdrop_path: string
-    genre_ids: [number]
-    id: string
-    media_type: string
-    overview: string
-    poster_path: string
-    title: string
-    vote_average: number
-    name: string
-}
+// Import Types
+import { ListItem } from '../../types/featuredType';
 
 type Props = {
     myList: [ListItem]
@@ -34,7 +27,7 @@ const FeaturedListItem = ({myList}: Props) => {
     // console.log(randomItem);
 
     const onclick = (e) => {
-        console.log("button push")
+        console.log(e.target.name)
     }
 
     if(randomItem) {
@@ -44,10 +37,14 @@ const FeaturedListItem = ({myList}: Props) => {
                     <Typography HTMLElement="h1" classname="featured-list-item-title">{randomItem.media_type === "movie" ? randomItem.title : randomItem.name}</Typography>
                     <Typography HTMLElement="p" classname="featured-list-item-overview">{randomItem.overview}</Typography>
                     <div className="featured-list-item-btn-container">
-                        <Button btnType="button" classname="btn btn-play" onclick={onclick} ><Arrow />{randomItem.media_type === "tv" ? "Play Episode" : "Play"}</Button>
-                        <Button btnType="button" classname="btn btn-dialog" onclick={(e) => onclick(e)} >{randomItem.media_type === "tv" ? <EpisodeList /> : <Information />}{randomItem.media_type === "tv" ? "Episodes" : "More Info"}</Button>
+                        <Link to="TO_DEFINE" className="btn btn-play"><Arrow />{randomItem.media_type === "tv" ? "Play Episode" : "Play"}</Link>
+                        <Button btnType="button" classname="btn btn-dialog" onclick={(e) => onclick(e)} name="openInfo" >{randomItem.media_type === "tv" ? <EpisodeList /> : <Information />}{randomItem.media_type === "tv" ? "Episodes" : "More Info"}</Button>
                     </div>
                 </div>
+                <div className="featured-list-item-maturity-rating">
+                    <MaturityRating classname="maturity-rating-icon" />
+                </div>
+                <div className="gradient"></div>
             </div>
         )
     } else {

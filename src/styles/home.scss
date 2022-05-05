@@ -12,7 +12,7 @@
     .featured-list-item-container {
         margin-top: -68px;
         z-index: 99;
-        height: 100vh;
+        height: 80vh;
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -37,6 +37,45 @@
                 text-shadow: 2px 2px 4px rgba(0,0,0,.45);
                 line-height: normal;
             }
+            .featured-list-item-btn-container {
+                display: grid;
+                grid-template-columns: auto auto;
+                justify-content: start;
+                gap: 10px;
+                .btn {
+                    font-size: $font-size-medium;
+                    font-weight: $font-weight-semi-bold;
+                    color: $black;
+                    display: grid;
+                    grid-auto-flow: column;
+                    gap: 10px;
+                    justify-content: start;
+                    align-content: center;
+                    align-items: center;
+                    background-color: $white;
+                    padding: .5rem 1.7rem .5rem 1.5rem;
+                    border-radius: 4px;
+                    vertical-align: middle;
+                    &:hover {
+                        background-color: rgba(226, 226, 226, 0.998);
+                    }
+                }
+                a {
+                    svg {
+                        width: $font-size-large;
+                        height: $font-size-large;
+                        fill: $black;
+                        transform: rotate(-90deg);
+                    }
+                }
+                .btn-dialog {
+                    background-color: $dim-gray;
+                    color: $white;
+                    &:hover {
+                        background-color: rgba(117,117,117,.5);
+                    }
+                }
+            }
         }
         &:after {
             position: absolute;
@@ -47,6 +86,30 @@
             height: 100%;
             background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.7) 100%);
             z-index: 97;
+        }
+        .featured-list-item-maturity-rating {
+            position: absolute;
+            right: 0;
+            bottom: 50vh;
+            border: solid 3px #dcdcdc;
+            border-style: none none none solid;
+            background-color: rgba(51,51,51,.6);
+            font-size: 1.1vw;
+            padding: 0.5vw 3.5vw 0.5vw 0.8vw;
+            display: flex;
+            box-align: center;
+            align-items: center;
+            height: 2.4vw;
+            box-sizing: border-box;
+            svg {
+                width: 2em;
+                height: 2em;
+                margin: 0;
+                vertical-align: middle;
+            }
+        }
+        .gradient {
+            background: linear-gradient(0deg, rgba(20,20,20,1) 0%, rgba(20,20,20,1) 17%, rgba(0,0,0,0) 72%);
         }
     }
 }

@@ -5,12 +5,13 @@ type BtnProps = {
     classname: string,
     children: ReactNode,
     onclick: (e) => void,
-    disabled?: boolean
+    disabled?: boolean,
+    name?: string
 }
 
-const Button = ({ btnType, classname, children, onclick, disabled }: BtnProps): JSX.Element => {
+const Button = ({ btnType, classname, children, onclick, disabled, name }: BtnProps): JSX.Element => {
     return (
-        <button type={btnType} className={classname} disabled={disabled} onClick={onclick}>
+        <button type={btnType} className={classname} disabled={disabled} onClick={onclick} name={name}>
             {children}
         </button>
     )
