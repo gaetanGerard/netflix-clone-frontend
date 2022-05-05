@@ -68,9 +68,22 @@ const Home: FC = (): JSX.Element => {
 
     }, [resultDiscoverMovies.data, resultDiscoverSeries.data])
 
+    /*
+    *
+    *
+    *
+    * I need to check if its have an option to retrieve only item for kids
+    *
+    *
+    *
+    *
+    *
+    */
 
-    //console.log(discoveredMovies)
-    // console.log(discoveredSeries);
+
+
+    console.log(discoveredMovies)
+    console.log(discoveredSeries);
     // console.log(p.profile.my_list)
 
     /*

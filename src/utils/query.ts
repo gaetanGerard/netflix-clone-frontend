@@ -81,15 +81,16 @@ export const GET_USER = gql`
 `;
 
 export const DISCOVERS = gql `
-  query Query($media: String, $language: String, $sortBy: String, $primaryReleaseDateGte: String, $page: Int) {
-    getDiscover(media: $media, language: $language, sortBy: $sortBy, primaryReleaseDateGTE: $primaryReleaseDateGte, page: $page) {
+  query GetDiscover($media: String, $language: String) {
+    getDiscover(media: $media, language: $language) {
       page
       results {
+        __typename
         ... on MoviesDiscover {
           id
           adult
-          genre_ids
           backdrop_path
+          genre_ids
           original_language
           original_title
           overview
@@ -121,6 +122,76 @@ export const DISCOVERS = gql `
       }
       total_pages
       total_results
+    }
+  }
+`;
+
+export const GET_MOVIE = gql`
+query GetMovie($getMovieId: ID) {
+  getMovie(id: $getMovieId) {
+    id
+    adult
+    backdrop_path
+    belongs_to_collection {
+      id
+      name
+      poster_path
+      backdrop_path
+      overview
+      parts {
+        id
+        adult
+        backdrop_path
+        genre_ids
+        original_language
+        original_title
+        overview
+        popularity
+        poster_path
+        release_date
+        title
+        video
+        vote_average
+        vote_count
+        media_type
+      }
+    }
+    budget
+    genres {
+      id
+      name
+    }
+    homepage
+    imdb_id
+    original_language
+    original_title
+    overview
+    popularity
+    poster_path
+    production_companies {
+      name
+      id
+      logo_path
+      origin_country
+    }
+    production_countries {
+      iso_3166_1
+      name
+    }
+    release_date
+    revenue
+    runtime
+    spoken_languages {
+      english_name
+      iso_639_1
+      name
+    }
+      status
+      tagline
+      title
+      video
+      vote_average
+      vote_count
     }
   }
 `;

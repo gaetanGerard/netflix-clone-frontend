@@ -2,7 +2,7 @@
 import React, { useState, useEffect, ChangeEvent, Fragment } from 'react';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { useQuery, useMutation } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 
 // Import redux
 import { RootState } from "../../redux/root-reducer";
@@ -18,7 +18,6 @@ import dataProfile from "../../data/profiles.json";
 import { profile_pic } from "../../utils/images";
 
 // Import utils
-import { GET_USER } from '../../utils/query';
 import { ADD_NEW_PROFILE } from "../../utils/mutation";
 
 // Import interfaces
