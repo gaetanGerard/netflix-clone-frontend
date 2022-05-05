@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 // Import Custom Components
 import Typography from './Typography';
@@ -17,8 +17,20 @@ type Props = {
 }
 
 const FeaturedListItem = ({myList}: Props) => {
+    const location = useLocation();
     const [randomItem, setRandomItem] = useState<ListItem|null>(null)
-    const item = myList[Math.floor(Math.random()*myList.length)];
+    let newList;
+
+    if (location.pathname === "/tv") {
+        newList = myList.filter(item => item.media_type === "tv");
+    } else if (location.pathname === "/movies") {
+        newList = myList.filter(item => item.media_type === "movie");
+    } else {
+        newList = myList;
+    }
+
+    const item = newList[Math.floor(Math.random()*newList.length)];
+
 
     useEffect(() => {
         setRandomItem(item)

@@ -47,7 +47,7 @@ const App: FC = (): JSX.Element => {
     if(Object.entries(profile).length > 0 && p === null) {
       dispatch(selectProfile(profile));
       if(!location.pathname.includes("/profiles")) {
-        navigate("/home");
+        navigate(location.pathname);
       }
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
