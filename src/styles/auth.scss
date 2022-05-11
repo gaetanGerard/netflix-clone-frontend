@@ -180,7 +180,7 @@
     width: 100vw;
     height: 100vh;
     display: grid;
-    align-content: space-between;
+    grid-template-rows: 100px auto;
     background-image: url("../images/auth/logout.jpg");
     background-repeat: no-repeat;
     background-size: cover;
@@ -210,11 +210,13 @@
         width: 350px;
         background-color: $light-gray;
         padding: 30px 45px;
+        height: 40%;
         color: $dark-slate-gray;
         line-height: 1.5;
         justify-self: center;
         display: grid;
         align-content: space-between;
+        margin-top: 10%;
         grid-gap: 20px;
         h2 {
             font-size: 2em;
@@ -242,13 +244,13 @@
     width: 100vw;
     height: 100vh;
     display: grid;
-    align-content: space-between;
+    grid-template-rows: 100px auto;
     header {
         height: 90px;
         display: grid;
         align-content: center;
         align-items: center;
-        grid-template-columns: auto auto;
+        grid-template-columns: 100px auto;
         justify-content: space-between;
         border-bottom: 1px solid $light-gray;
         svg {

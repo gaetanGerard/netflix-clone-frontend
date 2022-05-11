@@ -1,0 +1,35 @@
+{
+    "fr-FR": {
+        "title": "Des questions ? Appelez le",
+        "tel": "0800-800-82",
+        "column-link": [
+            ["FAQ", "Relations Investisseurs", "Modes de lecture", "Mentions légales", "Seulement sur Netflix"],
+            ["Centre d'aide", "Recrutement", "Conditions d'utilisation", "Nous contacter"],
+            ["Compte", "Utiliser des cartes cadeaux", "Confidentialité", "Test de vitesse"],
+            ["Presse", "Acheter des cartes cadeaux", "Préférences de cookies", "Informations légales"]
+        ],
+        "copyright": "Netflix Belgique"
+    },
+    "nl-BE": {
+        "title": "Vragen? Bel",
+        "tel": "0800-800-82",
+        "column-link": [
+            ["Veelgestelde vragen", "Relaties met investeerders", "Hoe kun je Netflix kijken?", "Bedrijfsgegevens", "Alleen op Netflix"],
+            ["Helpcentrum", "Vacatures", "Gebruiksvoorwaarden", "Contact opnemen"],
+            ["Account", "Cadeaubonnen gebruiken", "Privacy", "Snelheidstest"],
+            ["Mediacenter", "Cadeaubonnen kopen", "Cookievoorkeuren", "Wettelijke bepalingen"]
+        ],
+        "copyright": "Netflix België"
+    },
+    "en-US": {
+        "title": "Questions? Call",
+        "tel": "0800-800-82",
+        "column-link": [
+            ["FAQ", "Investor Relations", "Ways to Watch", "Corporate Information", "Only on Netflix"],
+            ["Help Center", "Jobs", "Terms of Use", "Contact Us"],
+            ["Account", "Redeem Gift Cards", "Privacy", "Speed Test"],
+            ["Media Center", "Buy Gift Cards", "Cookie Preferences", "Legal Notices"]
+        ],
+        "copyright": "Netflix Belgium"
+    }
+}

@@ -113,3 +113,9 @@
         }
     }
 }
+
+.no-featuredListItem {
+    display: grid;
+    grid-template-rows: 100px auto 255px;
+    justify-content: space-between;
+}

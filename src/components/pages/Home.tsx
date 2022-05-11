@@ -13,13 +13,18 @@ import { newListUtility } from '../../utils/function';
 
 // Import redux
 import { selectProfile } from '../../redux/profile/profile.action';
+import { setApplicationLanguage } from '../../redux/utils/utils.actions';
 import { discover_movies } from '../../redux/movies/movies.actions';
 import { discover_series } from '../../redux/series/series.actions';
 import { RootState } from "../../redux/root-reducer";
 
 // Import Custom Components
 import Header from '../ui/Header';
+import Footer from '../ui/Footer';
 import FeaturedListItem from '../ui/FeaturedListItem';
+
+// Import Data
+import footerData from '../../data/footer.json';
 
 const Home: FC = (): JSX.Element => {
     document.title = "Home - Netflix" //! to update when add language json
@@ -30,12 +35,17 @@ const Home: FC = (): JSX.Element => {
     const p = useSelector((state: RootState) => state.profile.profile);
     const discoveredMovies = useSelector((state: RootState) => state.movies.discoverMovies);
     const discoveredSeries = useSelector((state: RootState) => state.series.discoverSeries);
+    const options = useSelector((state: RootState) => state.utils.languageOptions);
     const appLang = useSelector((state: RootState) => state.utils.language);
     const language = p ? p.profile.language : appLang;
     const [myList, setMyList] = useState(null)
 
     const [discoverMovies, resultDiscoverMovies] = useLazyQuery (DISCOVERS);
     const [discoverSeries, resultDiscoverSeries] = useLazyQuery (DISCOVERS);
+
+    const changeLanguage = (e: any) => {
+        dispatch(setApplicationLanguage(e.target.value))
+    }
 
     if(profile) {
         if(profile.profile) {
@@ -136,6 +146,7 @@ const Home: FC = (): JSX.Element => {
             <div className="home-container">
                 <Header />
                 <FeaturedListItem myList={p.profile.my_list.length > 1 ? p.profile.my_list : myList} />
+                <Footer data={footerData[appLang.iso]} options={options} language={appLang.iso} changeLanguage={changeLanguage} />
             </div>
         )
     } else {
