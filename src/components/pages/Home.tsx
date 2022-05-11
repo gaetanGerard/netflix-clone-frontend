@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { useLazyQuery } from "@apollo/client";
@@ -9,6 +9,7 @@ import '../../styles/home.scss';
 
 // Import utils
 import { DISCOVERS } from '../../utils/query';
+import { newListUtility } from '../../utils/function';
 
 // Import redux
 import { selectProfile } from '../../redux/profile/profile.action';
@@ -31,6 +32,7 @@ const Home: FC = (): JSX.Element => {
     const discoveredSeries = useSelector((state: RootState) => state.series.discoverSeries);
     const appLang = useSelector((state: RootState) => state.utils.language);
     const language = p ? p.profile.language : appLang;
+    const [myList, setMyList] = useState(null)
 
     const [discoverMovies, resultDiscoverMovies] = useLazyQuery (DISCOVERS);
     const [discoverSeries, resultDiscoverSeries] = useLazyQuery (DISCOVERS);
@@ -68,22 +70,14 @@ const Home: FC = (): JSX.Element => {
 
     }, [resultDiscoverMovies.data, resultDiscoverSeries.data])
 
-    /*
-    *
-    *
-    *
-    * I need to check if its have an option to retrieve only item for kids
-    *
-    *
-    *
-    *
-    *
-    */
+    useEffect(() => {
+        if(discoveredMovies && discoveredSeries) setMyList(newListUtility(p, discoveredMovies.results, discoveredSeries.results));
+    }, [discoveredMovies, discoveredSeries])
 
 
 
-    console.log(discoveredMovies)
-    console.log(discoveredSeries);
+    // console.log(discoveredMovies)
+    // console.log(discoveredSeries);
     // console.log(p.profile.my_list)
 
     /*
@@ -137,11 +131,11 @@ const Home: FC = (): JSX.Element => {
     * 4) its the footer reuse the component for this part
     */
 
-    if(p) {
+    if(p && myList) {
         return (
             <div className="home-container">
                 <Header />
-                <FeaturedListItem myList={p.profile.my_list !== null ? p.profile.my_list : []} />
+                <FeaturedListItem myList={p.profile.my_list.length > 1 ? p.profile.my_list : myList} />
             </div>
         )
     } else {

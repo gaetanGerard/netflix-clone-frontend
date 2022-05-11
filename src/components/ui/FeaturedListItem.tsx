@@ -22,9 +22,9 @@ const FeaturedListItem = ({myList}: Props) => {
     let newList;
 
     if (location.pathname === "/tv") {
-        newList = myList.filter(item => item.media_type === "tv");
+        newList = myList.filter(item => item.name);
     } else if (location.pathname === "/movies") {
-        newList = myList.filter(item => item.media_type === "movie");
+        newList = myList.filter(item => item.title);
     } else {
         newList = myList;
     }
@@ -40,15 +40,16 @@ const FeaturedListItem = ({myList}: Props) => {
         console.log(e.target.name)
     }
 
+
     if(randomItem) {
         return (
             <div className="featured-list-item-container" style={{backgroundImage: `url(https://image.tmdb.org/t/p/original/${randomItem.backdrop_path})`}}>
                 <div className="featured-list-item-info">
-                    <Typography HTMLElement="h1" classname="featured-list-item-title">{randomItem.media_type === "movie" ? randomItem.title : randomItem.name}</Typography>
+                    <Typography HTMLElement="h1" classname="featured-list-item-title">{randomItem.title ? randomItem.title : randomItem.name}</Typography>
                     <Typography HTMLElement="p" classname="featured-list-item-overview">{randomItem.overview}</Typography>
                     <div className="featured-list-item-btn-container">
-                        <Link to="TO_DEFINE" className="btn btn-play"><Arrow />{randomItem.media_type === "tv" ? "Play Episode" : "Play"}</Link>
-                        <Button btnType="button" classname="btn btn-dialog" onclick={(e) => onclick(e)} name="openInfo" >{randomItem.media_type === "tv" ? <EpisodeList /> : <Information />}{randomItem.media_type === "tv" ? "Episodes" : "More Info"}</Button>
+                        <Link to="TO_DEFINE" className="btn btn-play"><Arrow />{randomItem.name ? "Play Episode" : "Play"}</Link>
+                        <Button btnType="button" classname="btn btn-dialog" onclick={(e) => onclick(e)} name="openInfo" >{randomItem.name? <EpisodeList /> : <Information />}{randomItem.name ? "Episodes" : "More Info"}</Button>
                     </div>
                 </div>
                 <div className="featured-list-item-maturity-rating">
