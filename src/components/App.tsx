@@ -43,7 +43,7 @@ const App: FC = (): JSX.Element => {
   useEffect(() => {
     if(data && !user && localStorage.getItem('token')) {
       dispatch(login(data.getUser));
-      navigate("/profiles/browse");
+      navigate(location.pathname);
     };
     const profile = JSON.parse(localStorage.getItem('profileSave') || '{}');
 
