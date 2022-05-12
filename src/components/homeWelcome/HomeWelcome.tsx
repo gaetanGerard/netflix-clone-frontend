@@ -39,6 +39,7 @@ const HomeWelcome = (): JSX.Element => {
     const [disabled, setDisabled] = useState<boolean>(true);
 
     useEffect(() => {
+
         document.title = langData.documentTitle
     }, [langData, lang])
 

@@ -145,7 +145,7 @@ const Home: FC = (): JSX.Element => {
         return (
             <div className="home-container">
                 <Header />
-                <FeaturedListItem myList={p.profile.my_list.length > 1 ? p.profile.my_list : myList} />
+                <FeaturedListItem myList={p.profile.my_list.length > 0 ? p.profile.my_list : myList} />
                 <Footer data={footerData[appLang.iso]} options={options} language={appLang.iso} changeLanguage={changeLanguage} />
             </div>
         )

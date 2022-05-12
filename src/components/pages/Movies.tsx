@@ -90,7 +90,7 @@ const Movies = (props: Props) => {
     return (
         <div className="home-container">
             <Header />
-            <FeaturedListItem myList={p.profile.my_list.length > 1 ? p.profile.my_list : myList} />
+            <FeaturedListItem myList={p.profile.my_list.length > 0 ? p.profile.my_list : myList} />
             <Footer data={footerData[lang.iso]} options={options} language={lang.iso} changeLanguage={changeLanguage} />
         </div>
     )

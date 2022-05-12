@@ -41,7 +41,10 @@ const App: FC = (): JSX.Element => {
   const { loading, error, data } = useQuery(GET_USER, {errorPolicy: 'ignore'});
 
   useEffect(() => {
-    if(data && !user && localStorage.getItem('token')) dispatch(login(data.getUser));
+    if(data && !user && localStorage.getItem('token')) {
+      dispatch(login(data.getUser));
+      navigate("/profiles/browse");
+    };
     const profile = JSON.parse(localStorage.getItem('profileSave') || '{}');
 
     if(Object.entries(profile).length > 0 && p === null) {
