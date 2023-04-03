@@ -1,7 +1,11 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useState, FC, ChangeEvent } from 'react';
 import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from 'react-redux';
 import { useLazyQuery } from '@apollo/client';
+
+// Import redux
+import { login } from '../../redux/auth/auth.actions';
 
 // Import utils
 import { LOGIN_USER } from '../../utils/query';
@@ -27,11 +31,12 @@ type LoginProps = {
 const Login: FC<LoginProps> = ({ language, loginData, changeLanguage, options }): JSX.Element => {
     document.title = loginData[language].documentTitle
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const [userEmail, setUserEmail] = useState<string | null>(null);
     const [password, setPassword] = useState<string | null>(null);
     const [rememberMe, setRememberMe] = useState<boolean>(true);
 
-    const [login, { loading, error, data}] = useLazyQuery (LOGIN_USER);
+    const [uLogin, { loading, error, data}] = useLazyQuery (LOGIN_USER);
 
     const onChange = (e: ChangeEvent<HTMLInputElement>) => {
         if(e.target.name === "userEmail") setUserEmail(e.target.value);
@@ -41,7 +46,7 @@ const Login: FC<LoginProps> = ({ language, loginData, changeLanguage, options })
 
     const onClick = (e) => {
         e.preventDefault();
-        login({ variables: { email: userEmail, password: password } });
+        uLogin({ variables: { email: userEmail, password: password } });
     }
 
     if(!localStorage.getItem('token') && loading) return <div>Loading...</div>
@@ -50,6 +55,7 @@ const Login: FC<LoginProps> = ({ language, loginData, changeLanguage, options })
 
     if(data) {
         localStorage.setItem("token", data.loginUser.token);
+        dispatch(login(data.loginUser));
     }
 
     return (
