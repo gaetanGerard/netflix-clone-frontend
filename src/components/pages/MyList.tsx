@@ -10,6 +10,7 @@ import footerData from '../../data/footer.json';
 
 // Import Styles
 import '../../styles/home.scss';
+import '../../styles/card.scss';
 
 // Import Custom Components
 import Header from '../ui/Header';

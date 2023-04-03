@@ -26,7 +26,15 @@ const ItemCard = ({item}: Props) => {
             <div className="gradient"></div>
         </div>
         <div className="card-body">
+            <div className="btn-container">
 
+            </div>
+            <div className="detail-container">
+
+            </div>
+            <div className="genre-container">
+
+            </div>
         </div>
     </div>
   )
