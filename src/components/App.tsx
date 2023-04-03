@@ -53,6 +53,12 @@ const App: FC = (): JSX.Element => {
         navigate(location.pathname);
       }
     }
+    if(data && user) {
+      if(p) {
+        navigate("/home");
+      }
+    }
+
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, user, data])
 
