@@ -15,7 +15,7 @@ import { setContext } from '@apollo/client/link/context';
 import store from './redux/store';
 
 const httpLink = createHttpLink({
-  uri: `http://${process.env.REACT_APP_BACKEND_URL}:4000/graphql`,
+  uri: `http://${process.env.REACT_APP_BACKEND_URL_LOCAL}:4000/graphql`,
 });
 
 // Improve Server for retrieve with the token generated when the user logged in
