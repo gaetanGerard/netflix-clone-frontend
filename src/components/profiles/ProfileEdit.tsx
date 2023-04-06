@@ -18,7 +18,7 @@ import dataProfile from "../../data/profiles.json";
 import { profile_pic } from "../../utils/images";
 
 // Import utils
-import { ADD_NEW_PROFILE } from "../../utils/mutation";
+import { UPDATE_NEW_PROFILE } from "../../utils/mutation";
 
 // Import interfaces
 import { User, Profile } from '../../types/userTypes';
@@ -44,7 +44,7 @@ const ProfileEdit = () => {
     const [autoPlayPreview, setAutoPlayPreview] = useState<boolean|null>(null);
     const [langProfile, setLangProfile] = useState<string|null>(null);
 
-    const [updateProfile, updatedProfile] = useMutation(ADD_NEW_PROFILE, { errorPolicy: 'all' });
+    const [updateProfile, updatedProfile] = useMutation(UPDATE_NEW_PROFILE, { errorPolicy: 'all' });
 
     if((profileName === undefined)|| (profileName === null)) {
         navigate('/profiles/manage');

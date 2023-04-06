@@ -34,3 +34,51 @@ export const ADD_NEW_PROFILE = gql`
             }
         }
 `;
+
+export const UPDATE_NEW_PROFILE = gql`
+    mutation Mutation($userDetail: UserInput!) {
+        updateUser(userDetail: $userDetail) {
+            _id
+            email
+            date_of_birth
+            description
+            firstname
+            gender
+            lastname
+            profile_pic
+            updated_at
+            created_at
+            rememberMe
+            specialOffers
+            subscriptionPlan
+            profiles {
+                p_name
+                kid
+                language
+                profile_pic
+                autoplay_next_episode
+                autoplay_preview
+                my_list {
+                    id
+                    title
+                    name
+                    media_type
+                    poster_path
+                    backdrop_path
+                    overview
+                    genre_ids
+                    vote_average
+                }
+            }
+        }
+    }
+`;
+
+export const REMOVE_PROFILE = gql `
+    mutation Mutation($pName: String!) {
+        removeProfile(p_name: $pName) {
+            msg
+            type
+        }
+    }
+`;
