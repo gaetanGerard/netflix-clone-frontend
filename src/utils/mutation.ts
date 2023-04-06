@@ -35,40 +35,37 @@ export const ADD_NEW_PROFILE = gql`
         }
 `;
 
-export const DELETE_PROFILE = gql`
-    mutation Mutation($userDetail: UserInput!) {
-        updateUser(userDetail: $userDetail) {
-            _id
-            email
-            date_of_birth
-            description
-            firstname
-            gender
-            lastname
+export const REMOVE_PROFILE = gql`
+    mutation Mutation($pName: String!) {
+        removeProfile(p_name: $pName) {
+            msg
+            type
+        }
+    }
+`;
+
+export const UPDATE_PROFILE = gql`
+    mutation Mutation($pName: String!, $profile: ProfileInput!) {
+        updateProfile(p_name: $pName, profile: $profile) {
+            p_name
+            kid
+            language
             profile_pic
-            updated_at
-            created_at
-            rememberMe
-            specialOffers
-            subscriptionPlan
-            profiles {
-                p_name
-                kid
-                language
-                profile_pic
-                autoplay_next_episode
-                autoplay_preview
-                my_list {
-                    id
-                    title
-                    name
-                    media_type
-                    poster_path
-                    backdrop_path
-                    overview
-                    genre_ids
-                    vote_average
-                }
+            autoplay_next_episode
+            autoplay_preview
+            my_list {
+                id
+                genre_ids
+                backdrop_path
+                media_type
+                name
+                number_of_episodes
+                number_of_seasons
+                overview
+                poster_path
+                runtime
+                title
+                vote_average
             }
         }
     }
