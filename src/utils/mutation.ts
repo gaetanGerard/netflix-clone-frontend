@@ -35,7 +35,7 @@ export const ADD_NEW_PROFILE = gql`
         }
 `;
 
-export const UPDATE_NEW_PROFILE = gql`
+export const DELETE_PROFILE = gql`
     mutation Mutation($userDetail: UserInput!) {
         updateUser(userDetail: $userDetail) {
             _id
@@ -70,15 +70,6 @@ export const UPDATE_NEW_PROFILE = gql`
                     vote_average
                 }
             }
-        }
-    }
-`;
-
-export const REMOVE_PROFILE = gql `
-    mutation Mutation($pName: String!) {
-        removeProfile(p_name: $pName) {
-            msg
-            type
         }
     }
 `;
