@@ -1,6 +1,6 @@
 import React, { useState, useEffect, ChangeEvent } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useMutation } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import { Link, useNavigate } from "react-router-dom";
 
 // Import redux
@@ -21,6 +21,7 @@ import dataProfile from "../../data/profiles.json";
 // Import utils
 import { profile_pic } from "../../utils/images";
 import { ADD_NEW_PROFILE } from "../../utils/mutation";
+import { GET_USER } from '../../utils/query';
 
 type Props = {};
 
@@ -38,7 +39,9 @@ const ProfileAdd = ({}: Props) => {
 
   const randNum = Math.floor(Math.random() * profile_pic.length);
 
-  const [addNewProfile, { data, loading, error, reset }] = useMutation(ADD_NEW_PROFILE, { errorPolicy: 'all' });
+  const [addNewProfile, { data, loading, error, reset }] = useMutation(ADD_NEW_PROFILE, { errorPolicy: 'all', refetchQueries: [{ query: GET_USER }], awaitRefetchQueries: true });
+  const getUser = useQuery(GET_USER, {errorPolicy: 'ignore'});
+
 
 useEffect(() => {
   setPicNum(randNum);
@@ -57,7 +60,6 @@ useEffect(() => {
 }, [profileName, user])
 
 const onClick = () => {
-  let arr = [...user.profiles];
   const newData = {
     p_name: profileName,
     kid: profileKid,
@@ -68,18 +70,16 @@ const onClick = () => {
     my_list: []
   }
 
-  arr.push(newData);
-
-  addNewProfile({ variables: { userDetail: { profiles: arr } } });
+  addNewProfile({ variables: { profileList: newData } });
 }
 
 useEffect(() => {
   if(data && !loading) {
-    dispatch(login(data.updateUser))
+    dispatch(login(getUser.data.getUser))
     navigate("/profiles/browse");
     reset();
   }
-}, [data, dispatch, loading, navigate, reset])
+}, [data, dispatch, loading, navigate, reset, getUser.data.getUser])
 
 
   return (
