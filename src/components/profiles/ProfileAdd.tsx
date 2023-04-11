@@ -79,7 +79,7 @@ useEffect(() => {
     navigate("/profiles/browse");
     reset();
   }
-}, [data, dispatch, loading, navigate, reset, getUser.data.getUser])
+}, [data, dispatch, loading, navigate, reset, getUser])
 
 
   return (

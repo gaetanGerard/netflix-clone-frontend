@@ -27,14 +27,13 @@ const Stepper: FC<StepperProps> = ({ steps, onChange, userData, setSubscriptionP
     const navigate = useNavigate();
     let [currentStep, setCurrentStep] = useState<number>(1);
     let [userInputError, setUserInputError] = useState<any | null>(null);
+    let [lastStep, setLastStep] = useState<boolean>(false);
     const [stepLength] = useState<number>(Object.entries(steps).length);
     const [disabled, setDisabled] = useState<boolean>(false);
     const stepperSelector = useRef<HTMLDivElement>(null);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => {moveStepper();}, [currentStep])
-
-    const [register, { data, loading, error, reset }] = useMutation(REGISTER_NEW_USER, { errorPolicy: 'all' });
 
 
     const nextStep = () => {
@@ -43,7 +42,7 @@ const Stepper: FC<StepperProps> = ({ steps, onChange, userData, setSubscriptionP
             setCurrentStep(nextStep);
         }
         if(currentStep === stepLength) {
-            register({ variables: { email: userData.userEmail, password: userData.password, specialOffers: userData.specialOffers, subscriptionPlan: userData.subscriptionPlan, profiles: [] } })
+            setLastStep(true);
         }
     }
 
@@ -56,24 +55,16 @@ const Stepper: FC<StepperProps> = ({ steps, onChange, userData, setSubscriptionP
     }
 
     const resetStepper = () => {
-        reset();
-        localStorage.removeItem("token");
         client.resetStore();
         setCurrentStep(2);
         setUserInputError(null);
     }
 
     useEffect(() => {
-        if(error) {
-            setUserInputError(error.graphQLErrors[0].extensions.userInputError);
-        }
-        if(!loading && data && !error) {
-            navigate('/profiles/browse');
-            localStorage.setItem('token', data.registerUser.token);
-        }
+        if(lastStep) navigate("/login");
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [loading, data, error, userInputError])
+    }, [lastStep])
 
     useEffect(() => {
         if(currentStep === 2 && userData.userEmail === null && userData.password === null) {
