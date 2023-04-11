@@ -38,8 +38,8 @@ if(p) {
           <div className="myList-body-container">
             <Typography HTMLElement="h2" classname="title">My List</Typography>
             <div className="card-container">
-              {p.profile.my_list.length > 0 ? p.profile.my_list.map(item => (
-                <ItemCard key={item.id} item={item} />
+              {p.profile.my_list.length > 0 ? p.profile.my_list.map((item, i=1) => (
+                <ItemCard key={item.id} item={item} itemID={i++} listLength={p.profile.my_list.length} />
               )) : <p>No Item in the List</p>}
             </div>
           </div>
