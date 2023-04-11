@@ -178,7 +178,8 @@
 
 .logout-container {
     width: 100vw;
-    height: 100vh;
+    height: 100%;
+    min-height: 100vh;
     display: grid;
     grid-template-rows: 100px auto;
     background-image: url("../images/auth/logout.jpg");
@@ -210,13 +211,13 @@
         width: 350px;
         background-color: $light-gray;
         padding: 30px 45px;
-        height: 40%;
+        height: 300px;
         color: $dark-slate-gray;
         line-height: 1.5;
         justify-self: center;
         display: grid;
         align-content: space-between;
-        margin-top: 10%;
+        margin-top: 1%;
         grid-gap: 20px;
         h2 {
             font-size: 2em;
@@ -674,7 +675,7 @@
         }
     }
     .logout-container {
-        height: 100vh;
+        height: 100%;
         header {
             justify-content: space-between;
             a {
@@ -709,7 +710,7 @@
 
 @media only screen and (max-width: 768px) {
     .logout-container {
-        height: 100vh;
+        height: 100%;
     }
 }
 
@@ -755,6 +756,7 @@
         height: 100vh;
         .logout-body {
             width: 95%;
+            height: 100%;
             box-sizing: border-box;
             padding: 20px 15px;
         }

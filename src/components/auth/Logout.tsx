@@ -31,9 +31,9 @@ const Logout: FC<LogoutProps> = ({ language, data, changeLanguage, options }): J
     const footerData = data[language].footer;
     const bodyData = data[language].body;
 
-    setTimeout(() => {
-        navigate("/", { replace: true})
-    }, 30000);
+    // setTimeout(() => {
+    //     navigate("/", { replace: true})
+    // }, 30000);
 
     useEffect(() => {
         localStorage.removeItem("token");
