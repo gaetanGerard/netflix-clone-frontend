@@ -707,6 +707,11 @@
             }
         }
     }
+
+    .register-container .stepper-selector .step-wrapper .stepItem-0 .step-container .step-img, .register-container .stepper-selector .step-wrapper .stepItem-4 .step-container .step-img {
+        width: 150px;
+        height: 60px;
+    }
 }
 
 @media only screen and (max-width: 768px) {
@@ -782,6 +787,11 @@
                 margin-right: 3vw;
             }
         }
+    }
+
+    .register-container .stepper-selector .step-wrapper .stepItem-0 .step-container .step-img, .register-container .stepper-selector .step-wrapper .stepItem-4 .step-container .step-img {
+        width: 100px;
+        height: 40px;
     }
 }
 
