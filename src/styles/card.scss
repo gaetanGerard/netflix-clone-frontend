@@ -25,20 +25,83 @@
         width: 335px;
         height: 350px;
         .img-container {
-            transition-delay: $animation-duration;
             width: 335px;
             height: 200px;
             border-bottom-left-radius: 0;
             border-bottom-right-radius: 0;
         }
         .card-body {
-            transition-delay: $animation-duration;
             display: grid;
             width: 335px;
             height: 150px;
             background-color: black;
             border-bottom-left-radius: 4px;
             border-bottom-right-radius: 4px;
+            grid-template-rows: 42px 42px 42px;
+            align-content: start;
+            align-items: start;
+            opacity: 1;
+            .btn-container {
+                display: grid;
+                grid-template-columns: 60% 40%;
+                height: 42px;
+                align-content: center;
+                align-items: center;
+                & div {
+                    display: grid;
+                    grid-template-columns: 42px 42px 42px;
+                    height: 42px;
+                    gap: 5px;
+                    justify-content: start;
+                    justify-items: start;
+                    .icon {
+                        @include icon($size: 100%);
+                        &:hover {
+                            fill: darken($color: $white, $amount: 50%);
+                        }
+                    }
+                }
+                .right-icon-container {
+                    grid-template-columns: auto;
+                    height: 42px;
+                    justify-content: end;
+                    justify-items: end;
+                    padding-right: 5px;
+                    .icon {
+                        @include icon($size: 42px);
+                        &:hover {
+                            fill: darken($color: $white, $amount: 50%);
+                        }
+                    }
+                }
+            }
+            .detail-container {
+                padding-left: 3%;
+                display: grid;
+                grid-auto-flow: column;
+                gap: 5px;
+                color: $white;
+                justify-content: start;
+                justify-items: start;
+                align-content: center;
+                align-items: center;
+                height: 42px;
+                p.detail-type {
+                    font-size: $font-size-normal-small;
+                    font-weight: 500;
+                }
+                .icon {
+                    @include icon($color: darken($color: $white, $amount: 50%),$size: 70%);
+                }
+            }
+            .genre-container {
+                padding-left: 3%;
+                display: grid;
+                grid-auto-flow: column;
+                gap: 10px;
+                justify-content: start;
+                justify-items: start;
+            }
         }
     }
 
@@ -56,7 +119,7 @@
             border-radius: 4px;
             overflow: hidden;
             position: relative;
-            transition-duration: $animation-duration;
+            transition: width $animation-duration ease-in;
             img {
                 width: 100%;
                 height: 100%;
@@ -83,9 +146,10 @@
             }
         }
         .card-body {
-            transition-duration: $animation-duration;
             width: 225px;
             height: 0;
+            transition: width $animation-duration ease-in;
+            opacity: 0;
         }
 
     }

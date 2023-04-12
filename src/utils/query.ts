@@ -35,6 +35,9 @@ export const LOGIN_USER = gql`
                 overview
                 genre_ids
                 vote_average
+                runtime
+                number_of_seasons
+                number_of_episodes
               }
             }
         }
@@ -74,6 +77,9 @@ export const GET_USER = gql`
           overview
           genre_ids
           vote_average
+          runtime
+          number_of_seasons
+          number_of_episodes
         }
       }
     }

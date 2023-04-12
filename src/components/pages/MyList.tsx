@@ -32,6 +32,15 @@ const MyList = (props: Props) => {
 }
 
 if(p) {
+
+  const itemInMyList = (myList, item) => {
+    if(myList.includes(item)) {
+      return true
+    } else {
+      return false
+    }
+  }
+
     return (
       <div className="home-container no-featuredListItem">
           <Header />
@@ -39,7 +48,7 @@ if(p) {
             <Typography HTMLElement="h2" classname="title">My List</Typography>
             <div className="card-container">
               {p.profile.my_list.length > 0 ? p.profile.my_list.map((item, i=1) => (
-                <ItemCard key={item.id} item={item} itemID={i++} listLength={p.profile.my_list.length} />
+                <ItemCard key={item.id} item={item} itemID={i++} isInMyList={itemInMyList(p.profile.my_list, item)} />
               )) : <p>No Item in the List</p>}
             </div>
           </div>

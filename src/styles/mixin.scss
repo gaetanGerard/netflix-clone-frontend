@@ -19,6 +19,14 @@
     transform: translateY(-14px);
 }
 
+@mixin icon($size: 90%, $color: $white) {
+    display: block;
+    transition: $animation-duration;
+    height: $size;
+    width: $size;
+    fill: $color;
+}
+
 @mixin btn {
     border: none;
 	background-color: transparent;
