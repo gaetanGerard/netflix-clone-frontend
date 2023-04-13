@@ -1,10 +1,13 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, Fragment } from 'react';
 import { useSelector } from 'react-redux';
 
 // Import Redux
 import { RootState } from "../../redux/root-reducer";
 
 // Import Custom Components
+import Modal from "../ui/Modal";
+
+// Import Icon Components
 import Add from "../ui/icons/Add";
 import Play from "../ui/icons/Play";
 import Check from "../ui/icons/Check";
@@ -39,6 +42,7 @@ const ItemCard = ({item, itemID, isInMyList}: Props) => {
     const [lastInRow, setLastInRow] = useState(false)
     const [windowSize, setWindowSize] = useState(window.innerWidth - 100);
     const [itemsPerRow, setItemsPerRow] = useState(Math.floor(windowSize / 235));
+    const [showModal, setShowModal] = useState(false);
     const itemSize = 235;
 
     useEffect(() => {
@@ -72,60 +76,67 @@ const ItemCard = ({item, itemID, isInMyList}: Props) => {
         return genre.name;
     }
 
+    const handleClick = () => {
+        setShowModal(true);
+    };
+
   return (
-    <div className={`card ${lastInRow ? "last-card-in-row" : ""}`}>
-        <div className="card-inner">
-            <div className="img-container">
-                <img src={`https://image.tmdb.org/t/p/original/${item.poster_path !== null ? item.poster_path : item.backdrop_path}`} alt={item.title ? item.title: item.name} />
-                <p>{item.title ? item.title : item.name}</p>
-                <div className="gradient"></div>
-            </div>
-            <div className="card-body">
-                <div className="btn-container">
-                    <div>
-                        <button className="btn btn-play">
-                            <Play classname="icon" />
-                        </button>
-                        {isInMyList ? (
-                            <button className="btn btn-add-to-my-list" title="Enlever de ma liste">
-                                <Check classname="icon" />
+    <Fragment>
+        {showModal && <Modal onClose={() => setShowModal(false)} />}
+        <div className={`card ${lastInRow ? "last-card-in-row" : ""}`}>
+            <div className="card-inner">
+                <div className="img-container">
+                    <img src={`https://image.tmdb.org/t/p/original/${item.poster_path !== null ? item.poster_path : item.backdrop_path}`} alt={item.title ? item.title: item.name} />
+                    <p>{item.title ? item.title : item.name}</p>
+                    <div className="gradient"></div>
+                </div>
+                <div className="card-body">
+                    <div className="btn-container">
+                        <div>
+                            <button className="btn btn-play">
+                                <Play classname="icon" />
                             </button>
-                        ) : (
-                            <button className="btn btn-remove-to-my-list" title="Ajouter à ma liste">
-                                <Add classname="icon" />
+                            {isInMyList ? (
+                                <button className="btn btn-add-to-my-list" title="Enlever de ma liste">
+                                    <Check classname="icon" />
+                                </button>
+                            ) : (
+                                <button className="btn btn-remove-to-my-list" title="Ajouter à ma liste">
+                                    <Add classname="icon" />
+                                </button>
+                            )}
+                            <button className="btn btn-like">
+                                <Like classname="icon" />
                             </button>
+                        </div>
+                        <div className="right-icon-container" onClick={handleClick}>
+                            <button className="btn btn-info">
+                                <DownArrow classname="icon" />
+                            </button>
+                        </div>
+                    </div>
+                    <div className="detail-container">
+                        {item.media_type === "movie" ? (
+                            <p className="detail-type">Movie</p>) : (
+                            <p className="detail-type">TV Show</p>)
+                        }
+                        {item.media_type === "tv" ? (
+                            item.number_of_seasons !== undefined ? (item.number_of_seasons > 1 ? (<p className="detail">{item.number_of_seasons} Seasons</p>) : (<p className="detail">{item.number_of_episodes} Episodes</p>)) : (null)) : (
+                            <p className="detail">{convertMinutesToHours(item.runtime)}</p>
                         )}
-                        <button className="btn btn-like">
-                            <Like classname="icon" />
-                        </button>
+                        <HD classname="icon" />
                     </div>
-                    <div className="right-icon-container">
-                        <button className="btn btn-info">
-                            <DownArrow classname="icon" />
-                        </button>
+                    <div className="genre-container">
+                        {item.genre_ids.map((genre, index) => {
+                            return (
+                                <p key={index} className="genre">{getGenreName(genre.toString())}</p>
+                            )
+                        })}
                     </div>
-                </div>
-                <div className="detail-container">
-                    {item.media_type === "movie" ? (
-                        <p className="detail-type">Movie</p>) : (
-                        <p className="detail-type">TV Show</p>)
-                    }
-                    {item.media_type === "tv" ? (
-                        item.number_of_seasons !== undefined ? (item.number_of_seasons > 1 ? (<p className="detail">{item.number_of_seasons} Seasons</p>) : (<p className="detail">{item.number_of_episodes} Episodes</p>)) : (null)) : (
-                        <p className="detail">{convertMinutesToHours(item.runtime)}</p>
-                    )}
-                    <HD classname="icon" />
-                </div>
-                <div className="genre-container">
-                    {item.genre_ids.map((genre, index) => {
-                        return (
-                            <p key={index} className="genre">{getGenreName(genre.toString())}</p>
-                        )
-                    })}
                 </div>
             </div>
         </div>
-    </div>
+    </Fragment>
   )
 }
 

@@ -135,71 +135,82 @@ export const DISCOVERS = gql `
 export const GET_MOVIE = gql`
 query GetMovie($getMovieId: ID) {
   getMovie(id: $getMovieId) {
+    title
     id
-    adult
-    backdrop_path
-    belongs_to_collection {
-      id
+    runtime
+    release_date
+    overview
+    genres {
       name
-      poster_path
-      backdrop_path
-      overview
+      id
+    }
+    belongs_to_collection {
+      name
       parts {
-        id
-        adult
-        backdrop_path
-        genre_ids
-        original_language
-        original_title
-        overview
-        popularity
-        poster_path
-        release_date
         title
-        video
-        vote_average
-        vote_count
+        release_date
+        backdrop_path
+        poster_path
+        overview
         media_type
+        id
+        vote_average
       }
     }
-    budget
-    genres {
-      id
-      name
-    }
-    homepage
-    imdb_id
-    original_language
-    original_title
-    overview
-    popularity
     poster_path
-    production_companies {
-      name
-      id
-      logo_path
-      origin_country
-    }
-    production_countries {
-      iso_3166_1
-      name
-    }
-    release_date
-    revenue
-    runtime
-    spoken_languages {
-      english_name
-      iso_639_1
-      name
-    }
-      status
-      tagline
-      title
-      video
-      vote_average
-      vote_count
+    backdrop_path
     }
   }
+`;
+
+export const GET_MOVIE_CREDIT = gql`
+  query GetMovie($getCreditsId: ID!, $language: String) {
+    getCredits(id: $getCreditsId, language: $language) {
+      cast {
+        name
+        id
+        character
+      }
+    }
+  }
+`;
+
+export const GET_TV = gql`
+  query GetSerie($getSerieId: ID, $language: String, $appendToResponse: String) {
+    getSerie(id: $getSerieId, language: $language, appendToResponse: $appendToResponse) {
+      name
+      first_air_date
+      backdrop_path
+      poster_path
+      overview
+      genres {
+        name
+        id
+      }
+      created_by {
+        name
+      }
+      number_of_seasons
+      number_of_episodes
+      seasons {
+        episode_count
+        id
+        poster_path
+        season_number
+        air_date
+        name
+        overview
+      }
+      vote_average
+      id
+      episode_run_time
+      credits {
+        cast {
+          name
+          id
+          character
+        }
+      }
 `;
 
 export const GET_GENRES = gql`

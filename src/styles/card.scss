@@ -151,6 +151,9 @@
             height: 0;
             transition: width $animation-duration ease-in;
             opacity: 0;
+            .btn-container, .detail-container, .genre-container {
+                display: none;
+            }
         }
 
     }
