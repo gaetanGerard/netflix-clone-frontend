@@ -1,4 +1,8 @@
 import React, {useEffect, useState} from 'react';
+import { useSelector } from 'react-redux';
+
+// Import Redux
+import { RootState } from "../../redux/root-reducer";
 
 // Import Custom Components
 import Add from "../ui/icons/Add";
@@ -30,6 +34,8 @@ type Props = {
 }
 
 const ItemCard = ({item, itemID, isInMyList}: Props) => {
+    const movieGenres = useSelector((state: RootState) => state.utils.movieGenres);
+    const tvGenres = useSelector((state: RootState) => state.utils.tvGenres);
     const [lastInRow, setLastInRow] = useState(false)
     const [windowSize, setWindowSize] = useState(window.innerWidth - 100);
     const [itemsPerRow, setItemsPerRow] = useState(Math.floor(windowSize / 235));
@@ -48,13 +54,22 @@ const ItemCard = ({item, itemID, isInMyList}: Props) => {
         setLastInRow((itemID+1) % itemsPerRow === 0 ? true : false)
     }, [itemID, itemsPerRow])
 
-    console.log(item)
 
     const convertMinutesToHours = (minutes: number | undefined) => {
         if(minutes === undefined) return null;
         const hours = Math.floor(minutes / 60);
         const mins = minutes % 60;
         return `${hours}h ${mins}m`;
+    }
+
+    const getGenreName = (genreID: string) => {
+        const genre = movieGenres.find(genre => genre.id === genreID);
+        if(genre === undefined) {
+            const genre = tvGenres.find(genre => genre.id === genreID);
+            if(genre === undefined) return null;
+            return genre.name;
+        }
+        return genre.name;
     }
 
   return (
@@ -104,7 +119,7 @@ const ItemCard = ({item, itemID, isInMyList}: Props) => {
                 <div className="genre-container">
                     {item.genre_ids.map((genre, index) => {
                         return (
-                            <p key={index} className="genre">{genre}</p>
+                            <p key={index} className="genre">{getGenreName(genre.toString())}</p>
                         )
                     })}
                 </div>
