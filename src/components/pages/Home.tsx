@@ -8,12 +8,12 @@ import { useLazyQuery } from "@apollo/client";
 import '../../styles/home.scss';
 
 // Import utils
-import { DISCOVERS } from '../../utils/query';
+import { DISCOVERS, GET_GENRES } from '../../utils/query';
 import { newListUtility } from '../../utils/function';
 
 // Import redux
 import { selectProfile } from '../../redux/profile/profile.action';
-import { setApplicationLanguage } from '../../redux/utils/utils.actions';
+import { setApplicationLanguage, setGenres } from '../../redux/utils/utils.actions';
 import { discover_movies } from '../../redux/movies/movies.actions';
 import { discover_series } from '../../redux/series/series.actions';
 import { RootState } from "../../redux/root-reducer";
@@ -37,11 +37,15 @@ const Home: FC = (): JSX.Element => {
     const discoveredSeries = useSelector((state: RootState) => state.series.discoverSeries);
     const options = useSelector((state: RootState) => state.utils.languageOptions);
     const appLang = useSelector((state: RootState) => state.utils.language);
+    const movieGenres = useSelector((state: RootState) => state.utils.movieGenres);
+    const tvGenres = useSelector((state: RootState) => state.utils.tvGenres);
     const language = p ? p.profile.language : appLang;
     const [myList, setMyList] = useState(null)
 
     const [discoverMovies, resultDiscoverMovies] = useLazyQuery (DISCOVERS);
     const [discoverSeries, resultDiscoverSeries] = useLazyQuery (DISCOVERS);
+    const [getMovieGenres, resultMovieGetGenres] = useLazyQuery (GET_GENRES);
+    const [getSeriesGenres, resultSeriesGetGenres] = useLazyQuery (GET_GENRES);
 
     const changeLanguage = (e: any) => {
         dispatch(setApplicationLanguage(e.target.value))
@@ -74,17 +78,19 @@ const Home: FC = (): JSX.Element => {
     useEffect(() => {
         discoverMovies({ variables: { media: "movie", language: language, sortBy: "popularity.desc", primaryReleaseDateGte: "2018" } });
         discoverSeries({ variables: { media: "tv", language: language, sortBy: "popularity.desc", primaryReleaseDateGte: "2018" } });
+        getMovieGenres({ variables: { media: "movie", language: language } });
+        getSeriesGenres({ variables: { media: "tv", language: language } });
 
+        if(resultMovieGetGenres.data) dispatch(setGenres("movie", resultMovieGetGenres.data.getGenres.genres))
+        if(resultSeriesGetGenres.data) dispatch(setGenres("tv", resultSeriesGetGenres.data.getGenres.genres))
         if(resultDiscoverMovies.data) dispatch(discover_movies(resultDiscoverMovies.data))
         if(resultDiscoverSeries.data) dispatch(discover_series(resultDiscoverSeries.data))
 
-    }, [resultDiscoverMovies.data, resultDiscoverSeries.data])
+    }, [resultDiscoverMovies.data, resultDiscoverSeries.data, resultMovieGetGenres.data, resultSeriesGetGenres.data, language])
 
     useEffect(() => {
         if(discoveredMovies && discoveredSeries) setMyList(newListUtility(p, discoveredMovies.results, discoveredSeries.results));
     }, [discoveredMovies, discoveredSeries])
-
-
 
     // console.log(discoveredMovies)
     // console.log(discoveredSeries);

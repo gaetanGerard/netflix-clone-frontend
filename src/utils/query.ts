@@ -201,3 +201,14 @@ query GetMovie($getMovieId: ID) {
     }
   }
 `;
+
+export const GET_GENRES = gql`
+  query GetGenres($media: String, $language: String) {
+    getGenres(media: $media, language: $language) {
+      genres {
+        id
+        name
+      }
+    }
+  }
+`;
