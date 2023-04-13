@@ -1,11 +1,17 @@
 import React, {useEffect, useState, Fragment } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useLazyQuery } from "@apollo/client";
 
 // Import Redux
 import { RootState } from "../../redux/root-reducer";
+import { get_movie, get_movie_credit } from '../../redux/movies/movies.actions';
+import { get_tv } from '../../redux/series/series.actions';
 
 // Import Custom Components
 import Modal from "../ui/Modal";
+
+// Import utils
+import { GET_MOVIE, GET_MOVIE_CREDIT, GET_TV } from '../../utils/query';
 
 // Import Icon Components
 import Add from "../ui/icons/Add";
@@ -37,13 +43,22 @@ type Props = {
 }
 
 const ItemCard = ({item, itemID, isInMyList}: Props) => {
+    const dispatch = useDispatch();
     const movieGenres = useSelector((state: RootState) => state.utils.movieGenres);
     const tvGenres = useSelector((state: RootState) => state.utils.tvGenres);
+    const appLang = useSelector((state: RootState) => state.utils.language);
+    const movie = useSelector((state: RootState) => state.movies.movie);
+    const movieCast = useSelector((state: RootState) => state.movies.movieCast);
+    const tv = useSelector((state: RootState) => state.series.series);
     const [lastInRow, setLastInRow] = useState(false)
     const [windowSize, setWindowSize] = useState(window.innerWidth - 100);
     const [itemsPerRow, setItemsPerRow] = useState(Math.floor(windowSize / 235));
     const [showModal, setShowModal] = useState(false);
     const itemSize = 235;
+
+    const [getMovie, resultGetMovie] = useLazyQuery(GET_MOVIE);
+    const [getMovieCredit, resultGetMovieCredit] = useLazyQuery(GET_MOVIE_CREDIT);
+    const [getTv, resultGetTv] = useLazyQuery(GET_TV);
 
     useEffect(() => {
         const handleResize = () => {
@@ -76,13 +91,35 @@ const ItemCard = ({item, itemID, isInMyList}: Props) => {
         return genre.name;
     }
 
-    const handleClick = () => {
+    const handleClick = (item) => {
+        if(item.media_type === "movie") {
+            getMovie({variables: {getMovieId: item.id, language: appLang.iso}})
+            getMovieCredit({variables: {getCreditsId: item.id, language: appLang.iso}})
+        } else if(item.media_type === "tv") {
+            getTv({variables: {getSerieId: item.id, language: appLang.iso, appendToResponse: "credits"}})
+        } else {
+            // error
+        }
         setShowModal(true);
     };
 
+    useEffect(() => {
+        if(resultGetMovie.data !== undefined && !resultGetMovie.loading) {
+            dispatch(get_movie(resultGetMovie.data))
+        }
+        if(resultGetMovieCredit.data !== undefined && !resultGetMovieCredit.loading) {
+            dispatch(get_movie_credit(resultGetMovieCredit.data))
+        }
+        if(resultGetTv.data !== undefined && !resultGetTv.loading) {
+            dispatch(get_tv(resultGetTv.data))
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [resultGetMovie.data, resultGetMovieCredit.data, resultGetTv.data])
+
+
   return (
     <Fragment>
-        {showModal && <Modal onClose={() => setShowModal(false)} />}
+        {showModal && <Modal onClose={() => setShowModal(false)} content={item.media_type === "movie" ? movie : tv} movieCredits={item.media_type === "movie" ? movieCast : null} />}
         <div className={`card ${lastInRow ? "last-card-in-row" : ""}`}>
             <div className="card-inner">
                 <div className="img-container">
@@ -109,7 +146,7 @@ const ItemCard = ({item, itemID, isInMyList}: Props) => {
                                 <Like classname="icon" />
                             </button>
                         </div>
-                        <div className="right-icon-container" onClick={handleClick}>
+                        <div className="right-icon-container" onClick={() => handleClick(item)}>
                             <button className="btn btn-info">
                                 <DownArrow classname="icon" />
                             </button>

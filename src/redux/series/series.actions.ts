@@ -7,3 +7,16 @@ export const discover_series = (data) => {
         payload: data.getDiscover
     })
 }
+
+export const get_tv = (data) => {
+    return ({
+        type: SeriesActionTypes.GET_TV,
+        payload: data !== null ? data.getSerie : null
+    })
+}
+
+export const reset_tv_store = () => {
+    return ({
+        type: SeriesActionTypes.RESET_TV_STORE
+    })
+}

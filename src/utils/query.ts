@@ -133,38 +133,38 @@ export const DISCOVERS = gql `
 `;
 
 export const GET_MOVIE = gql`
-query GetMovie($getMovieId: ID) {
-  getMovie(id: $getMovieId) {
-    title
-    id
-    runtime
-    release_date
-    overview
-    genres {
-      name
+  query GetMovie($getMovieId: ID, $language: String) {
+    getMovie(id: $getMovieId, language: $language) {
+      title
       id
-    }
-    belongs_to_collection {
-      name
-      parts {
-        title
-        release_date
-        backdrop_path
-        poster_path
-        overview
-        media_type
+      runtime
+      release_date
+      overview
+      genres {
+        name
         id
-        vote_average
+      }
+      belongs_to_collection {
+        name
+        parts {
+          title
+          release_date
+          backdrop_path
+          poster_path
+          overview
+          media_type
+          id
+          vote_average
+        }
+      }
+      poster_path
+      backdrop_path
       }
     }
-    poster_path
-    backdrop_path
-    }
-  }
 `;
 
 export const GET_MOVIE_CREDIT = gql`
-  query GetMovie($getCreditsId: ID!, $language: String) {
+  query GetCredits($getCreditsId: ID!, $language: String) {
     getCredits(id: $getCreditsId, language: $language) {
       cast {
         name
@@ -211,6 +211,8 @@ export const GET_TV = gql`
           character
         }
       }
+    }
+  }
 `;
 
 export const GET_GENRES = gql`
