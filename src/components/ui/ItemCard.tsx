@@ -44,6 +44,7 @@ type Props = {
 
 const ItemCard = ({item, itemID, isInMyList}: Props) => {
     const dispatch = useDispatch();
+    const [refresh, setRefresh] = useState(false);
     const movieGenres = useSelector((state: RootState) => state.utils.movieGenres);
     const tvGenres = useSelector((state: RootState) => state.utils.tvGenres);
     const appLang = useSelector((state: RootState) => state.utils.language);
@@ -56,8 +57,8 @@ const ItemCard = ({item, itemID, isInMyList}: Props) => {
     const [showModal, setShowModal] = useState(false);
     const itemSize = 235;
 
-    const [getMovie, resultGetMovie] = useLazyQuery(GET_MOVIE);
-    const [getMovieCredit, resultGetMovieCredit] = useLazyQuery(GET_MOVIE_CREDIT);
+    const [getMovie, resultGetMovie] = useLazyQuery(GET_MOVIE, {fetchPolicy: "no-cache"});
+    const [getMovieCredit, resultGetMovieCredit] = useLazyQuery(GET_MOVIE_CREDIT, {fetchPolicy: "network-only"});
     const [getTv, resultGetTv] = useLazyQuery(GET_TV);
 
     useEffect(() => {
@@ -100,22 +101,22 @@ const ItemCard = ({item, itemID, isInMyList}: Props) => {
         } else {
             // error
         }
+        setRefresh(!refresh);
         setShowModal(true);
     };
 
     useEffect(() => {
-        if(resultGetMovie.data !== undefined && !resultGetMovie.loading) {
+        if(resultGetMovie.data?.getMovie) {
             dispatch(get_movie(resultGetMovie.data))
         }
-        if(resultGetMovieCredit.data !== undefined && !resultGetMovieCredit.loading) {
+        if(resultGetMovieCredit.data?.getCredits) {
             dispatch(get_movie_credit(resultGetMovieCredit.data))
         }
-        if(resultGetTv.data !== undefined && !resultGetTv.loading) {
+        if(resultGetTv.data?.getSerie) {
             dispatch(get_tv(resultGetTv.data))
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [resultGetMovie.data, resultGetMovieCredit.data, resultGetTv.data])
-
+    }, [resultGetMovie.data, resultGetMovie.data?.getMovie, resultGetMovieCredit.data, resultGetMovieCredit.data?.getCredits, resultGetTv.data, resultGetTv.data?.getSerie, dispatch, refresh])
 
   return (
     <Fragment>

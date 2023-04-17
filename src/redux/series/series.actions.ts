@@ -11,7 +11,7 @@ export const discover_series = (data) => {
 export const get_tv = (data) => {
     return ({
         type: SeriesActionTypes.GET_TV,
-        payload: data !== null ? data.getSerie : null
+        payload: data.getSerie
     })
 }
 

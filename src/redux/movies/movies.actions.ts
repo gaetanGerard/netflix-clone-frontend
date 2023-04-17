@@ -11,14 +11,14 @@ export const discover_movies = (data) => {
 export const get_movie = (data) => {
     return ({
         type: MoviesActionTypes.GET_MOVIE,
-        payload: data !== null ? data.getMovie : null
+        payload: data.getMovie
     })
 }
 
 export const get_movie_credit = (data) => {
     return ({
         type: MoviesActionTypes.GET_MOVIE_CREDIT,
-        payload: data.getMovieCredit
+        payload: data.getCredits
     })
 }
 

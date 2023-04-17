@@ -28,7 +28,7 @@ const Modal = ({ onClose, content, movieCredits }) => {
   };
 
   useEffect(() => {
-    console.log(content)
+    // console.log(content)
     document.addEventListener("click", handleCloseModal);
     return () => {
       document.removeEventListener("click", handleCloseModal);
