@@ -1,0 +1,117 @@
+@import "./variables.scss";
+@import "./mixin.scss";
+
+.skeleton-loading-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto;
+  justify-items: center;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+
+  .skeleton-loading-image {
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%; // 16:9 aspect ratio
+    position: relative;
+    overflow-x: hidden;
+
+    .image-placeholder {
+      background-color: $semi-dark-gray;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 4px;
+
+      &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -150px;
+        width: 150%;
+        height: 100%;
+        background: linear-gradient(
+          to right,
+          transparent,
+          $dark-slate-gray,
+          transparent
+        );
+        animation: wave 1.5s infinite;
+      }
+    }
+  }
+
+  .skeleton-loading-title {
+    background-color: $semi-dark-gray;
+    height: 1.2em;
+    width: 50%;
+    border-radius: 4px;
+    position: relative;
+    justify-self: start;
+    overflow-x: hidden;
+    &:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        to right,
+        transparent,
+        $dark-slate-gray,
+        transparent
+      );
+      animation: wave 1.5s infinite;
+    }
+  }
+
+  .skeleton-loading-text {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(auto-fill, 1.2em);
+    gap: 8px;
+    width: 100%;
+
+    &.block {
+      height: calc(1.2em * 3);
+      grid-template-rows: repeat(3, 1.2em);
+    }
+
+    .skeleton-loading-line {
+      background-color: $semi-dark-gray;
+      height: 1.2em;
+      width: 100%;
+      border-radius: 4px;
+      position: relative;
+      overflow-x: hidden;
+      &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          to right,
+          transparent,
+          $dark-slate-gray,
+          transparent
+        );
+        animation: wave 1.5s infinite;
+      }
+    }
+  }
+
+  @keyframes wave {
+    0% {
+      left: -100%;
+    }
+    100% {
+      left: 100%;
+    }
+  }
+}
