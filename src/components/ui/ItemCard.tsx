@@ -57,8 +57,8 @@ const ItemCard = ({item, itemID, isInMyList}: Props) => {
     const [showModal, setShowModal] = useState(false);
     const itemSize = 235;
 
-    const [getMovie, resultGetMovie] = useLazyQuery(GET_MOVIE, {fetchPolicy: "no-cache"});
-    const [getMovieCredit, resultGetMovieCredit] = useLazyQuery(GET_MOVIE_CREDIT, {fetchPolicy: "network-only"});
+    const [getMovie, resultGetMovie] = useLazyQuery(GET_MOVIE);
+    const [getMovieCredit, resultGetMovieCredit] = useLazyQuery(GET_MOVIE_CREDIT);
     const [getTv, resultGetTv] = useLazyQuery(GET_TV);
 
     useEffect(() => {
