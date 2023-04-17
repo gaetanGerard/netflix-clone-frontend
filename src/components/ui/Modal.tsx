@@ -1,6 +1,9 @@
 import React, { useRef, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 
+// Import Custom Components
+import SkeletonLoading from "./SkeletonLoading";
+
 // Import Redux
 import { reset_movie_store } from '../../redux/movies/movies.actions';
 import { reset_tv_store } from '../../redux/series/series.actions';
@@ -34,6 +37,7 @@ const Modal = ({ onClose, content, movieCredits }) => {
   }, [content]);
 
   console.log(content)
+  console.log(movieCredits)
 
   if(content) {
     return (
@@ -48,8 +52,7 @@ const Modal = ({ onClose, content, movieCredits }) => {
   return (
     <div className="modal" ref={modalRef}>
       <div className="modal-content">
-        <h2>LOADING!!!!</h2>
-        <p>Description de la modale</p>
+        <SkeletonLoading />
       </div>
     </div>
   );
