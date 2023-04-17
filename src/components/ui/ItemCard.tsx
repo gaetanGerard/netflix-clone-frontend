@@ -118,9 +118,10 @@ const ItemCard = ({item, itemID, isInMyList}: Props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [resultGetMovie.data, resultGetMovie.data?.getMovie, resultGetMovieCredit.data, resultGetMovieCredit.data?.getCredits, resultGetTv.data, resultGetTv.data?.getSerie, dispatch, refresh])
 
+
   return (
     <Fragment>
-        {showModal && <Modal onClose={() => setShowModal(false)} content={item.media_type === "movie" ? movie : tv} movieCredits={item.media_type === "movie" ? movieCast : null} />}
+        {showModal && <Modal onClose={() => setShowModal(false)} mediaType={item.media_type} content={item.media_type === "movie" ? movie : tv} movieCredits={item.media_type === "movie" ? movieCast : null} />}
         <div className={`card ${lastInRow ? "last-card-in-row" : ""}`}>
             <div className="card-inner">
                 <div className="img-container">
