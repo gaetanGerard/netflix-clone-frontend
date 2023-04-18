@@ -87,8 +87,8 @@ export const GET_USER = gql`
 `;
 
 export const DISCOVERS = gql `
-  query GetDiscover($media: String, $language: String) {
-    getDiscover(media: $media, language: $language) {
+  query GetDiscover($media: String, $language: String, $kid: Boolean, $sortBy: String, $page: Int, $originalLanguage: String) {
+    getDiscover(media: $media, language: $language, kid: $kid, sortBy: $sortBy, page: $page, originalLanguage: $originalLanguage) {
       page
       results {
         __typename

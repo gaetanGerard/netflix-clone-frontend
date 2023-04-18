@@ -10,6 +10,7 @@ import { get_tv } from '../../redux/series/series.actions';
 
 // Import utils
 import { GET_MOVIE, GET_MOVIE_CREDIT, GET_TV } from '../../utils/query';
+import { itemInMyList } from '../../utils/function';
 
 // Import Custom Components
 import Typography from './Typography';
@@ -32,6 +33,7 @@ const FeaturedListItem = ({myList}: Props) => {
     const dispatch = useDispatch()
     const [refresh, setRefresh] = useState(false);
     const [showModal, setShowModal] = useState(false);
+    const [mediaType, setMediaType] = useState<string|null>(null);
     const p = useSelector((state: RootState) => state.profile.profile);
     const movieGenres = useSelector((state: RootState) => state.utils.movieGenres);
     const tvGenres = useSelector((state: RootState) => state.utils.tvGenres);
@@ -57,20 +59,20 @@ const FeaturedListItem = ({myList}: Props) => {
 
     const item = newList[Math.floor(Math.random()*newList.length)];
 
-
     useEffect(() => {
         setRandomItem(item)
-        
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const onclick = (item) => {
-        console.log(item)
-        if(item.media_type === "movie") {
-            getMovie({variables: {getMovieId: item.id, language: appLang.iso}})
-            getMovieCredit({variables: {getCreditsId: item.id, language: appLang.iso}})
-        } else if(item.media_type === "tv") {
-            getTv({variables: {getSerieId: item.id, language: appLang.iso, appendToResponse: "credits"}})
+        if(item.title !== undefined && item.title) {
+            getMovie({variables: {getMovieId: item.id, language: p.profile.language}})
+            getMovieCredit({variables: {getCreditsId: item.id, language: p.profile.language}})
+            setMediaType("movie")
+        } else if(item.name !== undefined && item.name) {
+            getTv({variables: {getSerieId: item.id, language: p.profile.language, appendToResponse: "credits"}})
+            setMediaType("tv")
         } else {
             // error
         }
@@ -91,11 +93,10 @@ const FeaturedListItem = ({myList}: Props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [resultGetMovie.data, resultGetMovie.data?.getMovie, resultGetMovieCredit.data, resultGetMovieCredit.data?.getCredits, resultGetTv.data, resultGetTv.data?.getSerie, dispatch, refresh])
 
-
     if(randomItem && p) {
         return (
             <Fragment>
-                {showModal && <Modal onClose={() => setShowModal(false)} mediaType={randomItem.media_type} content={randomItem.media_type === "movie" ? movie : tv} movieCredits={randomItem.media_type === "movie" ? movieCast : null} isInMyList />}
+                {showModal && <Modal onClose={() => setShowModal(false)} mediaType={mediaType} content={mediaType === "movie" ? movie : tv} movieCredits={mediaType === "movie" ? movieCast : null} isInMyList={itemInMyList(p.profile.my_list, randomItem)} />}
                 <div className="featured-list-item-container" style={{backgroundImage: `url(https://image.tmdb.org/t/p/original/${randomItem.backdrop_path})`}}>
                     <div className="featured-list-item-info">
                         <Typography HTMLElement="h1" classname="featured-list-item-title">{randomItem.title ? randomItem.title : randomItem.name}</Typography>

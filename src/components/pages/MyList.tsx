@@ -1,6 +1,9 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
+// Import Utils
+import { itemInMyList } from '../../utils/function';
+
 // Import Redux
 import { setApplicationLanguage } from '../../redux/utils/utils.actions';
 import { RootState } from "../../redux/root-reducer";
@@ -32,14 +35,6 @@ const MyList = (props: Props) => {
 }
 
 if(p) {
-
-  const itemInMyList = (myList, item) => {
-    if(myList.includes(item)) {
-      return true
-    } else {
-      return false
-    }
-  }
 
     return (
       <div className="home-container no-featuredListItem">

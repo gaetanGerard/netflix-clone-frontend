@@ -45,6 +45,7 @@ const Modal = ({ onClose, content, movieCredits, mediaType, isInMyList }) => {
 
   // console.log(content)
   // console.log(movieCredits)
+  // console.log(mediaType)
 
   if(content) {
     return (

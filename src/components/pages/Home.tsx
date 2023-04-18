@@ -9,7 +9,6 @@ import '../../styles/home.scss';
 
 // Import utils
 import { DISCOVERS, GET_GENRES } from '../../utils/query';
-import { newListUtility } from '../../utils/function';
 
 // Import redux
 import { selectProfile } from '../../redux/profile/profile.action';
@@ -86,10 +85,13 @@ const Home: FC = (): JSX.Element => {
         if(resultDiscoverMovies.data) dispatch(discover_movies(resultDiscoverMovies.data))
         if(resultDiscoverSeries.data) dispatch(discover_series(resultDiscoverSeries.data))
 
-    }, [resultDiscoverMovies.data, resultDiscoverSeries.data, resultMovieGetGenres.data, resultSeriesGetGenres.data, language])
+    }, [resultDiscoverMovies.data, resultDiscoverSeries.data, resultMovieGetGenres.data, resultSeriesGetGenres.data, language, p])
 
     useEffect(() => {
-        if(discoveredMovies && discoveredSeries) setMyList(newListUtility(p, discoveredMovies.results, discoveredSeries.results));
+        if(discoveredMovies && discoveredSeries) {
+            const combinedList = discoveredMovies.results.concat(discoveredSeries.results);
+            setMyList(combinedList)
+        };
     }, [discoveredMovies, discoveredSeries])
 
     // console.log(discoveredMovies)
@@ -148,6 +150,7 @@ const Home: FC = (): JSX.Element => {
     */
 
     if(p && myList) {
+        console.log(myList)
         return (
             <div className="home-container">
                 <Header />
