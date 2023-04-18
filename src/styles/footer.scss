@@ -5,7 +5,8 @@ footer {
     width: 100vw;
     color: $dim-gray;
     background-color: rgba(0, 0, 0, 0.75);
-    z-index: 200;
+    position: relative;
+    z-index: 400;
     .site-footer {
         display: grid;
         grid-template-rows: auto auto auto;

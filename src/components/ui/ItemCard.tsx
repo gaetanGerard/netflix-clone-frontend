@@ -121,7 +121,7 @@ const ItemCard = ({item, itemID, isInMyList}: Props) => {
 
   return (
     <Fragment>
-        {showModal && <Modal onClose={() => setShowModal(false)} mediaType={item.media_type} content={item.media_type === "movie" ? movie : tv} movieCredits={item.media_type === "movie" ? movieCast : null} />}
+        {showModal && <Modal onClose={() => setShowModal(false)} mediaType={item.media_type} content={item.media_type === "movie" ? movie : tv} movieCredits={item.media_type === "movie" ? movieCast : null} isInMyList />}
         <div className={`card ${lastInRow ? "last-card-in-row" : ""}`}>
             <div className="card-inner">
                 <div className="img-container">

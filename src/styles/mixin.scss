@@ -27,6 +27,25 @@
     fill: $color;
 }
 
+@mixin playButton {
+    font-size: $font-size-medium;
+    font-weight: $font-weight-semi-bold;
+    color: $black;
+    display: grid;
+    grid-auto-flow: column;
+    gap: 10px;
+    justify-content: start;
+    align-content: center;
+    align-items: center;
+    background-color: $white;
+    padding: .5rem 1.7rem .5rem 1.5rem;
+    border-radius: 4px;
+    vertical-align: middle;
+    &:hover {
+        background-color: rgba(226, 226, 226, 0.998);
+    }
+}
+
 @mixin btn {
     border: none;
 	background-color: transparent;

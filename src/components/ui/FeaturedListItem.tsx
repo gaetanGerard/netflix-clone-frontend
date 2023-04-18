@@ -1,5 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import { Link, useLocation } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux';
+import { useLazyQuery } from "@apollo/client";
+
+// Import Redux
+import { RootState } from "../../redux/root-reducer";
+import { get_movie, get_movie_credit } from '../../redux/movies/movies.actions';
+import { get_tv } from '../../redux/series/series.actions';
+
+// Import utils
+import { GET_MOVIE, GET_MOVIE_CREDIT, GET_TV } from '../../utils/query';
 
 // Import Custom Components
 import Typography from './Typography';
@@ -8,6 +18,7 @@ import Arrow from './icons/Arrow';
 import EpisodeList from './icons/EpisodeList';
 import Information from './icons/Information';
 import MaturityRating from './icons/MaturityRating';
+import Modal from './Modal';
 
 // Import Types
 import { ListItem } from '../../types/featuredType';
@@ -18,6 +29,21 @@ type Props = {
 
 const FeaturedListItem = ({myList}: Props) => {
     const location = useLocation();
+    const dispatch = useDispatch()
+    const [refresh, setRefresh] = useState(false);
+    const [showModal, setShowModal] = useState(false);
+    const p = useSelector((state: RootState) => state.profile.profile);
+    const movieGenres = useSelector((state: RootState) => state.utils.movieGenres);
+    const tvGenres = useSelector((state: RootState) => state.utils.tvGenres);
+    const appLang = useSelector((state: RootState) => state.utils.language);
+    const movie = useSelector((state: RootState) => state.movies.movie);
+    const movieCast = useSelector((state: RootState) => state.movies.movieCast);
+    const tv = useSelector((state: RootState) => state.series.series);
+
+    const [getMovie, resultGetMovie] = useLazyQuery(GET_MOVIE);
+    const [getMovieCredit, resultGetMovieCredit] = useLazyQuery(GET_MOVIE_CREDIT);
+    const [getTv, resultGetTv] = useLazyQuery(GET_TV);
+
     const [randomItem, setRandomItem] = useState<ListItem|null>(null)
     let newList;
 
@@ -34,29 +60,57 @@ const FeaturedListItem = ({myList}: Props) => {
 
     useEffect(() => {
         setRandomItem(item)
-    }, [item])
+        
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
-    const onclick = (e) => {
-        console.log(e.target.name)
+    const onclick = (item) => {
+        console.log(item)
+        if(item.media_type === "movie") {
+            getMovie({variables: {getMovieId: item.id, language: appLang.iso}})
+            getMovieCredit({variables: {getCreditsId: item.id, language: appLang.iso}})
+        } else if(item.media_type === "tv") {
+            getTv({variables: {getSerieId: item.id, language: appLang.iso, appendToResponse: "credits"}})
+        } else {
+            // error
+        }
+        setRefresh(!refresh);
+        setShowModal(true);
     }
 
+    useEffect(() => {
+        if(resultGetMovie.data?.getMovie) {
+            dispatch(get_movie(resultGetMovie.data))
+        }
+        if(resultGetMovieCredit.data?.getCredits) {
+            dispatch(get_movie_credit(resultGetMovieCredit.data))
+        }
+        if(resultGetTv.data?.getSerie) {
+            dispatch(get_tv(resultGetTv.data))
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [resultGetMovie.data, resultGetMovie.data?.getMovie, resultGetMovieCredit.data, resultGetMovieCredit.data?.getCredits, resultGetTv.data, resultGetTv.data?.getSerie, dispatch, refresh])
 
-    if(randomItem) {
+
+    if(randomItem && p) {
         return (
-            <div className="featured-list-item-container" style={{backgroundImage: `url(https://image.tmdb.org/t/p/original/${randomItem.backdrop_path})`}}>
-                <div className="featured-list-item-info">
-                    <Typography HTMLElement="h1" classname="featured-list-item-title">{randomItem.title ? randomItem.title : randomItem.name}</Typography>
-                    <Typography HTMLElement="p" classname="featured-list-item-overview">{randomItem.overview}</Typography>
-                    <div className="featured-list-item-btn-container">
-                        <Link to="TO_DEFINE" className="btn btn-play"><Arrow />{randomItem.name ? "Play Episode" : "Play"}</Link>
-                        <Button btnType="button" classname="btn btn-dialog" onclick={(e) => onclick(e)} name="openInfo" >{randomItem.name? <EpisodeList /> : <Information />}{randomItem.name ? "Episodes" : "More Info"}</Button>
+            <Fragment>
+                {showModal && <Modal onClose={() => setShowModal(false)} mediaType={randomItem.media_type} content={randomItem.media_type === "movie" ? movie : tv} movieCredits={randomItem.media_type === "movie" ? movieCast : null} isInMyList />}
+                <div className="featured-list-item-container" style={{backgroundImage: `url(https://image.tmdb.org/t/p/original/${randomItem.backdrop_path})`}}>
+                    <div className="featured-list-item-info">
+                        <Typography HTMLElement="h1" classname="featured-list-item-title">{randomItem.title ? randomItem.title : randomItem.name}</Typography>
+                        <Typography HTMLElement="p" classname="featured-list-item-overview">{randomItem.overview}</Typography>
+                        <div className="featured-list-item-btn-container">
+                            <Link to="TO_DEFINE" className="btn btn-play"><Arrow />{randomItem.name ? "Play Episode" : "Play"}</Link>
+                            <Button btnType="button" classname="btn btn-dialog" onclick={() => onclick(randomItem)} name="openInfo" ><Information /> More Info</Button>
+                        </div>
                     </div>
+                    <div className="featured-list-item-maturity-rating">
+                        <MaturityRating classname="maturity-rating-icon" />
+                    </div>
+                    <div className="gradient"></div>
                 </div>
-                <div className="featured-list-item-maturity-rating">
-                    <MaturityRating classname="maturity-rating-icon" />
-                </div>
-                <div className="gradient"></div>
-            </div>
+            </Fragment>
         )
     } else {
         return (

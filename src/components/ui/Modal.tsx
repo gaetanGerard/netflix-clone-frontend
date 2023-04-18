@@ -3,6 +3,13 @@ import { useDispatch } from 'react-redux';
 
 // Import Custom Components
 import SkeletonLoading from "./SkeletonLoading";
+import Typography from "./Typography";
+
+// Import Icons
+import Add from "../ui/icons/Add";
+import Arrow from "../ui/icons/Arrow";
+import Check from "../ui/icons/Check";
+import Like from "../ui/icons/Like";
 
 // Import Redux
 import { reset_movie_store } from '../../redux/movies/movies.actions';
@@ -11,7 +18,7 @@ import { reset_tv_store } from '../../redux/series/series.actions';
 // Import Styles
 import "../../styles/modal.scss";
 
-const Modal = ({ onClose, content, movieCredits, mediaType }) => {
+const Modal = ({ onClose, content, movieCredits, mediaType, isInMyList }) => {
   const dispatch = useDispatch();
   const modalRef = useRef<HTMLDivElement>(null);
 
@@ -44,7 +51,18 @@ const Modal = ({ onClose, content, movieCredits, mediaType }) => {
       <div className="modal" ref={modalRef}>
         <div className="modal-content">
           <div className="modal-header">
-            <p>{mediaType === "movie" ? content.title : content.name}</p>
+            <div className="img-container">
+              <img src={`https://image.tmdb.org/t/p/original/${content.backdrop_path}`} alt={mediaType === "movie" ? content.title : content.name} />
+              <div className="gradient"></div>
+            </div>
+            <div className="header-content">
+              <Typography HTMLElement="h1" classname="modal-title">{mediaType === "movie" ? content.title : content.name}</Typography>
+              <div className="btn-container">
+                <button className="btn btn-play"><Arrow classname="icon" />Play</button>
+                {isInMyList ? (<button className="btn btn-check"><Check classname="icon" /></button>) : (<button className="btn btn-add"><Add classname="icon" /></button>)}
+                <button className="btn btn-like"><Like classname="icon" /></button>
+              </div>
+            </div>
             {/*
               Modal Header should contain an images as background
               the title

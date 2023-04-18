@@ -13,6 +13,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
 
     .modal-content {
       background-color: $profile-bg;
@@ -20,8 +22,79 @@
       max-width: 850px;
       width: 100%;
       max-height: calc(100vh - 100px);
-      overflow-y: auto;
+      height: 100%;
+      overflow-y: hidden;
       box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.75);
+      border-top-right-radius: 4px;
+      border-top-left-radius: 4px;
+
+      .modal-header {
+        max-width: 850px;
+        max-height: 480px;
+        position: relative;
+        z-index: 1;
+        .img-container {
+          width: 100%;
+          height: 100%;
+          position: relative;
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 1;
+            border-top-right-radius: 4px;
+            border-top-left-radius: 4px;
+          }
+          .gradient {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-top-right-radius: 4px;
+            border-top-left-radius: 4px;
+            background-image: linear-gradient(0deg,#181818,transparent 40%);
+            z-index: 2;
+          }
+        }
+        .header-content {
+          overflow: hidden;
+          position: absolute;
+          bottom: 5%;
+          left: 3em;
+          width: 40%;
+          opacity: 1;
+          z-index: 3;
+          color: $white;
+          .btn-container {
+            padding-top: 20px;
+            display: grid;
+            grid-auto-flow: column;
+            grid-gap: 10px;
+            justify-content: start;
+            justify-items: start;
+            button {
+              max-height: 42px;
+              min-height: 32px;
+              .icon {
+                @include icon;
+                &:hover {
+                  fill: darken($color: $white, $amount: 50%);
+              }
+              }
+            }
+            .btn-play {
+              @include playButton;
+              max-height: 42px;
+              min-height: 32px;
+              .icon {
+                @include icon($size: 100%, $color: $black);
+                transform: rotate(-90deg);
+              }
+            }
+          }
+        }
+      }
     }
 
     .modal-skeleton {
