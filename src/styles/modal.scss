@@ -23,10 +23,17 @@
       width: 100%;
       max-height: calc(100vh - 100px);
       height: 100%;
-      overflow-y: hidden;
+      overflow-y: scroll;
       box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.75);
       border-top-right-radius: 4px;
       border-top-left-radius: 4px;
+      /* cacher la scrollbar */
+      scrollbar-width: none; /* pour Firefox */
+      -ms-overflow-style: none; /* pour Internet Explorer et Edge */
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
 
       .modal-header {
         max-width: 850px;
@@ -93,6 +100,88 @@
               }
             }
           }
+        }
+      }
+
+      .modal-info {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        justify-content: space-around;
+        padding: 20px 3%;
+        color: white;
+        .left-info {
+          display: grid;
+          grid-auto-flow: row;
+          .info-content-details {
+            display: grid;
+            grid-auto-flow: column;
+            gap: 15px;
+            align-content: center;
+            align-items: center;
+            justify-content: start;
+            justify-items: start;
+            font-weight: $font-weight-semi-bold;
+            .icon {
+              @include icon($size: $font-size-normal);
+            }
+            .vote-average {
+              font-weight: $font-weight-bold;
+              color: $green-color
+            }
+          }
+          .info-content-maturity-rating {
+            padding-top: 10px;
+            display: grid;
+            grid-auto-flow: column;
+            gap: 5px;
+            justify-content: start;
+            justify-items: start;
+            .icon {
+              height: 1.5em;
+              transform: scale(1);
+            }
+          }
+          .info-content-overview {
+            padding-top: 10px;
+            p {
+              line-height: 1.2em;
+            }
+          }
+        }
+        .right-info {
+          margin-left: 10%;
+          div {
+            margin-bottom: 5px;
+          }
+          p {
+            span.title {
+              color: $dim-gray;
+              font-weight: $font-weight-semi-bold;
+            }
+          }
+        }
+      }
+
+      .modal-collection {
+        padding: 20px 3%;
+        h2 {
+          display: grid;
+          grid-auto-flow: column;
+          gap: 15px;
+          align-content: center;
+          align-items: center;
+          justify-content: start;
+          justify-items: start;
+          color: $white;
+        }
+        .short-card-container {
+          display: grid;
+          grid-auto-flow: column;
+          grid-gap: 10px;
+          justify-content: start;
+          justify-items: start;
+          grid-auto-rows: min-content;
+          padding: 20px 0;
         }
       }
     }

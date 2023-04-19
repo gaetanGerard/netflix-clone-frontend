@@ -150,7 +150,6 @@ const Home: FC = (): JSX.Element => {
     */
 
     if(p && myList) {
-        console.log(myList)
         return (
             <div className="home-container">
                 <Header />

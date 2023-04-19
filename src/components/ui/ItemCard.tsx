@@ -12,6 +12,7 @@ import Modal from "../ui/Modal";
 
 // Import utils
 import { GET_MOVIE, GET_MOVIE_CREDIT, GET_TV } from '../../utils/query';
+import { convertMinutesToHours } from '../../utils/function';
 
 // Import Icon Components
 import Add from "../ui/icons/Add";
@@ -73,14 +74,6 @@ const ItemCard = ({item, itemID, isInMyList}: Props) => {
     useEffect(() => {
         setLastInRow((itemID+1) % itemsPerRow === 0 ? true : false)
     }, [itemID, itemsPerRow])
-
-
-    const convertMinutesToHours = (minutes: number | undefined) => {
-        if(minutes === undefined) return null;
-        const hours = Math.floor(minutes / 60);
-        const mins = minutes % 60;
-        return `${hours}h ${mins}m`;
-    }
 
     const getGenreName = (genreID: string) => {
         const genre = movieGenres.find(genre => genre.id === genreID);
