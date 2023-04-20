@@ -47,6 +47,7 @@ const Modal = ({ onClose, content, movieCredits, mediaType, isInMyList }) => {
   const [inMyList, setInMyList] = useState<boolean>(isInMyList);
   const [seasonNumber, setSeasonNumber] = useState<string>(mediaType === "tv" ? "1" : "")
   const [similar, setSimilar] = useState<any>([]);
+  const [creator, setCreator] = useState<any>([]);
   const getSeason = useQuery(GET_SEASON, {
     variables: {
       tvId: content ? content.id : null,
@@ -176,13 +177,24 @@ const Modal = ({ onClose, content, movieCredits, mediaType, isInMyList }) => {
     }
   }, [content, mediaType, similarMovies, similarTv])
 
+  useEffect(() => {
+    if(mediaType === "movie") {
+      const directorNames = movieCredits ? movieCredits.crew.filter((item) => item.job === "Director").map((item) => item.name) : [];
+      setCreator(directorNames);
+    } else if (mediaType === "tv") {
+      if(content !== null) {
+        content.created_by.length > 0 && setCreator(content.created_by.map((item) => item.name));
+      }
+    } else {
+      console.log("An Error Occured when retrieve the creator")
+    }
+  }, [content, mediaType, movieCredits])
+
   if (content) {
     let filteredList;
     let sortByYear;
 
     const currentYear = new Date().getFullYear(); // récupère l'année en cours
-
-    // console.log(content);
 
     if(mediaType === "movie") {
       if(content.belongs_to_collection !== null) {
@@ -198,6 +210,8 @@ const Modal = ({ onClose, content, movieCredits, mediaType, isInMyList }) => {
         });
       }
     }
+
+    console.log(content);
 
     return (
       <div className="modal" ref={modalRef}>
@@ -334,9 +348,48 @@ const Modal = ({ onClose, content, movieCredits, mediaType, isInMyList }) => {
             </div>
           ) : null}
           <div className="modal-about">
-            {/*
-              This section should render information available like cast, director, genres, maturity rating, ...
-            */}
+            <Typography HTMLElement="h2" classname="modal-about-title">
+              About {mediaType === "movie" ? content.title : content.name}
+            </Typography>
+            {creator.length > 0 ? (<div className="modal-about-row">
+              <Typography HTMLElement="p" classname="modal-about-text">Creators:</Typography>
+              <ul>
+                {creator.map((item, index) => (
+                  <li key={index}> {item}{index < creator.length - 1 && ","}</li>
+                ))}
+              </ul>
+            </div>) : null}
+            <div className="modal-about-row">
+              <Typography HTMLElement="p" classname="modal-about-text">Cast:</Typography>
+              <ul>
+                {mediaType === "movie" ? movieCredits !== null ? movieCredits.cast.slice(0,10).map((item, index) => (
+                  <li key={index}> {item.name}{index < 9 && ","}</li>
+                )) : null : content.credits.cast.slice(0,10).map((item, index) => (
+                  <li key={index}> {item.name}{index < 9 && ","}</li>
+                ))}
+              </ul>
+            </div>
+            <div className="modal-about-row">
+              <Typography HTMLElement="p" classname="modal-about-text">Genres:</Typography>
+              <ul>
+                {content.genres.map((item, index) => (
+                  <li key={index}> {item.name}{index < content.genres.length - 1 && ","}</li>
+                ))}
+              </ul>
+            </div>
+            <div className="modal-about-row">
+              <Typography HTMLElement="p" classname="modal-about-text">Maturity Rating:</Typography>
+              {p.profile.kid ? (
+                  <MRAllPublic classname="icon" />
+                ) : (
+                  <div className="MR-container">
+                    <MRTwelvePlus classname="icon" />
+                    <MRFear classname="icon"  />
+                    <MRViolence classname="icon" />
+                    <MRProfanity classname="icon" />
+                  </div>
+                  )}
+            </div>
           </div>
         </div>
       </div>

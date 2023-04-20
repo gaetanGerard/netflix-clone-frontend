@@ -56,8 +56,16 @@ type Cast = {
     character: string,
 }
 
+type Crew = {
+    name: string,
+    id: string,
+    job: string,
+    department: string
+}
+
 export type MOVIE_CREDIT = {
     cast: Cast[],
+    crew: Crew[]
 }
 
 export type MORELIKETHISMOVIE = {

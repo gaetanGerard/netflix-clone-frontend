@@ -171,6 +171,12 @@ export const GET_MOVIE_CREDIT = gql`
         id
         character
       }
+      crew {
+        department
+        job
+        id
+        name
+      }
     }
   }
 `;

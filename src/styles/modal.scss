@@ -334,6 +334,46 @@
           max-width: 800px;
         }
       }
+
+      .modal-about {
+        padding:  20px 3%;
+        color: $white;
+        .modal-about-title {
+          font-weight: $font-weight-semi-bold;
+          padding-bottom: 10px;
+        }
+        .modal-about-row {
+          display: grid;
+          grid-template-columns: auto auto;
+          grid-auto-rows: min-content;
+          grid-gap: 10px;
+          justify-content: start;
+          justify-items: start;
+          grid-auto-flow: row;
+          padding-top: 10px;
+          ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            gap: 5px;
+          }
+
+          .icon {
+              height: 1.5em;
+              transform: scale(1);
+          }
+
+          .MR-container {
+            display: grid;
+            grid-template-columns: auto auto auto auto;
+            gap: 5px;
+          }
+
+          .modal-about-text {
+            color: $dim-gray;
+          }
+        }
+      }
     }
 
     .modal-skeleton {
