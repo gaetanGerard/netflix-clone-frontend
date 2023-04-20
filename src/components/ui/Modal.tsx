@@ -1,5 +1,7 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import React, { useRef, useEffect, useState, Fragment } from "react";
 import { useDispatch, useSelector } from 'react-redux';
+import { useLazyQuery, useQuery } from "@apollo/client";
 
 
 // Import Custom Components
@@ -19,14 +21,17 @@ import MRFear from "./icons/MRFear";
 import MRProfanity from "./icons/MRProfanity";
 import MRAllPublic from "./icons/MRAllPublic";
 import HD from "../ui/icons/HD";
+import PlayCircle from "../ui/icons/PlayCircle";
+import DownArrow from "../ui/icons/DownArrow";
 
 // Import Utils
 import { convertMinutesToHours, getYearFromDate } from '../../utils/function';
+import { GET_SEASON } from '../../utils/query';
 
 // Import Redux
 import { RootState } from "../../redux/root-reducer";
 import { reset_movie_store } from '../../redux/movies/movies.actions';
-import { reset_tv_store } from '../../redux/series/series.actions';
+import { reset_tv_store, get_season } from '../../redux/series/series.actions';
 
 // Import Styles
 import "../../styles/modal.scss";
@@ -35,7 +40,17 @@ const Modal = ({ onClose, content, movieCredits, mediaType, isInMyList }) => {
   const dispatch = useDispatch();
   const modalRef = useRef<HTMLDivElement>(null);
   const p = useSelector((state: RootState) => state.profile.profile);
+  const season = useSelector((state: RootState) => state.series.season);
+  const [visibleEpisodes, setVisibleEpisodes] = useState<number>(10);
   const [inMyList, setInMyList] = useState<boolean>(isInMyList);
+  const [seasonNumber, setSeasonNumber] = useState<string>(mediaType === "tv" ? "1" : "")
+  const getSeason = useQuery(GET_SEASON, {
+    variables: {
+      tvId: content ? content.id : null,
+      seasonNumber: seasonNumber
+    },
+    skip: mediaType === "movie" || !content
+  });
 
   const generateRandomAverage = () => {
     return Math.floor(Math.random() * 21) + 79;
@@ -88,6 +103,30 @@ const Modal = ({ onClose, content, movieCredits, mediaType, isInMyList }) => {
   // console.log(movieCredits)
   // console.log(mediaType)
 
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedSeasonNumber = e.target.value;
+    setSeasonNumber(selectedSeasonNumber);
+    setVisibleEpisodes(10);
+  }
+
+  const handleShowMore = (e) => {
+    e.stopPropagation();
+    const episodeLeftToShow = content?.number_of_episodes - visibleEpisodes;
+    if(episodeLeftToShow > 10) {
+      setVisibleEpisodes(visibleEpisodes + 10);
+    }
+    else {
+      setVisibleEpisodes(visibleEpisodes + episodeLeftToShow);
+    }
+  }
+
+  useEffect(() => {
+    if(getSeason.data?.getSeason) {
+      dispatch(get_season(getSeason.data))
+    }
+
+  }, [getSeason.data, getSeason.data?.getSeason, seasonNumber, dispatch, season])
+
   if (content) {
     let filteredList;
     let sortByYear;
@@ -108,7 +147,6 @@ const Modal = ({ onClose, content, movieCredits, mediaType, isInMyList }) => {
         });
       }
     }
-
     return (
       <div className="modal" ref={modalRef}>
         <div className="modal-content">
@@ -187,20 +225,47 @@ const Modal = ({ onClose, content, movieCredits, mediaType, isInMyList }) => {
           }
           {mediaType === "tv" ? (
             <div className="modal-episodes">
-            {/*
-              This should be a list of all the episodes for one season (the list should be limited to 10 items but should also
-                extensible to display all the episodes for a season)
-              if its have only one season i should only display the list of episodes for the season overwise i should also
-              display a dropdown to select the season (default to the first season)
-              an item for an episode should have 3 columns:
-                - a column with the episode number
-                - a column with the image of the episode
-                - a column with the title, a short overview and the time length of the episode
-
-              every episode should be a link for go the episode page and start it as for my demo its irrelevant i will
-              only change the mouse cursor to a pointer and maybe display a message to remind that this is not a real
-              website
-            */}
+              <div className="modal-episodes-header">
+                <div className="modal-episodes-header-left">
+                  <Typography HTMLElement="h2" classname="modal-episodes-title">
+                    Episodes
+                  </Typography>
+                  <Typography HTMLElement="p" classname="modal-episodes-season">
+                    Season {seasonNumber}:
+                  </Typography>
+                </div>
+                {content.seasons !== null ? content.seasons.length > 1 ? (
+                <div className="modal-episodes-header-right">
+                  <select value={seasonNumber} onChange={handleChange}>
+                    {content.seasons.map((season, index) => (
+                      <option key={index} value={season.season_number}>{season.name}</option>
+                    ))}
+                  </select>
+                </div>
+                ) : null : null}
+              </div>
+              <div className="modal-episodes-list" title="Its a Demo and and no episode will start">
+                  {season !== null ? season.episodes.slice(0, visibleEpisodes).map((episode) => (
+                    <div className="episode-container" key={episode.id}>
+                      <div className="episode-number">
+                        <Typography HTMLElement="p" classname="episode-number-text">{episode.episode_number}</Typography>
+                      </div>
+                      <div className="episode-image">
+                        <img src={episode.still_path ? `https://image.tmdb.org/t/p/w500${episode.still_path}` : "https://via.placeholder.com/500x281"} alt={episode.name} />
+                        <PlayCircle classname="icon" />
+                      </div>
+                      <div className="episode-info">
+                        <Typography HTMLElement="h3" classname="episode-title">{episode.name}</Typography>
+                        <Typography HTMLElement="p" classname="episode-overview">{episode.overview}</Typography>
+                      </div>
+                    </div>
+                  )) : null}
+                    {season !== null ? visibleEpisodes < season.episodes.length && (
+                    <button className="show-more" onClick={handleShowMore}>
+                      <DownArrow classname="icon" />
+                    </button>
+                  ) : null}
+              </div>
           </div>
           ) : null}
           <div className="modal-more-like-this">

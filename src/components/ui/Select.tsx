@@ -4,8 +4,10 @@ import React, { ChangeEvent } from 'react';
 import "../../styles/select.scss";
 
 interface Option {
-    label: string,
-    iso: string
+    label?: string,
+    iso?: string,
+    season_number?: number
+    name?: string
 }
 
 type SelectProps = {
@@ -24,7 +26,7 @@ const Select = ({options, onchange, selected, name}: SelectProps): JSX.Element =
         <div className="select-arrow">
             <select name={name} onChange={onchange} value={selected ? currentChoice?.iso : ''}>
                 {options.map((option, i) => (
-                    <option value={option.iso} key={i++}>{option.label}</option>
+                    <option value={option.iso ? option.iso : option.season_number} key={i++}>{option.label ? option.label : option.name}</option>
                 ))}
             </select>
         </div>

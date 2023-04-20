@@ -184,6 +184,135 @@
           padding: 20px 0;
         }
       }
+
+      .modal-episodes {
+        padding: 20px 3%;
+        .modal-episodes-header {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          justify-content: space-between;
+          padding-bottom: 20px;
+          .modal-episodes-header-left {
+            display: grid;
+            grid-auto-flow: row;
+            gap: 15px;
+            align-content: center;
+            align-items: center;
+            justify-content: start;
+            justify-items: start;
+            color: $white;
+          }
+          .modal-episodes-header-right {
+            justify-self: end;
+            select {
+              display: flex;
+              -webkit-box-align: center;
+              align-items: center;
+              min-width: 4em;
+              position: relative;
+              font-size: 1.2em;
+              background-color: rgb(36, 36, 36);
+              padding: 0.5em 1em;
+              color: white;
+              cursor: pointer;
+              border: 0.1em solid rgb(77, 77, 77);
+              border-radius: 0.2em;
+              &:focus {
+                outline: none;
+              }
+            }
+          }
+        }
+        .modal-episodes-list {
+          display: grid;
+          grid-auto-flow: row;
+          gap: 0;
+          .episode-container {
+            border-top: 1px solid #404040;
+            align-items: center;
+            border-bottom: 1px solid #404040;
+            border-radius: 0.25em;
+            cursor: pointer;
+            display: flex;
+            min-height: 8em;
+            overflow: hidden;
+            padding: 1em;
+            position: relative;
+            transition: all $animation-duration ease-in-out;
+
+            .episode-number {
+              color: #d2d2d2;
+              display: flex;
+              flex: 0 0 7%;
+              font-size: 1.5em;
+              justify-content: center;
+            }
+
+            .episode-image {
+              border-radius: 4px;
+              flex: 0 0 18%;
+              overflow: hidden;
+              position: relative;
+              img {
+                display: block;
+                max-width: 100%;
+                z-index: 1;
+              }
+              .icon {
+                transition: all $animation-duration ease-in-out;
+                @include icon($size: 80%, $color: rgba(0, 0, 0, 0.35));
+                stroke: $white;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                z-index: 2;
+                opacity: 0;
+              }
+            }
+
+            .episode-info {
+              flex: 0 0 70%;
+              font-size: 1em;
+              min-height: 100%;
+              .episode-title {
+                display: flex;
+                justify-content: space-between;
+                padding: 1em 1em 0.5em;
+                color: $white;
+                font-weight: $font-weight-semi-bold;
+                overflow-wrap: anywhere;
+              }
+              .episode-overview {
+                color: #d2d2d2;
+                margin: 0;
+                padding: 0 1em 1em;
+              }
+            }
+
+            &:hover {
+              background-color: $dark-gray;
+
+              .icon {
+                opacity: 1;
+              }
+            }
+          }
+          .show-more {
+            margin-top: 20px;
+            justify-self: center;
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            .icon {
+              @include icon($size: 42px, $color: hsla(0,0%,100%,.5));
+            }
+            &:hover .icon {
+              @include icon($size: 42px, $color: #545454);
+            }
+          }
+        }
+      }
     }
 
     .modal-skeleton {

@@ -15,6 +15,13 @@ export const get_tv = (data) => {
     })
 }
 
+export const get_season = (data) => {
+    return ({
+        type: SeriesActionTypes.GET_SEASON,
+        payload: data.getSeason
+    })
+}
+
 export const reset_tv_store = () => {
     return ({
         type: SeriesActionTypes.RESET_TV_STORE

@@ -44,6 +44,15 @@ type Cast = {
     character: string
 }
 
+type Episode = {
+    id: string
+    episode_number: number
+    air_date: string
+    name: string
+    overview: string
+    still_path: string
+}
+
 export type SERIES = {
     name: string
     first_air_date: string
@@ -59,4 +68,14 @@ export type SERIES = {
     id: string
     episode_run_time: number
     credits: Credits
+}
+
+export type SEASON = {
+    id: string
+    name: string
+    overview: string
+    poster_path: string
+    season_number: number
+    episodes: Episode[]
+    air_date: string
 }

@@ -215,6 +215,27 @@ export const GET_TV = gql`
   }
 `;
 
+export const GET_SEASON = gql`
+  query GetSeason($tvId: ID!, $seasonNumber: String!) {
+  getSeason(tvId: $tvId, seasonNumber: $seasonNumber) {
+    air_date
+    name
+    overview
+    poster_path
+    season_number
+    episodes {
+      air_date
+      episode_number
+      id
+      name
+      overview
+      still_path
+    }
+    id
+  }
+}
+`;
+
 export const GET_GENRES = gql`
   query GetGenres($media: String, $language: String) {
     getGenres(media: $media, language: $language) {
