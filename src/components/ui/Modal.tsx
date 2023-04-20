@@ -261,7 +261,7 @@ const Modal = ({ onClose, content, movieCredits, mediaType, isInMyList }) => {
                     </div>
                   )) : null}
                     {season !== null ? visibleEpisodes < season.episodes.length && (
-                    <button className="show-more" onClick={handleShowMore}>
+                    <button className="show-more" onClick={handleShowMore} title="Show More">
                       <DownArrow classname="icon" />
                     </button>
                   ) : null}
