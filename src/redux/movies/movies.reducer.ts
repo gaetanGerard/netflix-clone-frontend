@@ -1,17 +1,19 @@
 import { MoviesActionTypes } from './movies.types';
 import { DISCOVER } from '../../types/discoverTypes';
-import { MOVIE, MOVIE_CREDIT } from '../../types/moviesTypes';
+import { MOVIE, MOVIE_CREDIT, MORELIKETHISMOVIE } from '../../types/moviesTypes';
 
 type INITIAL_STATE_TYPE = {
     discoverMovies: DISCOVER | null,
     movie: MOVIE | null,
     movieCast: MOVIE_CREDIT | null,
+    moreLikeThisMovie: MORELIKETHISMOVIE | null
 }
 
 const INITIAL_STATE: INITIAL_STATE_TYPE = {
     discoverMovies: null,
     movie: null,
     movieCast: null,
+    moreLikeThisMovie: null
 }
 
 const moviesReducer = (state = INITIAL_STATE, action) => {
@@ -37,12 +39,18 @@ const moviesReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 movieCast: action.payload
             }
+        case MoviesActionTypes.MORE_LIKE_THIS_MOVIE:
+            return {
+                ...state,
+                moreLikeThisMovie: action.payload
+            }
         case MoviesActionTypes.RESET_MOVIE_STORE:
             return {
                 ...state,
                 discoverMovies: null,
                 movie: null,
-                movieCast: null
+                movieCast: null,
+                moreLikeThisMovie: null
             }
         default:
             return state;

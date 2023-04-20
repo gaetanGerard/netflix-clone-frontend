@@ -59,3 +59,10 @@ type Cast = {
 export type MOVIE_CREDIT = {
     cast: Cast[],
 }
+
+export type MORELIKETHISMOVIE = {
+    page: number,
+    results: CollectionPart[],
+    total_pages: number,
+    total_results: number
+}

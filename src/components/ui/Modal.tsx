@@ -26,12 +26,12 @@ import DownArrow from "../ui/icons/DownArrow";
 
 // Import Utils
 import { convertMinutesToHours, getYearFromDate } from '../../utils/function';
-import { GET_SEASON } from '../../utils/query';
+import { GET_SEASON,GET_SIMILAR_MOVIE, GET_SIMILAR_TV } from '../../utils/query';
 
 // Import Redux
 import { RootState } from "../../redux/root-reducer";
-import { reset_movie_store } from '../../redux/movies/movies.actions';
-import { reset_tv_store, get_season } from '../../redux/series/series.actions';
+import { reset_movie_store, get_similar_movies } from '../../redux/movies/movies.actions';
+import { reset_tv_store, get_season, get_similar_tv } from '../../redux/series/series.actions';
 
 // Import Styles
 import "../../styles/modal.scss";
@@ -41,15 +41,39 @@ const Modal = ({ onClose, content, movieCredits, mediaType, isInMyList }) => {
   const modalRef = useRef<HTMLDivElement>(null);
   const p = useSelector((state: RootState) => state.profile.profile);
   const season = useSelector((state: RootState) => state.series.season);
+  const similarMovies = useSelector((state: RootState) => state.movies.moreLikeThisMovie);
+  const similarTv = useSelector((state: RootState) => state.series.moreLikeThisTv);
   const [visibleEpisodes, setVisibleEpisodes] = useState<number>(10);
   const [inMyList, setInMyList] = useState<boolean>(isInMyList);
   const [seasonNumber, setSeasonNumber] = useState<string>(mediaType === "tv" ? "1" : "")
+  const [similar, setSimilar] = useState<any>([]);
   const getSeason = useQuery(GET_SEASON, {
     variables: {
       tvId: content ? content.id : null,
-      seasonNumber: seasonNumber
+      seasonNumber: seasonNumber,
+      language: p.profile.language
     },
     skip: mediaType === "movie" || !content
+  });
+
+  const getSimilarMovie = useQuery(GET_SIMILAR_MOVIE, {
+    variables: {
+      whatToTarget: "similar",
+      getUpcomTopRatedPopuNowPlayingId: content ? content.id : null,
+      language: p.profile.language,
+      page: "1"
+      },
+      skip: mediaType === "tv"
+  });
+
+  const getSimilarTv = useQuery(GET_SIMILAR_TV, {
+    variables: {
+      whatToTarget: "similar",
+      getUpcomTopRatedPopuNowPlayingTvId: content ? content.id : null,
+      language: p.profile.language,
+      page: "1"
+      },
+      skip: mediaType === "movie"
   });
 
   const generateRandomAverage = () => {
@@ -58,6 +82,11 @@ const Modal = ({ onClose, content, movieCredits, mediaType, isInMyList }) => {
 
   const handleIsInMyList = (value: boolean) => {
     setInMyList(value);
+  }
+
+  const handleResetState = () => {
+    setSeasonNumber("1");
+    setVisibleEpisodes(10);
   }
 
   const [averageNum] = useState<number>(generateRandomAverage());
@@ -99,10 +128,6 @@ const Modal = ({ onClose, content, movieCredits, mediaType, isInMyList }) => {
     }
   }
 
-  // console.log(content)
-  // console.log(movieCredits)
-  // console.log(mediaType)
-
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedSeasonNumber = e.target.value;
     setSeasonNumber(selectedSeasonNumber);
@@ -125,13 +150,39 @@ const Modal = ({ onClose, content, movieCredits, mediaType, isInMyList }) => {
       dispatch(get_season(getSeason.data))
     }
 
-  }, [getSeason.data, getSeason.data?.getSeason, seasonNumber, dispatch, season])
+  }, [getSeason.data, getSeason.data?.getSeason, seasonNumber, dispatch, season, similar])
+
+  useEffect(() => {
+    if(getSimilarMovie.data?.getUpcomTopRatedPopuNowPlaying) {
+      dispatch(get_similar_movies(getSimilarMovie.data))
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [getSimilarMovie.data, getSimilarMovie.data?.getUpcomTopRatedPopuNowPlaying, dispatch])
+
+  useEffect(() => {
+    if(getSimilarTv.data?.getUpcomTopRatedPopuNowPlayingTV) {
+      dispatch(get_similar_tv(getSimilarTv.data));
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [getSimilarTv.data, getSimilarTv.data?.getUpcomTopRatedPopuNowPlayingTV, dispatch])
+
+  useEffect(() => {
+    if(mediaType === "movie" && similarMovies !== null) {
+      const filteredData = similarMovies.results.filter((item) => item.poster_path || item.backdrop_path)
+      setSimilar(filteredData)
+    } else if (mediaType === "tv" && similarTv !== null) {
+      const filteredData = similarTv.results.filter((item) => item.poster_path || item.backdrop_path)
+      setSimilar(filteredData)
+    }
+  }, [content, mediaType, similarMovies, similarTv])
 
   if (content) {
     let filteredList;
     let sortByYear;
 
     const currentYear = new Date().getFullYear(); // récupère l'année en cours
+
+    // console.log(content);
 
     if(mediaType === "movie") {
       if(content.belongs_to_collection !== null) {
@@ -147,12 +198,13 @@ const Modal = ({ onClose, content, movieCredits, mediaType, isInMyList }) => {
         });
       }
     }
+
     return (
       <div className="modal" ref={modalRef}>
         <div className="modal-content">
           <div className="modal-header">
             <div className="img-container">
-              <img src={`https://image.tmdb.org/t/p/original/${content.backdrop_path}`} alt={mediaType === "movie" ? content.title : content.name} />
+              <img src={`https://image.tmdb.org/t/p/original/${content.backdrop_path ? content.backdrop_path : content.poster_path}`} alt={mediaType === "movie" ? content.title : content.name} />
               <div className="gradient"></div>
             </div>
             <div className="header-content">
@@ -219,7 +271,7 @@ const Modal = ({ onClose, content, movieCredits, mediaType, isInMyList }) => {
                 <span className="title">{content.belongs_to_collection.name}</span>
               </Typography>
               <div className="short-card-container">
-                {sortByYear.map((part, index) => (<ShortCard data={part} mediaType={mediaType} key={index} inMyList={handleIsInMyList} />))}
+                {sortByYear.map((part, index) => (<ShortCard data={part} mediaType={mediaType} key={index} inMyList={handleIsInMyList} handleResetState={handleResetState} />))}
               </div>
             </div>) : null : null
           }
@@ -268,12 +320,19 @@ const Modal = ({ onClose, content, movieCredits, mediaType, isInMyList }) => {
               </div>
           </div>
           ) : null}
-          <div className="modal-more-like-this">
-            {/*
-              This should be a list of card base on the genre of the movie or serie (the list should be limited to 10 items)
-              every card should have a button to add on my-list
-            */}
-          </div>
+          {similar !== undefined ? (<div className="modal-more-like-this">
+              <Typography HTMLElement="h2" classname="modal-more-like-this-title">
+                More Like This
+              </Typography>
+              <div className="short-card-container">
+                {similar && similar.length >  0 ? similar.map((item, index) => (<ShortCard data={item} mediaType={mediaType} key={index} inMyList={handleIsInMyList} handleResetState={handleResetState} />)) : null}
+              </div>
+              {/*
+                This should be a list of card base on the genre of the movie or serie (the list should be limited to 10 items)
+                every card should have a button to add on my-list
+              */}
+            </div>
+          ) : null}
           <div className="modal-about">
             {/*
               This section should render information available like cast, director, genres, maturity rating, ...

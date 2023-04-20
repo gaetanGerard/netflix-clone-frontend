@@ -22,6 +22,13 @@ export const get_movie_credit = (data) => {
     })
 }
 
+export const get_similar_movies = (data) => {
+    return ({
+        type: MoviesActionTypes.MORE_LIKE_THIS_MOVIE,
+        payload: data.getUpcomTopRatedPopuNowPlaying
+    })
+}
+
 export const reset_movie_store = () => {
     return ({
         type: MoviesActionTypes.RESET_MOVIE_STORE

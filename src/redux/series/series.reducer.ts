@@ -1,17 +1,19 @@
 import { SeriesActionTypes } from './series.types';
 import { DISCOVER } from '../../types/discoverTypes';
-import { SERIES, SEASON } from '../../types/seriesTypes';
+import { SERIES, SEASON, MORELIKETHISTV } from '../../types/seriesTypes';
 
 type INITIAL_STATE_TYPE = {
     discoverSeries: DISCOVER | null,
     series: SERIES | null,
-    season: SEASON| null
+    season: SEASON| null,
+    moreLikeThisTv: MORELIKETHISTV | null
 }
 
 const INITIAL_STATE: INITIAL_STATE_TYPE = {
     discoverSeries: null,
     series: null,
-    season: null
+    season: null,
+    moreLikeThisTv: null
 }
 
 const seriesReducer = (state = INITIAL_STATE, action) => {
@@ -37,12 +39,18 @@ const seriesReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 season: action.payload
             }
+        case SeriesActionTypes.GET_SIMILAR_TV:
+            return {
+                ...state,
+                moreLikeThisTv: action.payload
+            }
         case SeriesActionTypes.RESET_TV_STORE:
             return {
                 ...state,
                 discoverSeries: null,
                 series: null,
-                season: null
+                season: null,
+                moreLikeThisTv: null
             }
         default:
             return state;

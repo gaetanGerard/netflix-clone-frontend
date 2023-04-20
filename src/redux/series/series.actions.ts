@@ -22,6 +22,13 @@ export const get_season = (data) => {
     })
 }
 
+export const get_similar_tv = (data) => {
+    return ({
+        type: SeriesActionTypes.GET_SIMILAR_TV,
+        payload: data.getUpcomTopRatedPopuNowPlayingTV
+    })
+}
+
 export const reset_tv_store = () => {
     return ({
         type: SeriesActionTypes.RESET_TV_STORE

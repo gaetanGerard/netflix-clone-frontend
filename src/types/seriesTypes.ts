@@ -79,3 +79,18 @@ export type SEASON = {
     episodes: Episode[]
     air_date: string
 }
+
+type ResultMoreLikeThis = {
+    id: string
+    name: string
+    poster_path: string
+    backdrop_path: string
+    overview: string
+}
+
+export type MORELIKETHISTV = {
+    page: number,
+    results: ResultMoreLikeThis[],
+    total_pages: number,
+    total_results: number
+}

@@ -176,12 +176,14 @@
         }
         .short-card-container {
           display: grid;
-          grid-auto-flow: column;
+          grid-template-columns: repeat(auto-fit, 240px);
+          grid-auto-rows: min-content;
           grid-gap: 10px;
           justify-content: start;
           justify-items: start;
-          grid-auto-rows: min-content;
+          grid-auto-flow: row;
           padding: 20px 0;
+          max-width: 800px;
         }
       }
 
@@ -311,6 +313,25 @@
               @include icon($size: 42px, $color: #545454);
             }
           }
+        }
+      }
+
+      .modal-more-like-this {
+        padding: 20px 3%;
+        .modal-more-like-this-title {
+          font-weight: $font-weight-semi-bold;
+          color: $white;
+        }
+        .short-card-container {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, 240px);
+          grid-auto-rows: min-content;
+          grid-gap: 10px;
+          justify-content: start;
+          justify-items: start;
+          grid-auto-flow: row;
+          padding: 20px 0;
+          max-width: 800px;
         }
       }
     }

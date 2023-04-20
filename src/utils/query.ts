@@ -216,8 +216,8 @@ export const GET_TV = gql`
 `;
 
 export const GET_SEASON = gql`
-  query GetSeason($tvId: ID!, $seasonNumber: String!) {
-  getSeason(tvId: $tvId, seasonNumber: $seasonNumber) {
+  query GetSeason($tvId: ID!, $seasonNumber: String!, $language: String) {
+  getSeason(tvId: $tvId, seasonNumber: $seasonNumber, language: $language) {
     air_date
     name
     overview
@@ -234,6 +234,48 @@ export const GET_SEASON = gql`
     id
   }
 }
+`;
+
+export const GET_SIMILAR_MOVIE = gql`
+  query GetUpcomTopRatedPopuNowPlaying($whatToTarget: String, $getUpcomTopRatedPopuNowPlayingId: ID, $language: String, $page: String) {
+    getUpcomTopRatedPopuNowPlaying(whatToTarget: $whatToTarget, id: $getUpcomTopRatedPopuNowPlayingId, language: $language, page: $page) {
+      ... on Discover {
+        __typename
+        results {
+          __typename
+          ... on MoviesDiscover {
+            id
+            backdrop_path
+            overview
+            poster_path
+            release_date
+            title
+          }
+        }
+        page
+        total_pages
+        total_results
+      }
+    }
+  }
+`;
+
+export const GET_SIMILAR_TV = gql`
+  query GetUpcomTopRatedPopuNowPlayingTV($whatToTarget: String, $getUpcomTopRatedPopuNowPlayingTvId: ID, $language: String, $page: String) {
+    getUpcomTopRatedPopuNowPlayingTV(whatToTarget: $whatToTarget, id: $getUpcomTopRatedPopuNowPlayingTvId, language: $language, page: $page) {
+      page
+      results {
+        backdrop_path
+        first_air_date
+        id
+        name
+        overview
+        poster_path
+      }
+      total_pages
+      total_results
+    }
+  }
 `;
 
 export const GET_GENRES = gql`
