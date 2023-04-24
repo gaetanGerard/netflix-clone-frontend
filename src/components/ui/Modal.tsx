@@ -26,7 +26,7 @@ import DownArrow from "../ui/icons/DownArrow";
 
 // Import Utils
 import { convertMinutesToHours, getYearFromDate } from '../../utils/function';
-import { GET_SEASON,GET_SIMILAR_MOVIE, GET_SIMILAR_TV } from '../../utils/query';
+import { GET_SEASON, GET_SIMILAR_MOVIE, GET_SIMILAR_TV } from '../../utils/query';
 
 // Import Redux
 import { RootState } from "../../redux/root-reducer";

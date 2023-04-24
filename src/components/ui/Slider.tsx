@@ -33,9 +33,10 @@ type CardItem = {
 interface ISliderProps {
   items: Array<CardItem>;
   sliderTitle: string;
+  position?: number;
 }
 
-const Slider: React.FC<ISliderProps> = ({ items, sliderTitle }) => {
+const Slider: React.FC<ISliderProps> = ({ items, sliderTitle, position }) => {
     const p = useSelector((state: RootState) => state.profile.profile);
     const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -56,7 +57,7 @@ const Slider: React.FC<ISliderProps> = ({ items, sliderTitle }) => {
     };
 
     return (
-        <div className="slider-container">
+        <div className={`slider-container slider-position-${position}`}>
             <Typography HTMLElement="h2" classname="slider-title">{sliderTitle}</Typography>
             <div className="slider-wrapper" style={{ transform: `translateX(-${currentIndex * 225}px)` }}>
                 {items.map((item, index=1) => (

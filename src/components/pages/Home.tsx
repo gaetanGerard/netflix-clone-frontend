@@ -8,14 +8,14 @@ import { useLazyQuery } from "@apollo/client";
 import '../../styles/home.scss';
 
 // Import utils
-import { DISCOVERS, GET_GENRES } from '../../utils/query';
+import { DISCOVERS, GET_GENRES, GET_SIMILAR_MOVIE, GET_SIMILAR_TV } from '../../utils/query';
 import { itemInMyList } from '../../utils/function';
 
 // Import redux
 import { selectProfile } from '../../redux/profile/profile.action';
 import { setApplicationLanguage, setGenres, resetShowModal } from '../../redux/utils/utils.actions';
-import { discover_movies } from '../../redux/movies/movies.actions';
-import { discover_series } from '../../redux/series/series.actions';
+import { discover_movies, get_similar_movies } from '../../redux/movies/movies.actions';
+import { discover_series, get_similar_tv } from '../../redux/series/series.actions';
 import { RootState } from "../../redux/root-reducer";
 
 // Import Custom Components
@@ -46,6 +46,8 @@ const Home: FC = (): JSX.Element => {
     const tv = useSelector((state: RootState) => state.series.series);
     const mediaType = useSelector((state: RootState) => state.utils.mediaType);
     const showModal = useSelector((state: RootState) => state.utils.showModal);
+    const similarMovies = useSelector((state: RootState) => state.movies.moreLikeThisMovie);
+    const similarTv = useSelector((state: RootState) => state.series.moreLikeThisTv);
     const language = p ? p.profile.language : appLang;
     const [myList, setMyList] = useState(null)
     const [content, setContent] = useState(null)
@@ -124,7 +126,9 @@ const Home: FC = (): JSX.Element => {
                 <Header />
                 {showModal && <Modal onClose={() => dispatch(resetShowModal())} mediaType={mediaType} content={mediaType === "movie" ? movie : tv} movieCredits={mediaType === "movie" ? movieCast : null} isInMyList={isInMyList} />}
                 <FeaturedListItem myList={p.profile.my_list.length > 0 ? p.profile.my_list : myList} />
-                <Slider items={p.profile.my_list} sliderTitle="Ma Liste" />
+                <Slider items={p.profile.my_list} sliderTitle="Ma Liste" position={1} />
+                {discoveredMovies ? (<Slider items={discoveredMovies.results} sliderTitle="Ce que regardent les abonnés qui partagent vos goûts" position={2} />) : (<div>Loading...</div>)}
+                {discoveredSeries ? (<Slider items={discoveredSeries.results} sliderTitle="Séries à regarder sans modération" position={3} />) : (<div>Loading...</div>)}
                 <Footer data={footerData[appLang.iso]} options={options} language={appLang.iso} changeLanguage={changeLanguage} />
             </div>
         )

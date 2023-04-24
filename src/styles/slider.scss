@@ -9,6 +9,39 @@
     z-index: 200;
   }
 
+.slider-position {
+  &-1 {
+    z-index: 1000;
+  }
+  &-2 {
+    z-index: 900;
+  }
+  &-3 {
+    z-index: 800;
+  }
+  &-4 {
+    z-index: 700;
+  }
+  &-5 {
+    z-index: 600;
+  }
+  &-6 {
+    z-index: 500;
+  }
+  &-7 {
+    z-index: 400;
+  }
+  &-8 {
+    z-index: 300;
+  }
+  &-9 {
+    z-index: 200;
+  }
+  &-10 {
+    z-index: 100;
+  }
+}
+
   .slider-wrapper {
     display: grid;
     grid-auto-flow: column;
