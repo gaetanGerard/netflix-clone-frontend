@@ -32,6 +32,7 @@ import { GET_SEASON,GET_SIMILAR_MOVIE, GET_SIMILAR_TV } from '../../utils/query'
 import { RootState } from "../../redux/root-reducer";
 import { reset_movie_store, get_similar_movies } from '../../redux/movies/movies.actions';
 import { reset_tv_store, get_season, get_similar_tv } from '../../redux/series/series.actions';
+import { resetMediaType } from '../../redux/utils/utils.actions';
 
 // Import Styles
 import "../../styles/modal.scss";
@@ -100,6 +101,7 @@ const Modal = ({ onClose, content, movieCredits, mediaType, isInMyList }) => {
     ) {
       dispatch(reset_movie_store());
       dispatch(reset_tv_store());
+      dispatch(resetMediaType());
       onClose();
     }
   };
@@ -186,7 +188,7 @@ const Modal = ({ onClose, content, movieCredits, mediaType, isInMyList }) => {
         content.created_by.length > 0 && setCreator(content.created_by.map((item) => item.name));
       }
     } else {
-      console.log("An Error Occured when retrieve the creator")
+      // console.log("An Error Occured when retrieve the creator")
     }
   }, [content, mediaType, movieCredits])
 
@@ -210,8 +212,6 @@ const Modal = ({ onClose, content, movieCredits, mediaType, isInMyList }) => {
         });
       }
     }
-
-    console.log(content);
 
     return (
       <div className="modal" ref={modalRef}>

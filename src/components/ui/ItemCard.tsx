@@ -6,6 +6,7 @@ import { useLazyQuery } from "@apollo/client";
 import { RootState } from "../../redux/root-reducer";
 import { get_movie, get_movie_credit } from '../../redux/movies/movies.actions';
 import { get_tv } from '../../redux/series/series.actions';
+import { setMediaType, showModal } from '../../redux/utils/utils.actions';
 
 // Import Custom Components
 import Modal from "../ui/Modal";
@@ -55,7 +56,6 @@ const ItemCard = ({item, itemID, isInMyList}: Props) => {
     const [lastInRow, setLastInRow] = useState(false)
     const [windowSize, setWindowSize] = useState(window.innerWidth - 100);
     const [itemsPerRow, setItemsPerRow] = useState(Math.floor(windowSize / 235));
-    const [showModal, setShowModal] = useState(false);
     const itemSize = 235;
 
     const [getMovie, resultGetMovie] = useLazyQuery(GET_MOVIE);
@@ -89,13 +89,15 @@ const ItemCard = ({item, itemID, isInMyList}: Props) => {
         if(item.media_type === "movie") {
             getMovie({variables: {getMovieId: item.id, language: appLang.iso}})
             getMovieCredit({variables: {getCreditsId: item.id, language: appLang.iso}})
+            dispatch(setMediaType("movie"))
         } else if(item.media_type === "tv") {
             getTv({variables: {getSerieId: item.id, language: appLang.iso, appendToResponse: "credits"}})
+            dispatch(setMediaType("tv"))
         } else {
             // error
         }
         setRefresh(!refresh);
-        setShowModal(true);
+        dispatch(showModal())
     };
 
     useEffect(() => {
@@ -114,7 +116,7 @@ const ItemCard = ({item, itemID, isInMyList}: Props) => {
 
   return (
     <Fragment>
-        {showModal && <Modal onClose={() => setShowModal(false)} mediaType={item.media_type} content={item.media_type === "movie" ? movie : tv} movieCredits={item.media_type === "movie" ? movieCast : null} isInMyList />}
+        {/* showModal && <Modal onClose={() => setShowModal(false)} mediaType={item.media_type} content={item.media_type === "movie" ? movie : tv} movieCredits={item.media_type === "movie" ? movieCast : null} isInMyList /> */}
         <div className={`card ${lastInRow ? "last-card-in-row" : ""}`}>
             <div className="card-inner">
                 <div className="img-container">

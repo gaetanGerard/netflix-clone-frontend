@@ -7,6 +7,7 @@ import { useLazyQuery } from "@apollo/client";
 import { RootState } from "../../redux/root-reducer";
 import { get_movie, get_movie_credit } from '../../redux/movies/movies.actions';
 import { get_tv } from '../../redux/series/series.actions';
+import { setMediaType } from '../../redux/utils/utils.actions';
 
 // Import utils
 import { GET_MOVIE, GET_MOVIE_CREDIT, GET_TV } from '../../utils/query';
@@ -33,7 +34,6 @@ const FeaturedListItem = ({myList}: Props) => {
     const dispatch = useDispatch()
     const [refresh, setRefresh] = useState(false);
     const [showModal, setShowModal] = useState(false);
-    const [mediaType, setMediaType] = useState<string|null>(null);
     const p = useSelector((state: RootState) => state.profile.profile);
     const movieGenres = useSelector((state: RootState) => state.utils.movieGenres);
     const tvGenres = useSelector((state: RootState) => state.utils.tvGenres);
@@ -41,6 +41,7 @@ const FeaturedListItem = ({myList}: Props) => {
     const movie = useSelector((state: RootState) => state.movies.movie);
     const movieCast = useSelector((state: RootState) => state.movies.movieCast);
     const tv = useSelector((state: RootState) => state.series.series);
+    const mediaType = useSelector((state: RootState) => state.utils.mediaType);
 
     const [getMovie, resultGetMovie] = useLazyQuery(GET_MOVIE);
     const [getMovieCredit, resultGetMovieCredit] = useLazyQuery(GET_MOVIE_CREDIT);
@@ -69,10 +70,10 @@ const FeaturedListItem = ({myList}: Props) => {
         if(item.title !== undefined && item.title) {
             getMovie({variables: {getMovieId: item.id, language: p.profile.language}})
             getMovieCredit({variables: {getCreditsId: item.id, language: p.profile.language}})
-            setMediaType("movie")
+            dispatch(setMediaType("movie"))
         } else if(item.name !== undefined && item.name) {
             getTv({variables: {getSerieId: item.id, language: p.profile.language, appendToResponse: "credits"}})
-            setMediaType("tv")
+            dispatch(setMediaType("tv"))
         } else {
             // error
         }

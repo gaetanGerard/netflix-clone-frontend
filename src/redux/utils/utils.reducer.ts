@@ -18,8 +18,10 @@ type GenreType = {
 type INITIAL_STATE_TYPE = {
     language: LanguageType,
     languageOptions: LanguageOptions[],
-    movieGenres: GenreType[]
-    tvGenres: GenreType[]
+    movieGenres: GenreType[],
+    tvGenres: GenreType[],
+    mediaType: string | null
+    showModal: boolean
 }
 
 const INITIAL_STATE: INITIAL_STATE_TYPE = {
@@ -66,7 +68,9 @@ const INITIAL_STATE: INITIAL_STATE_TYPE = {
         {id: "10767", name: "Talk"},
         {id: "10768", name: "Guerre & Politique"},
         {id: "37", name: "Western"}
-    ]
+    ],
+    mediaType: null,
+    showModal: false
 }
 
 const utilsReducer = (state = INITIAL_STATE, action) => {
@@ -108,6 +112,26 @@ const utilsReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 tvGenres: action.payload
+            }
+        case UtilsActionTypes.MEDIA_TYPE:
+            return {
+                ...state,
+                mediaType: action.payload
+            }
+        case UtilsActionTypes.RESET_MEDIA_TYPE:
+            return {
+                ...state,
+                mediaType: null
+            }
+        case UtilsActionTypes.SHOW_MODAL:
+            return {
+                ...state,
+                showModal: true
+            }
+        case UtilsActionTypes.RESET_SHOW_MODAL:
+            return {
+                ...state,
+                showModal: false
             }
         default:
             return state;

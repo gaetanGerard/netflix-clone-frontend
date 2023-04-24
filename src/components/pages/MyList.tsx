@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 // Import Utils
 import { itemInMyList } from '../../utils/function';
 
 // Import Redux
-import { setApplicationLanguage } from '../../redux/utils/utils.actions';
+import { setApplicationLanguage, resetShowModal } from '../../redux/utils/utils.actions';
 import { RootState } from "../../redux/root-reducer";
 
 // Import Data
@@ -20,6 +20,7 @@ import Header from '../ui/Header';
 import Footer from '../ui/Footer';
 import ItemCard from '../ui/ItemCard';
 import Typography from '../ui/Typography';
+import Modal from "../ui/Modal";
 
 type Props = {}
 
@@ -29,16 +30,38 @@ const MyList = (props: Props) => {
   const lang = useSelector((state: RootState) => state.utils.language);
   const options = useSelector((state: RootState) => state.utils.languageOptions);
   const p = useSelector((state: RootState) => state.profile.profile);
+  const movie = useSelector((state: RootState) => state.movies.movie);
+  const movieCast = useSelector((state: RootState) => state.movies.movieCast);
+  const tv = useSelector((state: RootState) => state.series.series);
+  const mediaType = useSelector((state: RootState) => state.utils.mediaType);
+  const showModal = useSelector((state: RootState) => state.utils.showModal);
+  const [content, setContent] = useState(null)
+  const [isInMyList, setIsInMyList] = useState(false)
 
   const changeLanguage = (e: any) => {
     dispatch(setApplicationLanguage(e.target.value))
 }
+
+useEffect(() => {
+  if(mediaType === "movie") {
+      setContent(movie)
+  } else if (mediaType === "tv") {
+      setContent(tv)
+  }
+}, [mediaType, movie, tv])
+
+useEffect(() => {
+  if(content) {
+      setIsInMyList(itemInMyList(p.profile.my_list, content))
+  }
+}, [content, p.profile.my_list])
 
 if(p) {
 
     return (
       <div className="home-container no-featuredListItem">
           <Header />
+          {showModal && <Modal onClose={() => dispatch(resetShowModal())} mediaType={mediaType} content={mediaType === "movie" ? movie : tv} movieCredits={mediaType === "movie" ? movieCast : null} isInMyList={isInMyList} />}
           <div className="myList-body-container">
             <Typography HTMLElement="h2" classname="title">My List</Typography>
             <div className="card-container">
