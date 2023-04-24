@@ -231,6 +231,7 @@
     }
     &.scrolled {
         background-color: $profile-bg;
+        z-index: 2000;
     }
 }
 

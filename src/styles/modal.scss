@@ -3,13 +3,13 @@
 
 .modal {
     position: fixed;
-    top: 5%;
+    top: 8%;
     left: 50%;
     transform: translateX(-50%);
     background-color: $profile-bg;
     max-width: 850px;
     width: 100%;
-    z-index: 999;
+    z-index: 1001;
     display: flex;
     justify-content: center;
     align-items: center;

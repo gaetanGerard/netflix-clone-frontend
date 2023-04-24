@@ -110,7 +110,6 @@ const Header = (props: Props) => {
                                 <button className="btn" onClick={() => setSearchBtn(true)}><SearchIcon classname="header-icons" /></button>
                             )}
                         </li>
-                        {p.profile.kid ? null : (<li><Link to="/home" state={{ profileName: kidProfile !== null ? kidProfile.p_name : null, profile: kidProfile }}>{headerLanguage.right.kids} </Link></li>)}
                         {p.profile.kid ? null : (
                             <li className="dropdown-btn notifications-header">
                                 <Notification classname="header-icons" />
