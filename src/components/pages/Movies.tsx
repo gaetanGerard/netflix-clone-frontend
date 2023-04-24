@@ -41,7 +41,6 @@ const Movies = (props: Props) => {
     const dispatch = useDispatch();
     const profile = location.state;
     const p = useSelector((state: RootState) => state.profile.profile);
-    const discoveredMovies = useSelector((state: RootState) => state.movies.discoverMovies);
     const lang = useSelector((state: RootState) => state.utils.language);
     const language = p ? p.profile.language : lang;
     const options = useSelector((state: RootState) => state.utils.languageOptions);
@@ -54,7 +53,6 @@ const Movies = (props: Props) => {
     const upcomingMovies = useSelector((state: RootState) => state.movies.upcomingMovies);
     const topRatedMovies = useSelector((state: RootState) => state.movies.topRatedMovies);
     const tv = useSelector((state: RootState) => state.series.series);
-    const [myList, setMyList] = useState(null)
     const [content, setContent] = useState(null)
     const [isInMyList, setIsInMyList] = useState(false);
     const [discoverVariables, setDiscoverVariables] = useState({
@@ -81,10 +79,12 @@ const Movies = (props: Props) => {
 
         // eslint-disable-next-line react-hooks/rules-of-hooks
         useEffect(() => {
-            setDiscoverResults((prevResults) => ({
-                ...prevResults,
-                [key]: { data: result.data.getDiscover, loading: result.loading, error: result.error },
-            }));
+            if(result.data) {
+                setDiscoverResults((prevResults) => ({
+                    ...prevResults,
+                    [key]: { data: result.data.getDiscover, loading: result.loading, error: result.error },
+                }));
+            }
         }, [key, result.data, result.error, result.loading])
 
         return result;
@@ -96,8 +96,6 @@ const Movies = (props: Props) => {
     const { data: scienceFictionResult, refetch: scienceFictionRefetch } = fetchDiscoverMovies('scienceFiction');
     const { data: fantasyResult, refetch: fantasyRefetch } = fetchDiscoverMovies('fantasy');
     const { data: actionResult, refetch: actionRefetch } = fetchDiscoverMovies('action');
-
-    // console.log(discoverResults)
 
     const getSimilarMovie = useQuery(GET_SIMILAR_MOVIE, {
     variables: {
@@ -167,10 +165,6 @@ const Movies = (props: Props) => {
     }
 
     useEffect(() => {
-    if(discoveredMovies) setMyList(discoveredMovies.results);
-    }, [p, discoveredMovies])
-
-    useEffect(() => {
         if(content) {
             setIsInMyList(itemInMyList(p.profile.my_list, content))
         }
@@ -203,12 +197,12 @@ const Movies = (props: Props) => {
     }, [dispatch, getTopRatedMovies.data, getTopRatedMovies.data?.getUpcomTopRatedPopuNowPlaying, showModal])
 
 
-  if(p && myList) {
+  if(p) {
     return (
         <div className="home-container">
             <Header />
             {showModal && <Modal onClose={() => dispatch(resetShowModal())} mediaType={mediaType} content={mediaType === "movie" ? movie : tv} movieCredits={mediaType === "movie" ? movieCast : null} isInMyList={isInMyList} />}
-            <FeaturedListItem myList={p.profile.my_list.length > 0 ? p.profile.my_list : myList} />
+            <FeaturedListItem myList={p.profile.my_list.length > 0 ? p.profile.my_list : movie} />
             <Slider items={p.profile.my_list} sliderTitle="Ma Liste" position={1} />
             {discoverResults.default.data ? (<Slider items={discoverResults.default.data.results} sliderTitle="Prisés des abonnés qui partagent vos goûts" position={2} />) : (<div>Loading...</div>)}
             {discoverResults.comedy.data ? (<Slider items={discoverResults.comedy.data.results} sliderTitle="Comédies palpitantes" position={3} />) : (<div>Loading...</div>)}
