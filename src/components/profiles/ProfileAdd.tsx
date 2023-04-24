@@ -62,7 +62,7 @@ useEffect(() => {
 const onClick = () => {
   const newData = {
     p_name: profileName,
-    kid: profileKid,
+    kid: false,
     language: language.iso,
     profile_pic: picNum,
     autoplay_next_episode: true,
@@ -97,10 +97,10 @@ useEffect(() => {
             <img className="profile_pic" src={profile_pic[picNum]} alt="Profile"/>
           </div>
           <InputText fieldName="profile-name" type="text" name="pName"   onChange={onChange} label={appLang.add_profile.input_name} />
-          <div className="kid-checkbox">
+          {/* <div className="kid-checkbox">
             <input type="checkbox" name="profileKid" id="kid" onChange={onChange} title={appLang.add_profile.checkbox_helper_text} />
             <label htmlFor='kid'>{appLang.add_profile.checkbox_kid}?</label>
-          </div>
+          </div> */}
         </div>
         <div className="content-add-footer">
           <Button btnType="submit" classname="btn btn-add-continue" onclick={onClick} disabled={disabled}>{appLang.add_profile.btn_continue}</Button>

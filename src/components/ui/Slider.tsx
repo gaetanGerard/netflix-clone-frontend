@@ -39,6 +39,7 @@ interface ISliderProps {
 const Slider: React.FC<ISliderProps> = ({ items, sliderTitle, position }) => {
     const p = useSelector((state: RootState) => state.profile.profile);
     const [currentIndex, setCurrentIndex] = useState(0);
+    // console.log(items)
     const newList = items.filter((item) => item.poster_path || item.backdrop_path)
 
     const handlePrevClick = () => {

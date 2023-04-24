@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql  } from '@apollo/client';
 
 export const LOGIN_USER = gql`
     query Query($email: String!, $password: String!) {
@@ -87,43 +87,28 @@ export const GET_USER = gql`
 `;
 
 export const DISCOVERS = gql `
-  query GetDiscover($media: String, $language: String, $kid: Boolean, $sortBy: String, $page: Int, $originalLanguage: String) {
-    getDiscover(media: $media, language: $language, kid: $kid, sortBy: $sortBy, page: $page, originalLanguage: $originalLanguage) {
+  query GetDiscover($media: String, $language: String, $kid: Boolean, $sortBy: String, $page: Int, $originalLanguage: String, $withGenre: String) {
+    getDiscover(media: $media, language: $language, kid: $kid, sortBy: $sortBy, page: $page, originalLanguage: $originalLanguage, withGenre: $withGenre) {
       page
       results {
         __typename
         ... on MoviesDiscover {
           id
-          adult
           backdrop_path
           genre_ids
-          original_language
-          original_title
           overview
-          popularity
           poster_path
           release_date
           title
-          video
-          vote_average
-          vote_count
-          media_type
         }
         ... on TVDiscover {
           id
           poster_path
-          popularity
           backdrop_path
-          vote_average
           overview
           first_air_date
-          origin_country
           genre_ids
-          original_language
-          vote_count
           name
-          original_name
-          media_type
         }
       }
       total_pages
