@@ -53,6 +53,7 @@ const ItemCard = ({item, itemID, isInMyList}: Props) => {
     const movie = useSelector((state: RootState) => state.movies.movie);
     const movieCast = useSelector((state: RootState) => state.movies.movieCast);
     const tv = useSelector((state: RootState) => state.series.series);
+    const mediaType = useSelector((state: RootState) => state.utils.mediaType);
     const [lastInRow, setLastInRow] = useState(false)
     const [windowSize, setWindowSize] = useState(window.innerWidth - 100);
     const [itemsPerRow, setItemsPerRow] = useState(Math.floor(windowSize / 235));
@@ -86,11 +87,11 @@ const ItemCard = ({item, itemID, isInMyList}: Props) => {
     }
 
     const handleClick = (item) => {
-        if(item.media_type === "movie") {
+        if(item.title) {
             getMovie({variables: {getMovieId: item.id, language: appLang.iso}})
             getMovieCredit({variables: {getCreditsId: item.id, language: appLang.iso}})
             dispatch(setMediaType("movie"))
-        } else if(item.media_type === "tv") {
+        } else if(item.name) {
             getTv({variables: {getSerieId: item.id, language: appLang.iso, appendToResponse: "credits"}})
             dispatch(setMediaType("tv"))
         } else {
@@ -112,7 +113,6 @@ const ItemCard = ({item, itemID, isInMyList}: Props) => {
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [resultGetMovie.data, resultGetMovie.data?.getMovie, resultGetMovieCredit.data, resultGetMovieCredit.data?.getCredits, resultGetTv.data, resultGetTv.data?.getSerie, dispatch, refresh])
-
 
   return (
     <Fragment>

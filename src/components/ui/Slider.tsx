@@ -39,6 +39,7 @@ interface ISliderProps {
 const Slider: React.FC<ISliderProps> = ({ items, sliderTitle, position }) => {
     const p = useSelector((state: RootState) => state.profile.profile);
     const [currentIndex, setCurrentIndex] = useState(0);
+    const newList = items.filter((item) => item.poster_path || item.backdrop_path)
 
     const handlePrevClick = () => {
         if (currentIndex === 0) {
@@ -60,7 +61,7 @@ const Slider: React.FC<ISliderProps> = ({ items, sliderTitle, position }) => {
         <div className={`slider-container slider-position-${position}`}>
             <Typography HTMLElement="h2" classname="slider-title">{sliderTitle}</Typography>
             <div className="slider-wrapper" style={{ transform: `translateX(-${currentIndex * 225}px)` }}>
-                {items.map((item, index=1) => (
+                {newList.map((item, index=1) => (
                 <div key={index} className="slider-item">
                     <ItemCard key={item.id} item={item} itemID={index++} isInMyList={itemInMyList(p.profile.my_list, item)} />
                 </div>

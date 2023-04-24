@@ -1,19 +1,25 @@
 import { MoviesActionTypes } from './movies.types';
 import { DISCOVER } from '../../types/discoverTypes';
-import { MOVIE, MOVIE_CREDIT, MORELIKETHISMOVIE } from '../../types/moviesTypes';
+import { MOVIE, MOVIE_CREDIT, MORELIKETHISMOVIE, UPCOMINGMOVIES } from '../../types/moviesTypes';
 
 type INITIAL_STATE_TYPE = {
     discoverMovies: DISCOVER | null,
     movie: MOVIE | null,
     movieCast: MOVIE_CREDIT | null,
-    moreLikeThisMovie: MORELIKETHISMOVIE | null
+    moreLikeThisMovie: MORELIKETHISMOVIE | null,
+    trendingMovies: MORELIKETHISMOVIE | null,
+    upcomingMovies: UPCOMINGMOVIES | null,
+    topRatedMovies: MORELIKETHISMOVIE | null
 }
 
 const INITIAL_STATE: INITIAL_STATE_TYPE = {
     discoverMovies: null,
     movie: null,
     movieCast: null,
-    moreLikeThisMovie: null
+    moreLikeThisMovie: null,
+    trendingMovies: null,
+    upcomingMovies: null,
+    topRatedMovies: null
 }
 
 const moviesReducer = (state = INITIAL_STATE, action) => {
@@ -44,13 +50,27 @@ const moviesReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 moreLikeThisMovie: action.payload
             }
+        case MoviesActionTypes.TRENDING_MOVIES:
+            return {
+                ...state,
+                trendingMovies: action.payload
+            }
+        case MoviesActionTypes.UPCOMING_MOVIES:
+            return {
+                ...state,
+                upcomingMovies: action.payload
+            }
+        case MoviesActionTypes.TOP_RATED_MOVIES:
+            return {
+                ...state,
+                topRatedMovies: action.payload
+            }
         case MoviesActionTypes.RESET_MOVIE_STORE:
             return {
                 ...state,
                 discoverMovies: null,
                 movie: null,
-                movieCast: null,
-                moreLikeThisMovie: null
+                movieCast: null
             }
         default:
             return state;

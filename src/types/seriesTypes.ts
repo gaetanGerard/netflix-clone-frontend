@@ -86,6 +86,7 @@ type ResultMoreLikeThis = {
     poster_path: string
     backdrop_path: string
     overview: string
+    genre_ids: number[]
 }
 
 export type MORELIKETHISTV = {

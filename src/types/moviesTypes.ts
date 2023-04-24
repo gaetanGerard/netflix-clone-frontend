@@ -35,6 +35,7 @@ type CollectionPart = {
     media_type: string,
     id: string,
     vote_average: number,
+    genre_ids?: number[],
 }
 
 
@@ -63,6 +64,11 @@ type Crew = {
     department: string
 }
 
+type Date = {
+    maximum: string,
+    minimum: string
+}
+
 export type MOVIE_CREDIT = {
     cast: Cast[],
     crew: Crew[]
@@ -73,4 +79,12 @@ export type MORELIKETHISMOVIE = {
     results: CollectionPart[],
     total_pages: number,
     total_results: number
+}
+
+export type UPCOMINGMOVIES  = {
+    page: number,
+    results: CollectionPart[],
+    total_pages: number,
+    total_results: number,
+    dates: Date
 }

@@ -7,13 +7,17 @@ type INITIAL_STATE_TYPE = {
     series: SERIES | null,
     season: SEASON| null,
     moreLikeThisTv: MORELIKETHISTV | null
+    trendingTv: MORELIKETHISTV | null,
+    topRatedTv: MORELIKETHISTV | null
 }
 
 const INITIAL_STATE: INITIAL_STATE_TYPE = {
     discoverSeries: null,
     series: null,
     season: null,
-    moreLikeThisTv: null
+    moreLikeThisTv: null,
+    trendingTv: null,
+    topRatedTv: null
 }
 
 const seriesReducer = (state = INITIAL_STATE, action) => {
@@ -44,13 +48,22 @@ const seriesReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 moreLikeThisTv: action.payload
             }
+        case SeriesActionTypes.GET_TRENDING_TV:
+            return {
+                ...state,
+                trendingTv: action.payload
+            }
+        case SeriesActionTypes.GET_TOP_RATED_TV:
+            return {
+                ...state,
+                topRatedTv: action.payload
+            }
         case SeriesActionTypes.RESET_TV_STORE:
             return {
                 ...state,
                 discoverSeries: null,
                 series: null,
-                season: null,
-                moreLikeThisTv: null
+                season: null
             }
         default:
             return state;

@@ -29,6 +29,20 @@ export const get_similar_tv = (data) => {
     })
 }
 
+export const get_trending_tv = (data) => {
+    return ({
+        type: SeriesActionTypes.GET_TRENDING_TV,
+        payload: data.getTrending
+    })
+}
+
+export const get_top_rated_tv = (data) => {
+    return ({
+        type: SeriesActionTypes.GET_TOP_RATED_TV,
+        payload: data.getUpcomTopRatedPopuNowPlayingTV
+    })
+}
+
 export const reset_tv_store = () => {
     return ({
         type: SeriesActionTypes.RESET_TV_STORE

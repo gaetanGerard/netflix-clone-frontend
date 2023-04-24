@@ -256,6 +256,7 @@ export const GET_SIMILAR_MOVIE = gql`
             poster_path
             release_date
             title
+            genre_ids
           }
         }
         page
@@ -277,9 +278,127 @@ export const GET_SIMILAR_TV = gql`
         name
         overview
         poster_path
+        genre_ids
       }
       total_pages
       total_results
+    }
+  }
+`;
+
+export const TRENDING_MOVIE = gql `
+  query GetTrending($mediaType: String!, $timeWindow: String!, $language: String, $page: String) {
+    getTrending(mediaType: $mediaType, timeWindow: $timeWindow, language: $language, page: $page) {
+      page
+      total_pages
+      total_results
+      results {
+        __typename
+        ... on MoviesDiscover {
+          backdrop_path
+          genre_ids
+          id
+          media_type
+          poster_path
+          release_date
+          title
+        }
+      }
+    }
+  }
+`;
+
+export const TRENDING_TV = gql `
+  query GetTrending($mediaType: String!, $timeWindow: String!, $language: String, $page: String) {
+  getTrending(mediaType: $mediaType, timeWindow: $timeWindow, language: $language, page: $page) {
+    page
+    total_pages
+    total_results
+    results {
+      __typename
+      ... on TVDiscover {
+        backdrop_path
+        first_air_date
+        genre_ids
+        id
+        name
+        overview
+        poster_path
+      }
+    }
+  }
+}
+`;
+
+export const UPCOMING_MOVIES = gql`
+  query GetUpcomTopRatedPopuNowPlaying($whatToTarget: String, $language: String, $page: String) {
+    getUpcomTopRatedPopuNowPlaying(whatToTarget: $whatToTarget, language: $language, page: $page) {
+      ... on ResultWithDate {
+        __typename
+        page
+        results {
+          __typename
+          ... on MoviesDiscover {
+            backdrop_path
+            genre_ids
+            id
+            poster_path
+            overview
+            title
+            release_date
+          }
+        }
+        dates {
+          maximum
+          minimum
+        }
+        total_pages
+        total_results
+      }
+    }
+  }
+`;
+
+export const TOP_RATED_TV = gql`
+  query GetUpcomTopRatedPopuNowPlayingTV($whatToTarget: String, $language: String, $page: String) {
+    getUpcomTopRatedPopuNowPlayingTV(whatToTarget: $whatToTarget, language: $language, page: $page) {
+      page
+      total_pages
+      total_results
+      results {
+        backdrop_path
+        first_air_date
+        genre_ids
+        id
+        name
+        overview
+        poster_path
+      }
+    }
+  }
+`;
+
+export const TOP_RATED_MOVIES = gql`
+  query GetUpcomTopRatedPopuNowPlaying($whatToTarget: String, $language: String, $page: String) {
+    getUpcomTopRatedPopuNowPlaying(whatToTarget: $whatToTarget, language: $language, page: $page) {
+      ... on Discover {
+        __typename
+        page
+        total_pages
+        total_results
+        results {
+          __typename
+          ... on MoviesDiscover {
+            backdrop_path
+            genre_ids
+            id
+            overview
+            poster_path
+            release_date
+            title
+          }
+        }
+      }
     }
   }
 `;

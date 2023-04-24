@@ -29,6 +29,27 @@ export const get_similar_movies = (data) => {
     })
 }
 
+export const get_trending_movies = (data) => {
+    return ({
+        type: MoviesActionTypes.TRENDING_MOVIES,
+        payload: data.getTrending
+    })
+}
+
+export const get_upcoming_movies = (data) => {
+    return ({
+        type: MoviesActionTypes.UPCOMING_MOVIES,
+        payload: data.getUpcomTopRatedPopuNowPlaying
+    })
+}
+
+export const get_top_rated_movies = (data) => {
+    return ({
+        type: MoviesActionTypes.TOP_RATED_MOVIES,
+        payload: data.getUpcomTopRatedPopuNowPlaying
+    })
+}
+
 export const reset_movie_store = () => {
     return ({
         type: MoviesActionTypes.RESET_MOVIE_STORE

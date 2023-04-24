@@ -309,6 +309,15 @@ const Modal = ({ onClose, content, movieCredits, mediaType, isInMyList }) => {
                   </select>
                 </div>
                 ) : null : null}
+                {content.seasons === null ? content.number_of_seasons > 1 ? (
+                <div className="modal-episodes-header-right">
+                  <select value={seasonNumber} onChange={handleChange}>
+                    {Array.from({ length: content.number_of_seasons }, (_, index) => (
+                      <option key={index} value={index + 1}>Saison {index + 1}</option>
+                    ))}
+                  </select>
+                </div>
+                ) : null : null}
               </div>
               <div className="modal-episodes-list" title="Its a Demo and and no episode will start">
                   {season !== null ? season.episodes.slice(0, visibleEpisodes).map((episode) => (
@@ -341,10 +350,6 @@ const Modal = ({ onClose, content, movieCredits, mediaType, isInMyList }) => {
               <div className="short-card-container">
                 {similar && similar.length >  0 ? similar.map((item, index) => (<ShortCard data={item} mediaType={mediaType} key={index} inMyList={handleIsInMyList} handleResetState={handleResetState} />)) : null}
               </div>
-              {/*
-                This should be a list of card base on the genre of the movie or serie (the list should be limited to 10 items)
-                every card should have a button to add on my-list
-              */}
             </div>
           ) : null}
           <div className="modal-about">

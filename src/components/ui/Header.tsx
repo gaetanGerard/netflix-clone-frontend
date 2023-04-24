@@ -95,7 +95,6 @@ const Header = (props: Props) => {
                         <li><NavLink to="/home" className={({ isActive }) => isActive ? 'active' : ''}>{headerLanguage.left[0]}</NavLink></li>
                         <li><NavLink to="/tv" className={({ isActive }) => isActive ? 'active' : ''}>{headerLanguage.left[1]}</NavLink></li>
                         <li><NavLink to="/movies" className={({ isActive }) => isActive ? 'active' : ''}>{headerLanguage.left[2]}</NavLink></li>
-                        <li><NavLink to="/new-and-popular" className={({ isActive }) => isActive ? 'active' : ''}>{headerLanguage.left[3]}</NavLink></li>
                         <li><NavLink to="/my-list" className={({ isActive }) => isActive ? 'active' : ''}>{headerLanguage.left[4]}</NavLink></li>
                     </ul>
                     <ul className="navigation-items">
