@@ -124,9 +124,7 @@ const Home: FC = (): JSX.Element => {
                 <Header />
                 {showModal && <Modal onClose={() => dispatch(resetShowModal())} mediaType={mediaType} content={mediaType === "movie" ? movie : tv} movieCredits={mediaType === "movie" ? movieCast : null} isInMyList={isInMyList} />}
                 <FeaturedListItem myList={p.profile.my_list.length > 0 ? p.profile.my_list : myList} />
-                <div className="slider-list-container">
-                    <Slider items={p.profile.my_list} />
-                </div>
+                <Slider items={p.profile.my_list} sliderTitle="Ma Liste" />
                 <Footer data={footerData[appLang.iso]} options={options} language={appLang.iso} changeLanguage={changeLanguage} />
             </div>
         )

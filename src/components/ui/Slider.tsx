@@ -6,6 +6,8 @@ import { RootState } from "../../redux/root-reducer";
 
 // Import Custom Components
 import ItemCard from './ItemCard';
+import Typography from './Typography';
+import Chevron from './icons/Chevron';
 
 // Import Styles
 import '../../styles/slider.scss';
@@ -30,9 +32,10 @@ type CardItem = {
 
 interface ISliderProps {
   items: Array<CardItem>;
+  sliderTitle: string;
 }
 
-const Slider: React.FC<ISliderProps> = ({ items }) => {
+const Slider: React.FC<ISliderProps> = ({ items, sliderTitle }) => {
     const p = useSelector((state: RootState) => state.profile.profile);
     const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -54,19 +57,20 @@ const Slider: React.FC<ISliderProps> = ({ items }) => {
 
     return (
         <div className="slider-container">
-        <div className="slider-wrapper" style={{ transform: `translateX(-${currentIndex * 225}px)` }}>
-            {items.map((item, index=1) => (
-            <div key={index} className="slider-item">
-                <ItemCard key={item.id} item={item} itemID={index++} isInMyList={itemInMyList(p.profile.my_list, item)} />
+            <Typography HTMLElement="h2" classname="slider-title">{sliderTitle}</Typography>
+            <div className="slider-wrapper" style={{ transform: `translateX(-${currentIndex * 225}px)` }}>
+                {items.map((item, index=1) => (
+                <div key={index} className="slider-item">
+                    <ItemCard key={item.id} item={item} itemID={index++} isInMyList={itemInMyList(p.profile.my_list, item)} />
+                </div>
+                ))}
             </div>
-            ))}
-        </div>
-        <button className="slider-button slider-button-prev" onClick={handlePrevClick}>
-            &lt;
-        </button>
-        <button className="slider-button slider-button-next" onClick={handleNextClick}>
-            &gt;
-        </button>
+            <button className="slider-button slider-button-prev" onClick={handlePrevClick}>
+                <Chevron classname="icon" />
+            </button>
+            <button className="slider-button slider-button-next" onClick={handleNextClick}>
+                <Chevron classname="icon" />
+            </button>
         </div>
     );
 };

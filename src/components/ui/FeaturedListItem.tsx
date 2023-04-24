@@ -110,7 +110,6 @@ const FeaturedListItem = ({myList}: Props) => {
                     <div className="featured-list-item-maturity-rating">
                         <MaturityRating classname="maturity-rating-icon" />
                     </div>
-                    <div className="gradient"></div>
                 </div>
             </Fragment>
         )
