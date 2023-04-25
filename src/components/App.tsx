@@ -26,6 +26,7 @@ import Tvs from "./pages/Tvs";
 import Movies from "./pages/Movies";
 import NewAndPopular from './pages/NewAndPopular';
 import MyList from './pages/MyList';
+import SearchResult from './pages/SearchResult';
 
 // Import Style
 import '../styles/App.scss';
@@ -78,6 +79,7 @@ const App: FC = (): JSX.Element => {
         <Route path="/movies" element={<RequiredAuth><Movies /></RequiredAuth>} />
         <Route path="/new-and-popular" element={<RequiredAuth><NewAndPopular /></RequiredAuth>} />
         <Route path="/my-list" element={<RequiredAuth><MyList /></RequiredAuth>} />
+        <Route path="/search" element={<RequiredAuth><SearchResult /></RequiredAuth>} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>

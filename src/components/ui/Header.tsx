@@ -1,6 +1,8 @@
+/* eslint-disable @typescript-eslint/no-use-before-define */
 import React, { useEffect, useState } from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { useLazyQuery } from "@apollo/client";
 
 // Import Styles
 import '../../styles/header.scss';
@@ -20,7 +22,7 @@ import { profile_pic } from "../../utils/images";
 
 // Import redux
 import { RootState } from "../../redux/root-reducer";
-import { setApplicationLanguage } from '../../redux/utils/utils.actions';
+import { setApplicationLanguage, setSearchResult, setSearchQuery } from '../../redux/utils/utils.actions';
 
 // Import Types
 import { Profile } from '../../types/userTypes';
@@ -28,12 +30,16 @@ import { Profile } from '../../types/userTypes';
 // Import data
 import headerData from '../../data/header.json';
 
+// Import Utils
+import { MULTI_SEARCH } from '../../utils/query';
+
 
 
 type Props = {}
 
 const Header = (props: Props) => {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [scrolled, setScrolled] = useState<boolean>(false);
     const [searchBtn, setSearchBtn] = useState<boolean>(false);
     const [kidProfile, setKidProfile] = useState<Profile|null>(null);
@@ -43,6 +49,7 @@ const Header = (props: Props) => {
     const u = useSelector((state: RootState) => state.auth.user);
     const l = useSelector((state: RootState) => state.utils.language);
     const [headerLanguage, setHeaderLanguage] = useState<any>(headerData[l.iso]);
+    let timeoutId;
 
     const changeBackground: () => void = () => {
         if(window.scrollY > 66) {
@@ -52,6 +59,10 @@ const Header = (props: Props) => {
             setScrolled(false);
         }
     }
+
+    const [performSearch, { loading, data }] = useLazyQuery(MULTI_SEARCH, {
+        variables: { query: searchInput, language: p.profile.language, page: "1" },
+      });
 
     useEffect(() => {
         if(p) dispatch(setApplicationLanguage(p.profile.language))
@@ -86,6 +97,28 @@ const Header = (props: Props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [u, kidProfile, p, searchBtn])
 
+    const handleSearch = (event) => {
+        clearTimeout(timeoutId);
+        const newSearchTerm = event.target.value;
+        setSearchInput(newSearchTerm);
+        timeoutId = setTimeout(() => {
+            performSearch();
+            // if(data) dispatch(setSearchResult(data.getSearchMulti))
+            // navigate('/search');
+        }, 2000);
+    }
+
+    useEffect(() => {
+        if(data && searchInput.length > 0) {
+            dispatch(setSearchResult(data.getSearchMulti))
+            dispatch(setSearchQuery(searchInput))
+            // eslint-disable-next-line react-hooks/exhaustive-deps
+            timeoutId = setTimeout(() => {
+                navigate('/search')
+            }, 2000)
+        }
+    }, [data, dispatch, searchInput])
+
     if(p) {
         return (
             <div className={scrolled ? "header-container scrolled" : "header-container"}>
@@ -102,7 +135,7 @@ const Header = (props: Props) => {
                             { searchBtn ? (
                                 <div className="search-box">
                                     <SearchIcon classname="header-icons" />
-                                    <input type="text" placeholder={headerLanguage.right.searchInput} autoFocus onBlur={() => {setSearchBtn(false); setSearchInput('')}} onChange={e => setSearchInput(e.target.value)} />
+                                    <input type="text" placeholder={headerLanguage.right.searchInput} autoFocus onBlur={() => {setSearchBtn(false)}} onChange={handleSearch} value={searchInput} />
                                 </div>
                             ) :
                             (

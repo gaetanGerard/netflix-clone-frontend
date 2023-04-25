@@ -132,8 +132,48 @@
             min-height: 750px;
             height: 750px;
             }
+    }
+
+    .pagination-container {
+        justify-self: center;
+        padding-bottom: 20px;
+        .btn-pagination {
+            background-color: transparent;
+            border: none;
+            font-size: $font-size-medium;
+            color: $white;
+            cursor: pointer;
+            transition: color $animation-duration ease-in-out;
+            position: relative;
+            z-index: 101;
+            .icon {
+                cursor: pointer;
+                transition: fill $animation-duration ease-in-out;
+                @include icon($size: $font-size-medium, $color: $white)
+            }
+            &.current-page {
+                color: $dark-red;
+                cursor: default;
+                &:hover {
+                    color: $dark-red;
+                }
+            }
+            &.btn-left {
+                transform: rotate(180deg);
+            }
+            &.btn-right {
+                transform: rotate(-180deg);
+            }
+            &:hover {
+                color: $dim-gray;
+                .icon {
+                    color: $dim-gray;
+                    fill: $dim-gray;
+                }
+            }
         }
     }
+}
 
 .no-featuredListItem {
     display: grid;

@@ -1,4 +1,5 @@
 import { UtilsActionTypes } from './utils.types';
+import { DISCOVER } from '../../types/discoverTypes';
 
 type LanguageType = {
     label: string,
@@ -20,8 +21,10 @@ type INITIAL_STATE_TYPE = {
     languageOptions: LanguageOptions[],
     movieGenres: GenreType[],
     tvGenres: GenreType[],
-    mediaType: string | null
-    showModal: boolean
+    mediaType: string | null,
+    showModal: boolean,
+    searchResult: DISCOVER | null,
+    searchQuery: string | null
 }
 
 const INITIAL_STATE: INITIAL_STATE_TYPE = {
@@ -70,7 +73,9 @@ const INITIAL_STATE: INITIAL_STATE_TYPE = {
         {id: "37", name: "Western"}
     ],
     mediaType: null,
-    showModal: false
+    showModal: false,
+    searchResult: null,
+    searchQuery: null
 }
 
 const utilsReducer = (state = INITIAL_STATE, action) => {
@@ -127,6 +132,21 @@ const utilsReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 showModal: true
+            }
+        case UtilsActionTypes.SEARCH_RESULT:
+            return {
+                ...state,
+                searchResult: action.payload
+            }
+        case UtilsActionTypes.SEARCH_QUERY:
+            return {
+                ...state,
+                searchQuery: action.payload
+            }
+        case UtilsActionTypes.RESET_SEARCH_RESULT:
+            return {
+                ...state,
+                searchResult: null
             }
         case UtilsActionTypes.RESET_SHOW_MODAL:
             return {

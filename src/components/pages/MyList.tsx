@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 // Import Utils
 import { itemInMyList } from '../../utils/function';
 
 // Import Redux
+import { selectProfile } from '../../redux/profile/profile.action';
 import { setApplicationLanguage, resetShowModal } from '../../redux/utils/utils.actions';
 import { RootState } from "../../redux/root-reducer";
 
@@ -26,6 +28,7 @@ type Props = {}
 
 const MyList = (props: Props) => {
   const dispatch = useDispatch()
+  const navigate = useNavigate();
   document.title = "My List - Netflix" //! to update when add language json
   const lang = useSelector((state: RootState) => state.utils.language);
   const options = useSelector((state: RootState) => state.utils.languageOptions);
@@ -37,6 +40,20 @@ const MyList = (props: Props) => {
   const showModal = useSelector((state: RootState) => state.utils.showModal);
   const [content, setContent] = useState(null)
   const [isInMyList, setIsInMyList] = useState(false)
+
+  if(p === null && localStorage.getItem('profileSave')) {
+    dispatch(selectProfile(JSON.parse(localStorage.getItem('profileSave') || '{}')));
+  } else if (p === null && localStorage.getItem('profileSave') === '{}') {
+      navigate("/profiles/browse");
+  }
+
+  if(p !== null) {
+    if (Object.entries(p).length > 0) {
+        localStorage.setItem('profileSave', JSON.stringify(p));
+    } else {
+        navigate("/profiles/browse");
+    }
+}
 
   const changeLanguage = (e: any) => {
     dispatch(setApplicationLanguage(e.target.value))
@@ -54,10 +71,9 @@ useEffect(() => {
   if(content) {
       setIsInMyList(itemInMyList(p.profile.my_list, content))
   }
-}, [content, p.profile.my_list])
+}, [content, p?.profile?.my_list])
 
 if(p) {
-
     return (
       <div className="home-container no-featuredListItem">
           <Header />

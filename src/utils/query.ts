@@ -388,6 +388,40 @@ export const TOP_RATED_MOVIES = gql`
   }
 `;
 
+export const MULTI_SEARCH = gql`
+  query GetSearchMulti($query: String!, $language: String, $page: String) {
+    getSearchMulti(query: $query, language: $language, page: $page) {
+      total_pages
+      total_results
+      page
+      results {
+        __typename
+        ... on TVDiscover {
+          id
+          poster_path
+          backdrop_path
+          overview
+          first_air_date
+          genre_ids
+          name
+          media_type
+        }
+        __typename
+        ... on MoviesDiscover {
+          id
+          backdrop_path
+          genre_ids
+          overview
+          poster_path
+          release_date
+          title
+          media_type
+        }
+      }
+    }
+  }
+`;
+
 export const GET_GENRES = gql`
   query GetGenres($media: String, $language: String) {
     getGenres(media: $media, language: $language) {

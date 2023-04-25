@@ -19,6 +19,20 @@ export const showModal = () => ({
     type: UtilsActionTypes.SHOW_MODAL
 })
 
+export const setSearchResult = (result) => ({
+    type: UtilsActionTypes.SEARCH_RESULT,
+    payload: result
+})
+
+export const setSearchQuery = (query) => ({
+    type: UtilsActionTypes.SEARCH_QUERY,
+    payload: query
+})
+
+export const resetSearchResult = () => ({
+    type: UtilsActionTypes.RESET_SEARCH_RESULT
+})
+
 export const resetShowModal = () => ({
     type: UtilsActionTypes.RESET_SHOW_MODAL
 })
