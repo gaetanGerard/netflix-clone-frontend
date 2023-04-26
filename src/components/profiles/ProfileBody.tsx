@@ -1,9 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from 'react-redux';
+import { useQuery } from "@apollo/client";
 
 // Import Custom Components
 import Add from "../ui/icons/Add";
 import Edit from "../ui/icons/Edit";
+
+// Import redux
+import { login } from '../../redux/auth/auth.actions';
+import { RootState } from "../../redux/root-reducer";
+
+// Import utils
+import { GET_USER } from '../../utils/query';
 
 // Import interfaces
 import { User } from '../../types/userTypes';
@@ -19,13 +28,28 @@ interface Props {
 }
 
 export default function ProfileBody(props: Props) {
-    if(props.user) {
+    const dispatch = useDispatch();
+    const u = useSelector((state: RootState) => state.auth.user);
+    const [user, setUser] = useState<User|null>(props.user ? u ? props.user : u : null);
+
+    const { loading, error, data } = useQuery(GET_USER, {errorPolicy: 'ignore'});
+
+    useEffect(() => {
+        if(props.user === undefined || props.user === null) {
+            if(data && !u && localStorage.getItem('token')) {
+                dispatch(login(data.getUser));
+                setUser(data.getUser);
+            };
+        }
+    }, [data, dispatch, props.user, u])
+
+    if(user) {
         return (
             <div className="profiles-content">
                 <h2>{props.appLang.title}</h2>
                 <div className="profiles-list"></div>
                 <div className="profiles-list">
-                    {props.user ? props.user.profiles.map((profile: any, index: number) => (
+                    {user ? user?.profiles?.map((profile: any, index: number) => (
                             <Link to={props.edit ? "/profiles/edit" : "/home"} state={{ profileName: profile.p_name, profile }} className="profile-item" key={`${profile.p_name}_${index++}`}>
                                 <div className={props.edit ? "profile_pic_container profile_pic_container_edit" : "profile_pic_container"}>
                                     {props.edit ? <Edit classname="svg-icon svg-icon-edit" /> : null}
