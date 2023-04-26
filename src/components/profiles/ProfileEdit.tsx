@@ -46,18 +46,18 @@ const ProfileEdit = () => {
     const [langProfile, setLangProfile] = useState<string|null>(null);
 
     const [deleteProfile, deletedProfile] = useMutation(REMOVE_PROFILE, { errorPolicy: 'all', refetchQueries: [{ query: GET_USER }], awaitRefetchQueries: true });
-    const [updateProfile, updatedProfile] = useMutation(UPDATE_PROFILE, { errorPolicy: 'all', refetchQueries: [{ query: GET_USER }], awaitRefetchQueries: true });
+    const [updateProfile] = useMutation(UPDATE_PROFILE);
     const getUser = useQuery(GET_USER, {errorPolicy: 'ignore'});
 
     if((profileName === undefined)|| (profileName === null)) {
         navigate('/profiles/manage');
     }
 
-    const currentProfile = u?.profiles.find((profile: Profile) => {
+    const currentProfile = u?.profiles?.find((profile: Profile) => {
         return profile.p_name === profileName;
     })!;
 
-    const indexOfProfile = u?.profiles.findIndex((profile: Profile) => {
+    const indexOfProfile = u?.profiles?.findIndex((profile: Profile) => {
         return profile.p_name === profileName;
     })!;
 
@@ -71,6 +71,7 @@ const ProfileEdit = () => {
       setLangProfile(e.target.value);
     }
 
+
     const onClick = () => {
       const newData = {
         p_name: newProfileName ? newProfileName : currentProfile.p_name,
@@ -81,7 +82,13 @@ const ProfileEdit = () => {
         autoplay_preview: autoPlayPreview !== null ? autoPlayPreview : currentProfile.autoplay_preview,
         my_list: currentProfile.my_list ? currentProfile.my_list : []
       }
-      updateProfile({ variables: { pName: currentProfile.p_name, profile: newData } });
+      // localStorage.setItem("profileSave", JSON.stringify(newData));
+      updateProfile({ variables: { pName: currentProfile.p_name, profile: newData } }).then(response => {
+        dispatch(login(response.data.updateProfile))
+        navigate("/profiles/manage");
+      }).catch(err => {
+        console.log(err)
+      });
     }
 
 
@@ -95,12 +102,7 @@ const ProfileEdit = () => {
         navigate("/profiles/manage");
         deletedProfile.reset();
       }
-      if(updatedProfile.data && !updatedProfile.loading) {
-        dispatch(login(updatedProfile.data.updateUser))
-        navigate("/profiles/manage");
-        updatedProfile.reset();
-      }
-    }, [deletedProfile, dispatch, navigate, getUser, updatedProfile])
+    }, [deletedProfile, dispatch, navigate, getUser])
 
 
   const currentProfileLanguage = currentProfile ? appLang.edit_profile.language.lang_array.find(item => item.iso === currentProfile.language) : null;

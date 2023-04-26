@@ -70,21 +70,23 @@ const Header = (props: Props) => {
         window.addEventListener("scroll", changeBackground);
 
         if(u) {
-            u.profiles.map(profile => {
-                if(profile.kid) {
-                    setKidProfile(profile);
-                }
-            })
+            // u?.profiles?.map(profile => {
+            //     if(profile.kid) {
+            //         setKidProfile(profile);
+            //     }
+            // })
 
             const newProfileArr:Profile[] = []
 
-            while(newProfileArr.length < 2) {
-                u.profiles.map(profile => {
-                    if(profile.p_name !== p.profileName) {
-                        newProfileArr.push(profile);
-                    };
-                })
-            }
+            // console.log(u)
+
+            // while(newProfileArr.length < 2) {
+            //     u?.profiles?.map(profile => {
+            //         if(profile.p_name !== p.profileName) {
+            //             newProfileArr.push(profile);
+            //         };
+            //     })
+            // }
 
             let limitedProfileArr = newProfileArr.slice(0, 2);
 
@@ -95,7 +97,7 @@ const Header = (props: Props) => {
         }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [u, kidProfile, p, searchBtn])
+    }, [u, u.profiles, kidProfile, p, searchBtn])
 
     const handleSearch = (event) => {
         clearTimeout(timeoutId);
