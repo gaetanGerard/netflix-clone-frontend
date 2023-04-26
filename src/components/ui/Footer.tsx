@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from 'react';
+import React, { ChangeEvent, useState, useEffect } from 'react';
 
 // Import Custom Components
 import Select from "./Select";
@@ -17,6 +17,16 @@ type FooterProps = {
 }
 
 const Footer = ({ data, options, language, changeLanguage }: FooterProps) => {
+    // if a profile is present so disable language select for change language base on profile instead
+    // otherwise no profile selected and so default app language take over
+    const [disableSelect, setDisableSelect] = useState<boolean>(false);
+
+    useEffect(() => {
+        if (localStorage.getItem('profileSave')) {
+            setDisableSelect(true);
+        }
+    }, [])
+
     return (
         <footer>
             <div className="site-footer">
@@ -30,7 +40,7 @@ const Footer = ({ data, options, language, changeLanguage }: FooterProps) => {
                         </div>
                     ))}
                 </div>
-                <Select options={options} name="language" selected={language} onchange={(e?: ChangeEvent<HTMLSelectElement>) => changeLanguage(e)} />
+                {disableSelect ? null : (<Select options={options} name="language" selected={language} onchange={(e?: ChangeEvent<HTMLSelectElement>) => changeLanguage(e)} />)}
             </div>
         </footer>
     )
