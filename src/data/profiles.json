@@ -1,239 +1,148 @@
 {
-    "fr-FR": {
-        "browse_profile": {
-            "title": "Qui regarde ?",
-            "btn_add": "Ajouter un Profile",
-            "btn_edit": "Gérer les Profiles"
-        },
-        "manage_profile": {
-            "title": "Gérer les profiles",
-            "btn_add": "Ajouter un profile",
-            "btn_complete": "Terminer"
-        },
-        "edit_profile": {
-            "title": "Modifier le profile",
-            "language": {
-                "title": "Langue",
-                "lang_array": [
-                    {"label": "Bahasa Indonesia", "iso": "id-ID"},
-                    {"label": "Bahasa Melayu", "iso": "ms-MS"},
-                    {"label": "Dansk", "iso": "da-DA"},
-                    {"label": "Deutsch", "iso": "de-DE"},
-                    {"label": "English", "iso": "en-US"},
-                    {"label": "Español", "iso": "es-ES"},
-                    {"label": "Français", "iso": "fr-FR"},
-                    {"label": "Hrvatski", "iso": "hr-HR"},
-                    {"label": "Italiano", "iso": "it-IT"},
-                    {"label": "Magyar", "iso": "hu-HU"},
-                    {"label": "Nederlands", "iso": "nl-BE"},
-                    {"label": "Norsk bokmål", "iso": "nb-NB"},
-                    {"label": "Polski", "iso": "pl-PL"},
-                    {"label": "Português", "iso": "prt-T"},
-                    {"label": "Română", "iso": "ro-RO"},
-                    {"label": "Suomi", "iso": "fi-FI"},
-                    {"label": "Svenska", "iso": "sv-SV"},
-                    {"label": "Tiếng Việt", "iso": "vi-VN"},
-                    {"label": "Türkçe", "iso": "tr-TR"},
-                    {"label": "Čeština", "iso": "cs-CS"},
-                    {"label": "Ελληνικά", "iso": "el-EL"},
-                    {"label": "Русский", "iso": "ru-RU"},
-                    {"label": "Українська", "iso": "uk-UK"},
-                    {"label": "עברית", "iso": "he-HE"},
-                    {"label": "العربية", "iso": "ar-AR"},
-                    {"label": "हिन्दी", "iso": "hi-HI"},
-                    {"label": "ไทย", "iso": "th-TH"},
-                    {"label": "中文", "iso": "zh-CN"},
-                    {"label": "日本語", "iso": "ja-JA"},
-                    {"label": "한국어", "iso": "ko-KO"}
-                ]
-            },
-            "maturity_settings": {
-                "title": "Paramètre de visionage",
-                "maturity": [
-                    "Tout public",
-                    "Adulte",
-                    "Enfant",
-                    "7+"
-                ],
-                "kid_content": "Afficher uniquement les titres notés 7+ et moins pour ce profil.",
-                "adults_content": "Afficher uniquement les titres notés Adulte et moins pour ce profil.",
-                "btn_edit": "Modifier"
-            },
-            "autoplay": {
-                "title": "Contrôle de lecture automatique",
-                "autoplay_next_episode": "Lire automatiquement le prochain épisode sur tout les appareils",
-                "autoplay_preview": "Lire automatiquement les bande annonce lors du parcours sur tout les appareils."
-            },
-            "btn_complete": "Enregistrer",
-            "btn_cancel": "Annuler",
-            "btn_delete": "Supprimer le profile"
-        },
-        "add_profile": {
-            "title": "Ajouter un Profile",
-            "content": "Ajouter un profile pour un autre utilisateur regardant Netflix.",
-            "input_name": "Nom",
-            "checkbox_kid": "Enfant",
-            "checkbox_helper_text": "Si sélectionner, ce profile ne pourra visionner seulement les titres notés 7+ et moins.",
-            "btn_continue": "Continuer",
-            "btn_cancel": "Annuler"
-        }
+  "fr-FR": {
+    "browse_profile": {
+      "title": "Qui regarde ?",
+      "btn_add": "Ajouter un Profile",
+      "btn_edit": "Gérer les Profiles"
     },
-    "en-US": {
-        "browse_profile": {
-            "title": "Who's watching?",
-            "btn_add": "Add Profile",
-            "btn_edit": "Manage Profiles"
-        },
-        "manage_profile": {
-            "title": "Manage Profiles",
-            "btn_add": "Add Profile",
-            "btn_complete": "Done"
-        },
-        "edit_profile": {
-            "title": "Edit profile",
-            "language": {
-                "title": "Language",
-                "lang_array": [
-                    {"label": "Bahasa Indonesia", "iso": "id-ID"},
-                    {"label": "Bahasa Melayu", "iso": "ms-MS"},
-                    {"label": "Dansk", "iso": "da-DA"},
-                    {"label": "Deutsch", "iso": "de-DE"},
-                    {"label": "English", "iso": "en-US"},
-                    {"label": "Español", "iso": "es-ES"},
-                    {"label": "Français", "iso": "fr-FR"},
-                    {"label": "Hrvatski", "iso": "hr-HR"},
-                    {"label": "Italiano", "iso": "it-IT"},
-                    {"label": "Magyar", "iso": "hu-HU"},
-                    {"label": "Nederlands", "iso": "nl-BE"},
-                    {"label": "Norsk bokmål", "iso": "nb-NB"},
-                    {"label": "Polski", "iso": "pl-PL"},
-                    {"label": "Português", "iso": "prt-T"},
-                    {"label": "Română", "iso": "ro-RO"},
-                    {"label": "Suomi", "iso": "fi-FI"},
-                    {"label": "Svenska", "iso": "sv-SV"},
-                    {"label": "Tiếng Việt", "iso": "vi-VN"},
-                    {"label": "Türkçe", "iso": "tr-TR"},
-                    {"label": "Čeština", "iso": "cs-CS"},
-                    {"label": "Ελληνικά", "iso": "el-EL"},
-                    {"label": "Русский", "iso": "ru-RU"},
-                    {"label": "Українська", "iso": "uk-UK"},
-                    {"label": "עברית", "iso": "he-HE"},
-                    {"label": "العربية", "iso": "ar-AR"},
-                    {"label": "हिन्दी", "iso": "hi-HI"},
-                    {"label": "ไทย", "iso": "th-TH"},
-                    {"label": "中文", "iso": "zh-CN"},
-                    {"label": "日本語", "iso": "ja-JA"},
-                    {"label": "한국어", "iso": "ko-KO"}
-                ]
-            },
-            "maturity_settings": {
-                "title": "Maturity Settings",
-                "maturity": [
-                    "All Maturity Ratings",
-                    "Adult",
-                    "Kid",
-                    "7+"
-                ],
-                "kid_content": "Only show rated 7+ and below for this profile.",
-                "adults_content": "Show titles of all maturity ratings for this profile.",
-                "btn_edit": "Edit"
-            },
-            "autoplay": {
-                "title": "Autoplay controls",
-                "autoplay_next_episode": "Autoplay next episode in a series on all devices.",
-                "autoplay_preview": "Autoplay previews while browsing on all devices."
-            },
-            "btn_complete": "Save",
-            "btn_cancel": "Cancel",
-            "btn_delete": "Delete Profile"
-        },
-        "add_profile": {
-            "title": "Add Profile",
-            "content": "Add a profile for another person watching Netflix.",
-            "input_name": "Name",
-            "checkbox_kid": "Kid",
-            "checkbox_helper_text": "If selected, this profile will only see TV shows and movies rated for ages 7+ and below.",
-            "btn_continue": "Continue",
-            "btn_cancel": "Cancel"
-        }
+    "manage_profile": {
+      "title": "Gérer les profiles",
+      "btn_add": "Ajouter un profile",
+      "btn_complete": "Terminer"
     },
-    "nl-BE": {
-        "browse_profile": {
-            "title": "Wie kijkt?",
-            "btn_add": "Geen profiel meer",
-            "btn_edit": "Profielen voor Gerer les"
-        },
-        "manage_profile": {
-            "title": "Profielen beheren",
-            "btn_add": "Profiel toevoegen",
-            "btn_complete": "Gedaan"
-        },
-        "edit_profile": {
-            "title": "Bewerk profiel",
-            "language": {
-                "title": "Taal",
-                "lang_array": [
-                    {"label": "Bahasa Indonesia", "iso": "id-ID"},
-                    {"label": "Bahasa Melayu", "iso": "ms-MS"},
-                    {"label": "Dansk", "iso": "da-DA"},
-                    {"label": "Deutsch", "iso": "de-DE"},
-                    {"label": "English", "iso": "en-US"},
-                    {"label": "Español", "iso": "es-ES"},
-                    {"label": "Français", "iso": "fr-FR"},
-                    {"label": "Hrvatski", "iso": "hr-HR"},
-                    {"label": "Italiano", "iso": "it-IT"},
-                    {"label": "Magyar", "iso": "hu-HU"},
-                    {"label": "Nederlands", "iso": "nl-BE"},
-                    {"label": "Norsk bokmål", "iso": "nb-NB"},
-                    {"label": "Polski", "iso": "pl-PL"},
-                    {"label": "Português", "iso": "prt-T"},
-                    {"label": "Română", "iso": "ro-RO"},
-                    {"label": "Suomi", "iso": "fi-FI"},
-                    {"label": "Svenska", "iso": "sv-SV"},
-                    {"label": "Tiếng Việt", "iso": "vi-VN"},
-                    {"label": "Türkçe", "iso": "tr-TR"},
-                    {"label": "Čeština", "iso": "cs-CS"},
-                    {"label": "Ελληνικά", "iso": "el-EL"},
-                    {"label": "Русский", "iso": "ru-RU"},
-                    {"label": "Українська", "iso": "uk-UK"},
-                    {"label": "עברית", "iso": "he-HE"},
-                    {"label": "العربية", "iso": "ar-AR"},
-                    {"label": "हिन्दी", "iso": "hi-HI"},
-                    {"label": "ไทย", "iso": "th-TH"},
-                    {"label": "中文", "iso": "zh-CN"},
-                    {"label": "日本語", "iso": "ja-JA"},
-                    {"label": "한국어", "iso": "ko-KO"}
-                ]
-            },
-            "maturity_settings": {
-                "title": "Volwassenheidsinstellingen",
-                "maturity": [
-                    "Alle volwassenheidsclassificaties",
-                    "Volwassen",
-                    "Kind",
-                    "7+"
-                ],
-                "kid_content": "Toon alleen beoordeeld 7+ en lager voor dit profiel.",
-                "adults_content": "Toon titels van alle leeftijdsclassificaties voor dit profiel.",
-                "btn_edit": "Bewerk"
-            },
-            "autoplay": {
-                "title": "Besturing voor automatisch afspelen",
-                "autoplay_next_episode": "Speel de volgende aflevering in een serie automatisch af op alle apparaten.",
-                "autoplay_preview": "Autoplay-voorbeelden tijdens het browsen op alle apparaten."
-            },
-            "btn_complete": "Sparen",
-            "btn_cancel": "Annuleren",
-            "btn_delete": "Verwijder profiel"
-        },
-        "add_profile": {
-            "title": "Profiel toevoegen",
-            "content": "Voeg een profiel toe voor een autre utilisateur met betrekking tot Netflix.",
-            "input_name": "naam",
-            "checkbox_kid": "Kind",
-            "checkbox_helper_text": "Indien geselecteerd, ziet dit profiel alleen tv-programma's en films die zijn geclassificeerd voor kinderen van 7 jaar en ouder.",
-            "btn_continue": "doorgaan",
-            "btn_cancel": "annuleren"
-        }
+    "edit_profile": {
+      "title": "Modifier le profile",
+      "language": {
+        "title": "Langue",
+        "lang_array": [
+          { "label": "English", "iso": "en-US" },
+          { "label": "Français", "iso": "fr-FR" },
+          { "label": "Nederlands", "iso": "nl-BE" }
+        ]
+      },
+      "maturity_settings": {
+        "title": "Paramètre de visionage",
+        "maturity": ["Tout public", "Adulte", "Enfant", "7+"],
+        "kid_content": "Afficher uniquement les titres notés 7+ et moins pour ce profil.",
+        "adults_content": "Afficher uniquement les titres notés Adulte et moins pour ce profil.",
+        "btn_edit": "Modifier"
+      },
+      "autoplay": {
+        "title": "Contrôle de lecture automatique",
+        "autoplay_next_episode": "Lire automatiquement le prochain épisode sur tout les appareils",
+        "autoplay_preview": "Lire automatiquement les bande annonce lors du parcours sur tout les appareils."
+      },
+      "btn_complete": "Enregistrer",
+      "btn_cancel": "Annuler",
+      "btn_delete": "Supprimer le profile"
+    },
+    "add_profile": {
+      "title": "Ajouter un Profile",
+      "content": "Ajouter un profile pour un autre utilisateur regardant Netflix.",
+      "input_name": "Nom",
+      "checkbox_kid": "Enfant",
+      "checkbox_helper_text": "Si sélectionner, ce profile ne pourra visionner seulement les titres notés 7+ et moins.",
+      "btn_continue": "Continuer",
+      "btn_cancel": "Annuler"
     }
+  },
+  "en-US": {
+    "browse_profile": {
+      "title": "Who's watching?",
+      "btn_add": "Add Profile",
+      "btn_edit": "Manage Profiles"
+    },
+    "manage_profile": {
+      "title": "Manage Profiles",
+      "btn_add": "Add Profile",
+      "btn_complete": "Done"
+    },
+    "edit_profile": {
+      "title": "Edit profile",
+      "language": {
+        "title": "Language",
+        "lang_array": [
+          { "label": "English", "iso": "en-US" },
+          { "label": "Français", "iso": "fr-FR" },
+          { "label": "Nederlands", "iso": "nl-BE" }
+        ]
+      },
+      "maturity_settings": {
+        "title": "Maturity Settings",
+        "maturity": ["All Maturity Ratings", "Adult", "Kid", "7+"],
+        "kid_content": "Only show rated 7+ and below for this profile.",
+        "adults_content": "Show titles of all maturity ratings for this profile.",
+        "btn_edit": "Edit"
+      },
+      "autoplay": {
+        "title": "Autoplay controls",
+        "autoplay_next_episode": "Autoplay next episode in a series on all devices.",
+        "autoplay_preview": "Autoplay previews while browsing on all devices."
+      },
+      "btn_complete": "Save",
+      "btn_cancel": "Cancel",
+      "btn_delete": "Delete Profile"
+    },
+    "add_profile": {
+      "title": "Add Profile",
+      "content": "Add a profile for another person watching Netflix.",
+      "input_name": "Name",
+      "checkbox_kid": "Kid",
+      "checkbox_helper_text": "If selected, this profile will only see TV shows and movies rated for ages 7+ and below.",
+      "btn_continue": "Continue",
+      "btn_cancel": "Cancel"
+    }
+  },
+  "nl-BE": {
+    "browse_profile": {
+      "title": "Wie kijkt?",
+      "btn_add": "Geen profiel meer",
+      "btn_edit": "Profielen voor Gerer les"
+    },
+    "manage_profile": {
+      "title": "Profielen beheren",
+      "btn_add": "Profiel toevoegen",
+      "btn_complete": "Gedaan"
+    },
+    "edit_profile": {
+      "title": "Bewerk profiel",
+      "language": {
+        "title": "Taal",
+        "lang_array": [
+          { "label": "English", "iso": "en-US" },
+          { "label": "Français", "iso": "fr-FR" },
+          { "label": "Nederlands", "iso": "nl-BE" }
+        ]
+      },
+      "maturity_settings": {
+        "title": "Volwassenheidsinstellingen",
+        "maturity": [
+          "Alle volwassenheidsclassificaties",
+          "Volwassen",
+          "Kind",
+          "7+"
+        ],
+        "kid_content": "Toon alleen beoordeeld 7+ en lager voor dit profiel.",
+        "adults_content": "Toon titels van alle leeftijdsclassificaties voor dit profiel.",
+        "btn_edit": "Bewerk"
+      },
+      "autoplay": {
+        "title": "Besturing voor automatisch afspelen",
+        "autoplay_next_episode": "Speel de volgende aflevering in een serie automatisch af op alle apparaten.",
+        "autoplay_preview": "Autoplay-voorbeelden tijdens het browsen op alle apparaten."
+      },
+      "btn_complete": "Sparen",
+      "btn_cancel": "Annuleren",
+      "btn_delete": "Verwijder profiel"
+    },
+    "add_profile": {
+      "title": "Profiel toevoegen",
+      "content": "Voeg een profiel toe voor een autre utilisateur met betrekking tot Netflix.",
+      "input_name": "naam",
+      "checkbox_kid": "Kind",
+      "checkbox_helper_text": "Indien geselecteerd, ziet dit profiel alleen tv-programma's en films die zijn geclassificeerd voor kinderen van 7 jaar en ouder.",
+      "btn_continue": "doorgaan",
+      "btn_cancel": "annuleren"
+    }
+  }
 }

@@ -36,9 +36,9 @@ import Modal from '../ui/Modal';
 
 // Import Data
 import footerData from '../../data/footer.json';
+import userHomeData from '../../data/userHome.json';
 
 const Home: FC = (): JSX.Element => {
-    document.title = "Home - Netflix" //! to update when add language json
     const location: any = useLocation();
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -66,11 +66,16 @@ const Home: FC = (): JSX.Element => {
     const [myList, setMyList] = useState(null)
     const [content, setContent] = useState(null)
     const [isInMyList, setIsInMyList] = useState(false)
+    const [langData, setLangData] = useState(userHomeData[language])
 
     const [discoverMovies, resultDiscoverMovies] = useLazyQuery (DISCOVERS);
     const [discoverSeries, resultDiscoverSeries] = useLazyQuery (DISCOVERS);
     const [getMovieGenres, resultMovieGetGenres] = useLazyQuery (GET_GENRES);
     const [getSeriesGenres, resultSeriesGetGenres] = useLazyQuery (GET_GENRES);
+
+    useEffect(() => {
+        document.title = langData.documentTitle
+    }, [langData, language])
 
     const getSimilarMovie = useQuery(GET_SIMILAR_MOVIE, {
         variables: {
@@ -252,16 +257,16 @@ const Home: FC = (): JSX.Element => {
                 <Header />
                 {showModal && <Modal onClose={() => dispatch(resetShowModal())} mediaType={mediaType} content={mediaType === "movie" ? movie : tv} movieCredits={mediaType === "movie" ? movieCast : null} isInMyList={isInMyList} />}
                 <FeaturedListItem myList={p.profile.my_list.length > 0 ? p.profile.my_list : myList} />
-                <Slider items={p.profile.my_list} sliderTitle="Ma Liste" position={1} />
-                {discoveredMovies ? (<Slider items={discoveredMovies.results} sliderTitle="Ce que regardent les abonnés qui partagent vos goûts" position={2} />) : (<div>Loading...</div>)}
-                {discoveredSeries ? (<Slider items={discoveredSeries.results} sliderTitle="Séries à regarder sans modération" position={3} />) : (<div>Loading...</div>)}
-                {trendingMovies ? (<Slider items={trendingMovies.results} sliderTitle="Vos films cet semaine" position={4} />) : (<div>Loading...</div>)}
-                {similarMovies ? (<Slider items={similarMovies.results} sliderTitle="Parce que vous avez regarder Avatar : La voie de l'eau" position={5} />) : (<div>Loading...</div>)}
-                {trendingTv ? (<Slider items={trendingTv.results} sliderTitle="Vos séries cet semaine" position={6} />) : (<div>Loading...</div>)}
-                {similarTv ? (<Slider items={similarTv.results} sliderTitle="Parce que vous avez The Mandalorian" position={7} />) : (<div>Loading...</div>)}
-                {upcomingMovies ? (<Slider items={upcomingMovies.results} sliderTitle="Prochains films à sortir" position={8} />) : (<div>Loading...</div>)}
-                {topRatedTv ? (<Slider items={topRatedTv.results} sliderTitle="Top des séries" position={9} />) : (<div>Loading...</div>)}
-                {topRatedMovies ? (<Slider items={topRatedMovies.results} sliderTitle="Top des Films" position={10} />) : (<div>Loading...</div>)}
+                <Slider items={p.profile.my_list} sliderTitle={langData.sliderTitle[0]} position={1} />
+                {discoveredMovies ? (<Slider items={discoveredMovies.results} sliderTitle={langData.sliderTitle[1]} position={2} />) : (<div>Loading...</div>)}
+                {discoveredSeries ? (<Slider items={discoveredSeries.results} sliderTitle={langData.sliderTitle[2]} position={3} />) : (<div>Loading...</div>)}
+                {trendingMovies ? (<Slider items={trendingMovies.results} sliderTitle={langData.sliderTitle[3]} position={4} />) : (<div>Loading...</div>)}
+                {similarMovies ? (<Slider items={similarMovies.results} sliderTitle={langData.sliderTitle[4]} position={5} />) : (<div>Loading...</div>)}
+                {trendingTv ? (<Slider items={trendingTv.results} sliderTitle={langData.sliderTitle[5]} position={6} />) : (<div>Loading...</div>)}
+                {similarTv ? (<Slider items={similarTv.results} sliderTitle={langData.sliderTitle[6]} position={7} />) : (<div>Loading...</div>)}
+                {upcomingMovies ? (<Slider items={upcomingMovies.results} sliderTitle={langData.sliderTitle[7]} position={8} />) : (<div>Loading...</div>)}
+                {topRatedTv ? (<Slider items={topRatedTv.results} sliderTitle={langData.sliderTitle[8]} position={9} />) : (<div>Loading...</div>)}
+                {topRatedMovies ? (<Slider items={topRatedMovies.results} sliderTitle={langData.sliderTitle[9]} position={10} />) : (<div>Loading...</div>)}
                 <Footer data={footerData[appLang.iso]} options={options} language={appLang.iso} changeLanguage={changeLanguage} />
             </div>
         )

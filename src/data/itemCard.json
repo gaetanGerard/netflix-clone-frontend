@@ -1,0 +1,32 @@
+{
+    "fr-FR": {
+        "buttonTitle": {
+            "btnPlay": "Lecture",
+            "btnAddToMyList": "Ajouter à ma liste",
+            "btnRemoveFromMyList": "Retirer de ma liste",
+            "btnMoreInfos": "Plus d'infos"
+        },
+        "movieOrTv": ["Film", "Série TV"],
+        "seasonOrEpisodes": ["Saisons", "Épisodes"]
+    },
+    "en-US": {
+        "buttonTitle": {
+            "btnPlay": "Play",
+            "btnAddToMyList": "Add to my list",
+            "btnRemoveFromMyList": "Remove from my list",
+            "btnMoreInfos": "More infos"
+        },
+        "movieOrTv": ["Movie", "TV Show"],
+        "seasonOrEpisodes": ["Seasons", "Episodes"]
+    },
+    "nl-NL": {
+        "buttonTitle": {
+            "btnPlay": "Afspelen",
+            "btnAddToMyList": "Toevoegen aan mijn lijst",
+            "btnRemoveFromMyList": "Verwijderen uit mijn lijst",
+            "btnMoreInfos": "Meer info"
+        },
+        "movieOrTv": ["Film", "TV-serie"],
+        "seasonOrEpisodes": ["Seizoen", "Afleveringen"]
+    }
+}

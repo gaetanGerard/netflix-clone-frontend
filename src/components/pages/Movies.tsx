@@ -31,11 +31,11 @@ import { itemInMyList } from '../../utils/function';
 
 // Import Data
 import footerData from '../../data/footer.json';
+import pageLangData from '../../data/seriesMoviesMyList.json';
 
 type Props = {}
 
 const Movies = (props: Props) => {
-    document.title = "Movies - Netflix" //! to update when add language json
     const location: any = useLocation();
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -55,6 +55,7 @@ const Movies = (props: Props) => {
     const tv = useSelector((state: RootState) => state.series.series);
     const [content, setContent] = useState(null)
     const [isInMyList, setIsInMyList] = useState(false);
+    const [langData, setLangData] = useState(pageLangData[language])
     const [discoverVariables, setDiscoverVariables] = useState({
         default: { media: "movie", language: p ? p.profile.language : "", kid: false, sortBy: "popularity.desc", page: 1, originalLanguage: "en" },
         comedy: { media: "movie", language: p ? p.profile.language : "", kid: false, sortBy: "popularity.desc", page: 1, originalLanguage: "en", withGenre: "35" },
@@ -71,6 +72,10 @@ const Movies = (props: Props) => {
         fantasy: { data: null, loading: true, error: null },
         action: { data: null, loading: true, error: null }
     })
+
+    useEffect(() => {
+        document.title = langData.movies.documentTitle
+    }, [langData, language])
 
     const fetchDiscoverMovies = (key) => {
         const variables = discoverVariables[key];
@@ -203,16 +208,16 @@ const Movies = (props: Props) => {
             <Header />
             {showModal && <Modal onClose={() => dispatch(resetShowModal())} mediaType={mediaType} content={mediaType === "movie" ? movie : tv} movieCredits={mediaType === "movie" ? movieCast : null} isInMyList={isInMyList} />}
             <FeaturedListItem myList={p.profile.my_list.length > 0 ? p.profile.my_list : movie} />
-            <Slider items={p.profile.my_list} sliderTitle="Ma Liste" position={1} />
-            {discoverResults.default.data ? (<Slider items={discoverResults.default.data.results} sliderTitle="Prisés des abonnés qui partagent vos goûts" position={2} />) : (<div>Loading...</div>)}
-            {discoverResults.comedy.data ? (<Slider items={discoverResults.comedy.data.results} sliderTitle="Comédies palpitantes" position={3} />) : (<div>Loading...</div>)}
-            {trendingMovies ? (<Slider items={trendingMovies.results} sliderTitle="Vos films cet semaine" position={4} />) : (<div>Loading...</div>)}
-            {discoverResults.documentary.data ? (<Slider items={discoverResults.documentary.data.results} sliderTitle="Docus société et culture" position={5} />) : (<div>Loading...</div>)}
-            {similarMovies ? (<Slider items={similarMovies.results} sliderTitle="Parce que vous avez regarder Avatar : La voie de l'eau" position={6} />) : (<div>Loading...</div>)}
-            {discoverResults.scienceFiction.data ? (<Slider items={discoverResults.scienceFiction.data.results} sliderTitle="Science-Fiction" position={7} />) : (<div>Loading...</div>)}
-            {upcomingMovies ? (<Slider items={upcomingMovies.results} sliderTitle="Prochains films à sortir" position={8} />) : (<div>Loading...</div>)}
-            {discoverResults.fantasy.data ? (<Slider items={discoverResults.fantasy.data.results} sliderTitle="Mystères" position={9} />) : (<div>Loading...</div>)}
-            {topRatedMovies ? (<Slider items={topRatedMovies.results} sliderTitle="Top des Films" position={10} />) : (<div>Loading...</div>)}
+            <Slider items={p.profile.my_list} sliderTitle={langData.movies.sliderTitle[0]} position={1} />
+            {discoverResults.default.data ? (<Slider items={discoverResults.default.data.results} sliderTitle={langData.movies.sliderTitle[1]} position={2} />) : (<div>Loading...</div>)}
+            {discoverResults.comedy.data ? (<Slider items={discoverResults.comedy.data.results} sliderTitle={langData.movies.sliderTitle[2]} position={3} />) : (<div>Loading...</div>)}
+            {trendingMovies ? (<Slider items={trendingMovies.results} sliderTitle={langData.movies.sliderTitle[3]} position={4} />) : (<div>Loading...</div>)}
+            {discoverResults.documentary.data ? (<Slider items={discoverResults.documentary.data.results} sliderTitle={langData.movies.sliderTitle[4]} position={5} />) : (<div>Loading...</div>)}
+            {similarMovies ? (<Slider items={similarMovies.results} sliderTitle={langData.movies.sliderTitle[5]} position={6} />) : (<div>Loading...</div>)}
+            {discoverResults.scienceFiction.data ? (<Slider items={discoverResults.scienceFiction.data.results} sliderTitle={langData.movies.sliderTitle[6]} position={7} />) : (<div>Loading...</div>)}
+            {upcomingMovies ? (<Slider items={upcomingMovies.results} sliderTitle={langData.movies.sliderTitle[7]} position={8} />) : (<div>Loading...</div>)}
+            {discoverResults.fantasy.data ? (<Slider items={discoverResults.fantasy.data.results} sliderTitle={langData.movies.sliderTitle[8]} position={9} />) : (<div>Loading...</div>)}
+            {topRatedMovies ? (<Slider items={topRatedMovies.results} sliderTitle={langData.movies.sliderTitle[9]} position={10} />) : (<div>Loading...</div>)}
             <Footer data={footerData[lang.iso]} options={options} language={lang.iso} changeLanguage={changeLanguage} />
         </div>
     )

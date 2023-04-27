@@ -3,6 +3,10 @@ import { Link, useLocation } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { useLazyQuery } from "@apollo/client";
 
+
+// Import Lang Data
+import userHomeData from '../../data/userHome.json';
+
 // Import Redux
 import { RootState } from "../../redux/root-reducer";
 import { get_movie, get_movie_credit } from '../../redux/movies/movies.actions';
@@ -42,6 +46,7 @@ const FeaturedListItem = ({myList}: Props) => {
     const movieCast = useSelector((state: RootState) => state.movies.movieCast);
     const tv = useSelector((state: RootState) => state.series.series);
     const mediaType = useSelector((state: RootState) => state.utils.mediaType);
+    const [langData, setLangData] = useState(userHomeData[appLang.iso])
 
     const [getMovie, resultGetMovie] = useLazyQuery(GET_MOVIE);
     const [getMovieCredit, resultGetMovieCredit] = useLazyQuery(GET_MOVIE_CREDIT);
@@ -103,8 +108,8 @@ const FeaturedListItem = ({myList}: Props) => {
                         <Typography HTMLElement="h1" classname="featured-list-item-title">{randomItem.title ? randomItem.title : randomItem.name}</Typography>
                         <Typography HTMLElement="p" classname="featured-list-item-overview">{randomItem.overview}</Typography>
                         <div className="featured-list-item-btn-container">
-                            <Link to="TO_DEFINE" className="btn btn-play"><Arrow />{randomItem.name ? "Play Episode" : "Play"}</Link>
-                            <Button btnType="button" classname="btn btn-dialog" onclick={() => onclick(randomItem)} name="openInfo" ><Information /> More Info</Button>
+                            <Link to="TO_DEFINE" className="btn btn-play"><Arrow />{langData.featuredList.buttonPlay}</Link>
+                            <Button btnType="button" classname="btn btn-dialog" onclick={() => onclick(randomItem)} name="openInfo" ><Information />{langData.featuredList.buttonMoreInfo}</Button>
                         </div>
                     </div>
                     <div className="featured-list-item-maturity-rating">

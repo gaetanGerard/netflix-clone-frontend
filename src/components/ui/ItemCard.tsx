@@ -23,6 +23,10 @@ import Like from "../ui/icons/Like";
 import DownArrow from "../ui/icons/DownArrow";
 import HD from "../ui/icons/HD";
 
+// Import Data
+import GenresLangData from '../../data/genres.json';
+import ItemCardLangData from '../../data/itemCard.json';
+
 type CardItem = {
     id: string,
     title?: string,
@@ -50,13 +54,17 @@ const ItemCard = ({item, itemID, isInMyList}: Props) => {
     const movieGenres = useSelector((state: RootState) => state.utils.movieGenres);
     const tvGenres = useSelector((state: RootState) => state.utils.tvGenres);
     const appLang = useSelector((state: RootState) => state.utils.language);
+    const p = useSelector((state: RootState) => state.profile.profile);
     const movie = useSelector((state: RootState) => state.movies.movie);
     const movieCast = useSelector((state: RootState) => state.movies.movieCast);
     const tv = useSelector((state: RootState) => state.series.series);
     const mediaType = useSelector((state: RootState) => state.utils.mediaType);
+    const language = p ? p.profile.language : appLang;
     const [lastInRow, setLastInRow] = useState(false)
     const [windowSize, setWindowSize] = useState(window.innerWidth - 100);
     const [itemsPerRow, setItemsPerRow] = useState(Math.floor(windowSize / 235));
+    const [langData, setLangData] = useState(GenresLangData[language])
+    const [itemCardLangData, setItemCardLangData] = useState(ItemCardLangData[language])
     const itemSize = 235;
 
     const [getMovie, resultGetMovie] = useLazyQuery(GET_MOVIE);
@@ -76,10 +84,10 @@ const ItemCard = ({item, itemID, isInMyList}: Props) => {
         setLastInRow((itemID+1) % itemsPerRow === 0 ? true : false)
     }, [itemID, itemsPerRow])
 
-    const getGenreName = (genreID: string) => {
-        const genre = movieGenres.find(genre => genre.id === genreID);
+    const getGenreName = (genreID: number) => {
+        const genre = langData.movieGenres.find(genre => genre.id === genreID);
         if(genre === undefined) {
-            const genre = tvGenres.find(genre => genre.id === genreID);
+            const genre = langData.tvGenres.find(genre => genre.id === genreID);
             if(genre === undefined) return null;
             return genre.name;
         }
@@ -127,15 +135,15 @@ const ItemCard = ({item, itemID, isInMyList}: Props) => {
                 <div className="card-body">
                     <div className="btn-container">
                         <div>
-                            <button className="btn btn-play">
+                            <button className="btn btn-play" title={itemCardLangData.buttonTitle.btnPlay}>
                                 <Play classname="icon" />
                             </button>
                             {isInMyList ? (
-                                <button className="btn btn-add-to-my-list" title="Enlever de ma liste">
+                                <button className="btn btn-add-to-my-list" title={itemCardLangData.buttonTitle.btnAddToMyList}>
                                     <Check classname="icon" />
                                 </button>
                             ) : (
-                                <button className="btn btn-remove-to-my-list" title="Ajouter à ma liste">
+                                <button className="btn btn-remove-to-my-list" title={itemCardLangData.buttonTitle.btnRemoveFromMyList}>
                                     <Add classname="icon" />
                                 </button>
                             )}
@@ -144,18 +152,18 @@ const ItemCard = ({item, itemID, isInMyList}: Props) => {
                             </button>
                         </div>
                         <div className="right-icon-container" onClick={() => handleClick(item)}>
-                            <button className="btn btn-info">
+                            <button className="btn btn-info" title={itemCardLangData.buttonTitle.btnMoreInfos}>
                                 <DownArrow classname="icon" />
                             </button>
                         </div>
                     </div>
                     <div className="detail-container">
-                        {item.media_type === "movie" ? (
-                            <p className="detail-type">Movie</p>) : (
-                            <p className="detail-type">TV Show</p>)
+                        {item.title ? (
+                            <p className="detail-type">{itemCardLangData.movieOrTv[0]}</p>) : (
+                            <p className="detail-type">{itemCardLangData.movieOrTv[1]}</p>)
                         }
                         {item.media_type === "tv" ? (
-                            item.number_of_seasons !== undefined ? (item.number_of_seasons > 1 ? (<p className="detail">{item.number_of_seasons} Seasons</p>) : (<p className="detail">{item.number_of_episodes} Episodes</p>)) : (null)) : (
+                            item.number_of_seasons !== undefined ? (item.number_of_seasons > 1 ? (<p className="detail">{item.number_of_seasons} {itemCardLangData.seasonOrEpisodes[0]}</p>) : (<p className="detail">{item.number_of_episodes} {itemCardLangData.seasonOrEpisodes[1]}</p>)) : (null)) : (
                             <p className="detail">{convertMinutesToHours(item.runtime)}</p>
                         )}
                         <HD classname="icon" />
@@ -163,7 +171,7 @@ const ItemCard = ({item, itemID, isInMyList}: Props) => {
                     <div className="genre-container">
                         {item.genre_ids.map((genre, index) => {
                             return (
-                                <p key={index} className="genre">{getGenreName(genre.toString())}</p>
+                                <p key={index} className="genre">{getGenreName(genre)}</p>
                             )
                         })}
                     </div>

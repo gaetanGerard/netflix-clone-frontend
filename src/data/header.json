@@ -2,7 +2,7 @@
     "fr-FR": {
         "left": ["Accueil", "Séries", "Films", "Nouveautés les plus regardées", "Ma liste"],
         "right": {
-            "searchInput": "Titres,personnes,genres",
+            "searchInput": "Films ou Séries",
             "kids": "Jeunesse",
             "notifications": [
                 {
@@ -54,7 +54,7 @@
     "en-US": {
         "left": ["Home", "TV Shows", "Movies", "New & Popular", "My List"],
         "right": {
-            "searchInput": "Titles,peoples,genres",
+            "searchInput": "Movies or Series",
             "kids": "Kids",
             "notifications": [
                 {
@@ -106,7 +106,7 @@
     "nl-BE": {
         "left": ["Homepagina", "Series", "Films", "Nieuw en populair", "Mijn lijst"],
         "right": {
-            "searchInput": "Titels,personen,genres",
+            "searchInput": "Films of series",
             "kids": "Kids",
             "notifications": [
                 {

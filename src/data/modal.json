@@ -1,0 +1,92 @@
+{
+    "fr-FR": {
+        "headerContent": {
+            "btnPlayTitle": "Ce bouton ne déclenche aucune action",
+            "btnPlay": "Lire"
+        },
+        "modalInfo": {
+            "voteAverage": "Recommandé à",
+            "seasonOrEpisodes": ["Saison", "Épisode"],
+            "cast": "Distribution",
+            "genres": "Genres"
+        },
+        "modalEpisodes": {
+            "episodeTitle": "Épisode",
+            "seasonTitle": "Saison"
+        },
+        "modalEpisodeList": {
+            "title": "C'est une démo aucune vidéo ne va être lancée",
+            "btnShowMoreTitle": "Voire plus"
+        },
+        "similar": {
+            "title": "Dans le même genre"
+        },
+        "about": {
+            "title": "À propos de",
+            "creator": "Créateur",
+            "cast": "Distribution",
+            "genres": "Genres",
+            "maturityRating": "Classification"
+        }
+    },
+    "en-US": {
+        "headerContent": {
+            "btnPlayTitle": "This button doesn't trigger any action",
+            "btnPlay": "Play"
+        },
+        "modalInfo": {
+            "voteAverage": "Recommended to",
+            "seasonOrEpisodes": ["Season", "Episode"],
+            "cast": "Cast",
+            "genres": "Genres"
+        },
+        "modalEpisodes": {
+            "episodeTitle": "Episode",
+            "seasonTitle": "Season"
+        },
+        "modalEpisodeList": {
+            "title": "This is a demo no video will be launched",
+            "btnShowMoreTitle": "Show more"
+        },
+        "similar": {
+            "title": "Similar"
+        },
+        "about": {
+            "title": "About",
+            "creator": "Creator",
+            "cast": "Cast",
+            "genres": "Genres",
+            "maturityRating": "Maturity rating"
+        }
+    },
+    "nl-NL": {
+        "headerContent": {
+            "btnPlayTitle": "Deze knop triggert geen actie",
+            "btnPlay": "Afspelen"
+        },
+        "modalInfo": {
+            "voteAverage": "Aanbevolen voor",
+            "seasonOrEpisodes": ["Seizoen", "Aflevering"],
+            "cast": "Cast",
+            "genres": "Genres"
+        },
+        "modalEpisodes": {
+            "episodeTitle": "Aflevering",
+            "seasonTitle": "Seizoen"
+        },
+        "modalEpisodeList": {
+            "title": "Dit is een demo, er zal geen video worden gestart",
+            "btnShowMoreTitle": "Toon meer"
+        },
+        "similar": {
+            "title": "Vergelijkbaar"
+        },
+        "about": {
+            "title": "Over",
+            "creator": "Maker",
+            "cast": "Cast",
+            "genres": "Genres",
+            "maturityRating": "Leeftijdsclassificatie"
+        }
+    }
+}

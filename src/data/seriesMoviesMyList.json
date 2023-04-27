@@ -1,0 +1,126 @@
+{
+    "fr-FR": {
+        "series": {
+            "documentTitle": "Séries - Netflix",
+            "sliderTitle": [
+                "Ma Liste",
+                "Ce que regardent les abonnées qui partagent vos gôuts",
+                "Séries comiques",
+                "Nouveautés",
+                "Documentaires",
+                "Parce que vous avez regarder The Mandalorian",
+                "Science-Fiction & Fantastique",
+                "Animation",
+                "Séries à regarder sans modération",
+                "Action & Aventure"
+            ]
+        },
+        "movies": {
+            "documentTitle": "Films - Netflix",
+            "sliderTitle": [
+                "Ma Liste",
+                "Prisé des abonnés qui partagent vos gôuts",
+                "Coméddies palpitantes",
+                "Vos films cet semaine",
+                "Docus société et culture",
+                "Parce que vous avez regarder Avatar: La voie de l'eau",
+                "Science-Fiction",
+                "Prochains films à sortir",
+                "Mystères",
+                "Top des films"
+            ]
+        },
+        "myList": {
+            "documentTitle": "Ma liste - Netflix",
+            "title": "Ma liste",
+            "empty": "Vous n'avez pas encore de titres dans votre liste."
+        },
+        "searchResult": {
+            "documentTitle": "Résultats de recherche - Netflix",
+            "title": "Résultats de recherche",
+            "empty": "Aucun résultat pour votre recherche."
+        }
+    },
+    "en-US": {
+        "series": {
+            "documentTitle": "Series - Netflix",
+            "sliderTitle": [
+                "My List",
+                "Because you watched The Mandalorian",
+                "Comedies",
+                "New Releases",
+                "Documentaries",
+                "Science-Fiction & Fantasy",
+                "Animation",
+                "TV Shows to watch without moderation",
+                "Action & Adventure"
+            ]
+        },
+        "movies": {
+            "documentTitle": "Movies - Netflix",
+            "sliderTitle": [
+                "My List",
+                "Popular with subscribers who share your tastes",
+                "Exciting Comedies",
+                "New Releases this week",
+                "Documentaries",
+                "Because you watched Avatar: The Way of the Water",
+                "Science-Fiction",
+                "Upcoming Movies",
+                "Mysteries",
+                "Top Movies"
+            ]
+        },
+        "myList": {
+            "documentTitle": "My list - Netflix",
+            "title": "My list",
+            "empty": "You don't have any titles in your list yet."
+        },
+        "searchResult": {
+            "documentTitle": "Search results - Netflix",
+            "title": "Search results",
+            "empty": "No results for your search."
+        }
+    },
+    "nl-NL": {
+        "series": {
+            "documentTitle": "Series - Netflix",
+            "sliderTitle": [
+                "Mijn lijst",
+                "Omdat je The Mandalorian hebt gekeken",
+                "Komedies",
+                "Nieuw",
+                "Documentaires",
+                "Sciencefiction en fantasy",
+                "Animatie",
+                "Series om zonder mate te bekijken",
+                "Actie en avontuur"
+            ]
+        },
+        "movies": {
+            "documentTitle": "Films - Netflix",
+            "sliderTitle": [
+                "Mijn lijst",
+                "Populair bij abonnees die je smaak delen",
+                "Spannende komedies",
+                "Nieuw deze week",
+                "Documentaires",
+                "Omdat je Avatar: De weg van het water hebt gekeken",
+                "Sciencefiction",
+                "Binnenkort in de bioscoop",
+                "Mysterie",
+                "Topfilms"
+            ]
+        },
+        "myList": {
+            "documentTitle": "Mijn lijst - Netflix",
+            "title": "Mijn lijst",
+            "empty": "Je hebt nog geen titels in je lijst."
+        },
+        "searchResult": {
+            "documentTitle": "Zoekresultaten - Netflix",
+            "title": "Zoekresultaten",
+            "empty": "Geen resultaten voor je zoekopdracht."
+        }
+    }
+}

@@ -12,6 +12,7 @@ import { RootState } from "../../redux/root-reducer";
 
 // Import Data
 import footerData from '../../data/footer.json';
+import pageLangData from '../../data/seriesMoviesMyList.json';
 
 // Import Styles
 import '../../styles/home.scss';
@@ -29,7 +30,6 @@ type Props = {}
 const MyList = (props: Props) => {
   const dispatch = useDispatch()
   const navigate = useNavigate();
-  document.title = "My List - Netflix" //! to update when add language json
   const lang = useSelector((state: RootState) => state.utils.language);
   const options = useSelector((state: RootState) => state.utils.languageOptions);
   const p = useSelector((state: RootState) => state.profile.profile);
@@ -38,8 +38,14 @@ const MyList = (props: Props) => {
   const tv = useSelector((state: RootState) => state.series.series);
   const mediaType = useSelector((state: RootState) => state.utils.mediaType);
   const showModal = useSelector((state: RootState) => state.utils.showModal);
+  const language = p ? p.profile.language : lang;
   const [content, setContent] = useState(null)
   const [isInMyList, setIsInMyList] = useState(false)
+  const [langData, setLangData] = useState(pageLangData[language])
+
+  useEffect(() => {
+    document.title = langData.myList.documentTitle
+}, [langData, language])
 
   if(p === null && localStorage.getItem('profileSave')) {
     dispatch(selectProfile(JSON.parse(localStorage.getItem('profileSave') || '{}')));
@@ -79,11 +85,11 @@ if(p) {
           <Header />
           {showModal && <Modal onClose={() => dispatch(resetShowModal())} mediaType={mediaType} content={mediaType === "movie" ? movie : tv} movieCredits={mediaType === "movie" ? movieCast : null} isInMyList={isInMyList} />}
           <div className="myList-body-container">
-            <Typography HTMLElement="h2" classname="title">My List</Typography>
+            <Typography HTMLElement="h2" classname="title">{langData.myList.title}</Typography>
             <div className="card-container">
               {p.profile.my_list.length > 0 ? p.profile.my_list.map((item, i=1) => (
                 <ItemCard key={item.id} item={item} itemID={i++} isInMyList={itemInMyList(p.profile.my_list, item)} />
-              )) : <p>No Item in the List</p>}
+              )) : <p>{langData.myList.empty}</p>}
             </div>
           </div>
           <Footer data={footerData[lang.iso]} options={options} language={lang.iso} changeLanguage={changeLanguage} />

@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useRef, useEffect, useState, Fragment } from "react";
 import { useDispatch, useSelector } from 'react-redux';
-import { useLazyQuery, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 
 
 // Import Custom Components
@@ -37,6 +37,9 @@ import { resetMediaType } from '../../redux/utils/utils.actions';
 // Import Styles
 import "../../styles/modal.scss";
 
+// Import data
+import modalLangData from '../../data/modal.json';
+
 const Modal = ({ onClose, content, movieCredits, mediaType, isInMyList }) => {
   const dispatch = useDispatch();
   const modalRef = useRef<HTMLDivElement>(null);
@@ -47,8 +50,11 @@ const Modal = ({ onClose, content, movieCredits, mediaType, isInMyList }) => {
   const [visibleEpisodes, setVisibleEpisodes] = useState<number>(10);
   const [inMyList, setInMyList] = useState<boolean>(isInMyList);
   const [seasonNumber, setSeasonNumber] = useState<string>(mediaType === "tv" ? "1" : "")
+  const appLang = useSelector((state: RootState) => state.utils.language);
+  const language = p ? p.profile.language : appLang;
   const [similar, setSimilar] = useState<any>([]);
   const [creator, setCreator] = useState<any>([]);
+  const [langData, setLangData] = useState(modalLangData[language])
   const getSeason = useQuery(GET_SEASON, {
     variables: {
       tvId: content ? content.id : null,
@@ -213,6 +219,9 @@ const Modal = ({ onClose, content, movieCredits, mediaType, isInMyList }) => {
       }
     }
 
+    console.log(sortByYear)
+    console.log(content)
+
     return (
       <div className="modal" ref={modalRef}>
         <div className="modal-content">
@@ -224,7 +233,7 @@ const Modal = ({ onClose, content, movieCredits, mediaType, isInMyList }) => {
             <div className="header-content">
               <Typography HTMLElement="h1" classname="modal-title">{mediaType === "movie" ? content.title : content.name}</Typography>
               <div className="btn-container">
-                <button className="btn btn-play" title="This button do nothing"><Arrow classname="icon" />Play</button>
+                <button className="btn btn-play" title={langData.headerContent.btnPlayTitle}><Arrow classname="icon" />{langData.headerContent.btnPlay}</button>
                 {inMyList ? (<button className="btn btn-check"><Check classname="icon" /></button>) : (<button className="btn btn-add"><Add classname="icon" /></button>)}
                 <button className="btn btn-like"><Like classname="icon" /></button>
               </div>
@@ -233,13 +242,13 @@ const Modal = ({ onClose, content, movieCredits, mediaType, isInMyList }) => {
           <div className="modal-info">
             <div className="left-info">
               <div className="info-content-details">
-                <Typography HTMLElement="p" classname="info-content-details-item vote-average">Recommandé à {averageNum} %</Typography>
+                <Typography HTMLElement="p" classname="info-content-details-item vote-average">{langData.modalInfo.voteAverage} {averageNum} %</Typography>
                 <Typography HTMLElement="p" classname="info-content-details-item release-date">{content.release_date ? getYearFromDate(content.release_date) : getYearFromDate(content.first_air_date)}</Typography>
                 {content.runtime ? (<Typography HTMLElement="p" classname="info-content-details-item runtime">{convertMinutesToHours(content.runtime)}</Typography>) : null}
                 {content.number_of_seasons ?
                   content.number_of_seasons > 1 ?
-                    (<Typography HTMLElement="p" classname="info-content-details-item seasons">{content.number_of_seasons} Season{content.number_of_seasons > 1 ? "s" : null}</Typography>)
-                      : (<Typography HTMLElement="p" classname="info-content-details-item seasons">{content.number_of_episodes} Episode{content.number_of_episodes > 1 ? "s" : null}</Typography>)
+                    (<Typography HTMLElement="p" classname="info-content-details-item seasons">{content.number_of_seasons} {langData.modalInfo.seasonOrEpisodes[0]}{content.number_of_seasons > 1 ? "s" : null}</Typography>)
+                      : (<Typography HTMLElement="p" classname="info-content-details-item seasons">{content.number_of_episodes} {langData.modalInfo.seasonOrEpisodes[1]}{content.number_of_episodes > 1 ? "s" : null}</Typography>)
                       : null}
                 <HD classname="icon" />
               </div>
@@ -262,13 +271,13 @@ const Modal = ({ onClose, content, movieCredits, mediaType, isInMyList }) => {
             <div className="right-info">
               <div className="distribution">
                 <Typography HTMLElement="p" classname="distribution-title">
-                  <span className="title">Distribution :</span>
+                  <span className="title">{langData.modalInfo.cast} :</span>
                   {renderCredits(mediaType)}
                 </Typography>
               </div>
               <div className="genres">
                 <Typography HTMLElement="p" classname="genres-title">
-                  <span className="title">Genres :</span>
+                  <span className="title">{langData.modalInfo.genres} :</span>
                   <Fragment>
                     {content.genres.length > 0 ? content.genres.map((genre, index) => (
                       <span key={index}> {genre.name}{index < content.genres.length - 1 && ","}</span>
@@ -294,10 +303,10 @@ const Modal = ({ onClose, content, movieCredits, mediaType, isInMyList }) => {
               <div className="modal-episodes-header">
                 <div className="modal-episodes-header-left">
                   <Typography HTMLElement="h2" classname="modal-episodes-title">
-                    Episodes
+                    {langData.modalEpisodes.episodeTitle}
                   </Typography>
                   <Typography HTMLElement="p" classname="modal-episodes-season">
-                    Season {seasonNumber}:
+                  {langData.modalEpisodes.seasonTitle} {seasonNumber}:
                   </Typography>
                 </div>
                 {content.seasons !== null ? content.seasons.length > 1 ? (
@@ -313,13 +322,13 @@ const Modal = ({ onClose, content, movieCredits, mediaType, isInMyList }) => {
                 <div className="modal-episodes-header-right">
                   <select value={seasonNumber} onChange={handleChange}>
                     {Array.from({ length: content.number_of_seasons }, (_, index) => (
-                      <option key={index} value={index + 1}>Saison {index + 1}</option>
+                      <option key={index} value={index + 1}>{langData.modalEpisodes.seasonTitle} {index + 1}</option>
                     ))}
                   </select>
                 </div>
                 ) : null : null}
               </div>
-              <div className="modal-episodes-list" title="Its a Demo and and no episode will start">
+              <div className="modal-episodes-list" title={langData.modalEpisodeList.title}>
                   {season !== null ? season.episodes.slice(0, visibleEpisodes).map((episode) => (
                     <div className="episode-container" key={episode.id}>
                       <div className="episode-number">
@@ -336,7 +345,7 @@ const Modal = ({ onClose, content, movieCredits, mediaType, isInMyList }) => {
                     </div>
                   )) : null}
                     {season !== null ? visibleEpisodes < season.episodes.length && (
-                    <button className="show-more" onClick={handleShowMore} title="Show More">
+                    <button className="show-more" onClick={handleShowMore} title={langData.modalEpisodeList.btnShowMoreTitle}>
                       <DownArrow classname="icon" />
                     </button>
                   ) : null}
@@ -345,7 +354,7 @@ const Modal = ({ onClose, content, movieCredits, mediaType, isInMyList }) => {
           ) : null}
           {similar !== undefined ? (<div className="modal-more-like-this">
               <Typography HTMLElement="h2" classname="modal-more-like-this-title">
-                More Like This
+                {langData.similar.title}
               </Typography>
               <div className="short-card-container">
                 {similar && similar.length >  0 ? similar.map((item, index) => (<ShortCard data={item} mediaType={mediaType} key={index} inMyList={handleIsInMyList} handleResetState={handleResetState} />)) : null}
@@ -354,10 +363,10 @@ const Modal = ({ onClose, content, movieCredits, mediaType, isInMyList }) => {
           ) : null}
           <div className="modal-about">
             <Typography HTMLElement="h2" classname="modal-about-title">
-              About {mediaType === "movie" ? content.title : content.name}
+              {langData.about.title} {mediaType === "movie" ? content.title : content.name}
             </Typography>
             {creator.length > 0 ? (<div className="modal-about-row">
-              <Typography HTMLElement="p" classname="modal-about-text">Creators:</Typography>
+              <Typography HTMLElement="p" classname="modal-about-text">{langData.about.creator}:</Typography>
               <ul>
                 {creator.map((item, index) => (
                   <li key={index}> {item}{index < creator.length - 1 && ","}</li>
@@ -365,7 +374,7 @@ const Modal = ({ onClose, content, movieCredits, mediaType, isInMyList }) => {
               </ul>
             </div>) : null}
             <div className="modal-about-row">
-              <Typography HTMLElement="p" classname="modal-about-text">Cast:</Typography>
+              <Typography HTMLElement="p" classname="modal-about-text">{langData.about.cast}:</Typography>
               <ul>
                 {mediaType === "movie" ? movieCredits !== null ? movieCredits.cast.slice(0,10).map((item, index) => (
                   <li key={index}> {item.name}{index < 9 && ","}</li>
@@ -375,7 +384,7 @@ const Modal = ({ onClose, content, movieCredits, mediaType, isInMyList }) => {
               </ul>
             </div>
             <div className="modal-about-row">
-              <Typography HTMLElement="p" classname="modal-about-text">Genres:</Typography>
+              <Typography HTMLElement="p" classname="modal-about-text">{langData.about.genres}:</Typography>
               <ul>
                 {content.genres.map((item, index) => (
                   <li key={index}> {item.name}{index < content.genres.length - 1 && ","}</li>
@@ -383,7 +392,7 @@ const Modal = ({ onClose, content, movieCredits, mediaType, isInMyList }) => {
               </ul>
             </div>
             <div className="modal-about-row">
-              <Typography HTMLElement="p" classname="modal-about-text">Maturity Rating:</Typography>
+              <Typography HTMLElement="p" classname="modal-about-text">{langData.about.maturityRating}:</Typography>
               {p.profile.kid ? (
                   <MRAllPublic classname="icon" />
                 ) : (

@@ -13,6 +13,7 @@ import { RootState } from "../../redux/root-reducer";
 
 // Import Data
 import footerData from '../../data/footer.json';
+import pageLangData from '../../data/seriesMoviesMyList.json';
 
 // Import styles
 import '../../styles/searchResult.scss';
@@ -28,7 +29,6 @@ import Modal from "../ui/Modal";
 export const SearchResult = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    document.title = "Search - Netflix" //! to update when add language json
     const lang = useSelector((state: RootState) => state.utils.language);
     const options = useSelector((state: RootState) => state.utils.languageOptions);
     const p = useSelector((state: RootState) => state.profile.profile);
@@ -39,9 +39,15 @@ export const SearchResult = () => {
     const movie = useSelector((state: RootState) => state.movies.movie);
     const movieCast = useSelector((state: RootState) => state.movies.movieCast);
     const tv = useSelector((state: RootState) => state.series.series);
+    const language = p ? p.profile.language : lang;
+    const [langData, setLangData] = useState(pageLangData[language])
     const [currentPage, setCurrentPage] = useState(searchResult ? searchResult.page : null)
     const [content, setContent] = useState(null)
     const [isInMyList, setIsInMyList] = useState(false)
+
+    useEffect(() => {
+        document.title = langData.searchResult.documentTitle
+    }, [langData, language])
 
     // if searchResult is null or empty, redirect to home page
     useEffect(() => {
@@ -100,7 +106,7 @@ export const SearchResult = () => {
                 <Header />
                 {showModal && <Modal onClose={() => dispatch(resetShowModal())} mediaType={mediaType} content={mediaType === "movie" ? movie : tv} movieCredits={mediaType === "movie" ? movieCast : null} isInMyList={isInMyList} />}
                 <div className="search-body-container">
-                <Typography HTMLElement="h2" classname="title">Résultat recherche : <span>{searchQuery}</span></Typography>
+                <Typography HTMLElement="h2" classname="title">{langData.searchResult.title} : <span>{searchQuery}</span></Typography>
                     <div className="card-container">
                         {resultOnlyWithImage.map((item: any, i: number) => (
                             item !== undefined ? (<ItemCard key={item.id} item={item} itemID={i++} isInMyList={itemInMyList(p.profile.my_list, item)} />) : null))

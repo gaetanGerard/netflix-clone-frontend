@@ -1,0 +1,59 @@
+{
+    "fr-FR": {
+        "documentTitle": "Accueil - Netflix",
+        "sliderTitle": [
+            "Ma liste",
+            "Ce que regardent les abonnés qui partagent vos goûts",
+            "Séries à regarder sans modération",
+            "Vos films cet semaine",
+            "Parce que vous avez regarder Avatar : La voie de l'eau",
+            "Vos séries cet semaine",
+            "Parce que vous avez The Mandalorian",
+            "Prochains films à sortir",
+            "Top des séries",
+            "Top des Films"
+        ],
+        "featuredList": {
+            "buttonPlay": "Lecture",
+            "buttonMoreInfo": "Plus d'infos"
+        }
+    },
+    "en-US": {
+        "documentTitle": "Home - Netflix",
+        "sliderTitle" : [
+            "My list",
+            "What subscribers who share your tastes are watching",
+            "Series to watch without moderation",
+            "Your movies this week",
+            "Because you watched Avatar: The Way of Water",
+            "Your series this week",
+            "Because you have The Mandalorian",
+            "Upcoming movies",
+            "Top series",
+            "Top movies"
+        ],
+        "featuredList": {
+            "buttonPlay": "Play",
+            "buttonMoreInfo": "More info"
+        }
+    },
+    "nl-NL": {
+        "documentTitle": "ontvangst - Netflix",
+        "sliderTitle" : [
+            "Mijn lijst",
+            "Wat abonnees die uw smaak delen kijken",
+            "Series om zonder matiging te bekijken",
+            "Uw films deze week",
+            "Omdat je Avatar hebt gekeken: The Way of Water",
+            "Uw serie deze week",
+            "Omdat je The Mandalorian hebt",
+            "Aankomende films",
+            "Top series",
+            "Top films"
+        ],
+        "featuredList": {
+            "buttonPlay": "Afspelen",
+            "buttonMoreInfo": "Meer info"
+        }
+    }
+}
