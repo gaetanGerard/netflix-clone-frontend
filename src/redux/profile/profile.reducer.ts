@@ -11,10 +11,12 @@ type PROFILE = {
 }
 
 type INITIAL_STATE_TYPE = {
+    profileName: string | null,
     profile: PROFILE | null
 }
 
 const INITIAL_STATE: INITIAL_STATE_TYPE = {
+    profileName: null,
     profile: null
 }
 
@@ -23,6 +25,7 @@ const profileReducer = (state = INITIAL_STATE, action) => {
         case ProfileActionTypes.SELECTED_PROFILE:
             return {
                 ...state,
+                profileName: action.payload.p_name,
                 profile: action.payload,
             }
         default:

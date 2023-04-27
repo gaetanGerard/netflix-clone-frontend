@@ -113,7 +113,6 @@ const Modal = ({ onClose, content, movieCredits, mediaType, isInMyList }) => {
   };
 
   useEffect(() => {
-    // console.log(content)
     document.addEventListener("click", handleCloseModal);
     return () => {
       document.removeEventListener("click", handleCloseModal);
@@ -122,7 +121,6 @@ const Modal = ({ onClose, content, movieCredits, mediaType, isInMyList }) => {
   }, [content, inMyList]);
 
   const renderCredits = (mediaType) => {
-    // console.log(movieCredits)
     if(movieCredits?.cast?.length > 0 || content.credits?.cast?.length > 0){
       const credits = mediaType === "movie" ? movieCredits?.cast : content.credits?.cast;
       const creditsToRender = credits.slice(0, 3); // récupère les 3 premiers éléments
@@ -218,9 +216,6 @@ const Modal = ({ onClose, content, movieCredits, mediaType, isInMyList }) => {
         });
       }
     }
-
-    console.log(sortByYear)
-    console.log(content)
 
     return (
       <div className="modal" ref={modalRef}>

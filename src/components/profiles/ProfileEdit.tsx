@@ -2,11 +2,12 @@
 import React, { useState, useEffect, ChangeEvent, Fragment } from 'react';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { useMutation, useQuery } from "@apollo/client";
+import { useMutation, useQuery, useLazyQuery } from "@apollo/client";
 
 // Import redux
 import { RootState } from "../../redux/root-reducer";
 import { login } from "../../redux/auth/auth.actions";
+import { selectProfile } from "../../redux/profile/profile.action";
 
 // Import style
 import '../../styles/profiles.scss';
@@ -46,8 +47,9 @@ const ProfileEdit = () => {
     const [langProfile, setLangProfile] = useState<string|null>(null);
 
     const [deleteProfile, deletedProfile] = useMutation(REMOVE_PROFILE, { errorPolicy: 'all', refetchQueries: [{ query: GET_USER }], awaitRefetchQueries: true });
-    const [updateProfile] = useMutation(UPDATE_PROFILE);
+    const [updateProfile, updatedProfile] = useMutation(UPDATE_PROFILE);
     const getUser = useQuery(GET_USER, {errorPolicy: 'ignore'});
+    const [getUserLazy, resultUpdatedUser] = useLazyQuery(GET_USER, {errorPolicy: 'ignore'});
 
     if((profileName === undefined)|| (profileName === null)) {
         navigate('/profiles/manage');
@@ -84,7 +86,12 @@ const ProfileEdit = () => {
       }
       // localStorage.setItem("profileSave", JSON.stringify(newData));
       updateProfile({ variables: { pName: currentProfile.p_name, profile: newData } }).then(response => {
-        dispatch(login(response.data.updateProfile))
+        const data = {
+          profileName: response.data.updateProfile.p_name,
+          profile: response.data.updateProfile
+        }
+        getUserLazy()
+        dispatch(selectProfile(data))
         navigate("/profiles/manage");
       }).catch(err => {
         console.log(err)
@@ -103,6 +110,19 @@ const ProfileEdit = () => {
         deletedProfile.reset();
       }
     }, [deletedProfile, dispatch, navigate, getUser])
+
+    useEffect(() => {
+      if(updatedProfile.data) {
+        const data = {
+          profileName: updatedProfile.data.updateProfile.p_name,
+          profile: updatedProfile.data.updateProfile
+        };
+        localStorage.setItem("profileSave", JSON.stringify(data));
+        dispatch(selectProfile(data));
+        navigate("/home")
+        updatedProfile.reset();
+      }
+    }, [updatedProfile, updatedProfile.data, dispatch, resultUpdatedUser, navigate])
 
 
   const currentProfileLanguage = currentProfile ? appLang.edit_profile.language.lang_array.find(item => item.iso === currentProfile.language) : null;

@@ -9,6 +9,7 @@ import Edit from "../ui/icons/Edit";
 
 // Import redux
 import { login } from '../../redux/auth/auth.actions';
+import { selectProfile } from '../../redux/profile/profile.action';
 import { RootState } from "../../redux/root-reducer";
 
 // Import utils
@@ -30,6 +31,7 @@ interface Props {
 export default function ProfileBody(props: Props) {
     const dispatch = useDispatch();
     const u = useSelector((state: RootState) => state.auth.user);
+    const p = useSelector((state: RootState) => state.profile.profile);
     const [user, setUser] = useState<User|null>(props.user ? u ? props.user : u : null);
 
     const { loading, error, data } = useQuery(GET_USER, {errorPolicy: 'ignore'});
@@ -50,7 +52,7 @@ export default function ProfileBody(props: Props) {
                 <div className="profiles-list"></div>
                 <div className="profiles-list">
                     {user ? user?.profiles?.map((profile: any, index: number) => (
-                            <Link to={props.edit ? "/profiles/edit" : "/home"} state={{ profileName: profile.p_name, profile }} className="profile-item" key={`${profile.p_name}_${index++}`}>
+                            <Link to={props.edit ? "/profiles/edit" : "/home"} onClick={() => selectProfile(profile)} state={{ profileName: profile.p_name, profile }} className="profile-item" key={`${profile.p_name}_${index++}`}>
                                 <div className={props.edit ? "profile_pic_container profile_pic_container_edit" : "profile_pic_container"}>
                                     {props.edit ? <Edit classname="svg-icon svg-icon-edit" /> : null}
                                     <img className="profile_pic" src={props.profile_pic[profile.profile_pic]} alt="Profile"/>

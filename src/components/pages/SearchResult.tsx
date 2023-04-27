@@ -89,10 +89,6 @@ export const SearchResult = () => {
         }
     }, [content, p.profile.my_list])
 
-    console.log(searchQuery)
-    console.log(searchResult)
-    // console.log(data)
-
     if(p && searchResult) {
         const filteredResult = searchResult?.results.filter((item: any) => {
             const numProps = Object.keys(item).length;

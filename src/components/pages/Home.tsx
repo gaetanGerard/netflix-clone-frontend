@@ -62,7 +62,7 @@ const Home: FC = (): JSX.Element => {
     const upcomingMovies = useSelector((state: RootState) => state.movies.upcomingMovies);
     const topRatedTv = useSelector((state: RootState) => state.series.topRatedTv);
     const topRatedMovies = useSelector((state: RootState) => state.movies.topRatedMovies);
-    const language = p ? p.profile.language : appLang;
+    const language = p?.profile ? p.profile.language : appLang.iso;
     const [myList, setMyList] = useState(null)
     const [content, setContent] = useState(null)
     const [isInMyList, setIsInMyList] = useState(false)
@@ -81,7 +81,7 @@ const Home: FC = (): JSX.Element => {
         variables: {
           whatToTarget: "similar",
           getUpcomTopRatedPopuNowPlayingId: "76600",
-          language: p ? p.profile.language : null,
+          language: language,
           page: "1"
           },
           skip: mediaType === "tv"
@@ -91,7 +91,7 @@ const Home: FC = (): JSX.Element => {
         variables: {
           whatToTarget: "similar",
           getUpcomTopRatedPopuNowPlayingTvId: "82856",
-          language: p ? p.profile.language : null,
+          language: language,
           page: "1"
           },
           skip: mediaType === "movie"
@@ -101,7 +101,7 @@ const Home: FC = (): JSX.Element => {
         variables: {
           mediaType: "movie",
           timeWindow: "week",
-          language: p ? p.profile.language : null,
+          language: language,
           page: "1"
           },
           skip: mediaType === "tv"
@@ -111,7 +111,7 @@ const Home: FC = (): JSX.Element => {
         variables: {
           mediaType: "tv",
           timeWindow: "week",
-          language: p ? p.profile.language : null,
+          language: language,
           page: "1"
           },
           skip: mediaType === "movie"
@@ -120,7 +120,7 @@ const Home: FC = (): JSX.Element => {
     const getUpcomingMovies = useQuery(UPCOMING_MOVIES, {
         variables: {
             whatToTarget: "upcoming",
-            language: p ? p.profile.language : null,
+            language: language,
             page: "1"
           },
           skip: mediaType === "tv"
@@ -129,7 +129,7 @@ const Home: FC = (): JSX.Element => {
     const getTopRatedTv = useQuery(TOP_RATED_TV, {
         variables: {
             whatToTarget: "top_rated",
-            language: p ? p.profile.language : null,
+            language: language,
             page: "1"
           },
           skip: mediaType === "movie"
@@ -138,7 +138,7 @@ const Home: FC = (): JSX.Element => {
     const getTopRatedMovies = useQuery(TOP_RATED_MOVIES, {
         variables: {
             whatToTarget: "top_rated",
-            language: p ? p.profile.language : null,
+            language: language,
             page: "1"
           },
           skip: mediaType === "tv"
@@ -148,7 +148,7 @@ const Home: FC = (): JSX.Element => {
         dispatch(setApplicationLanguage(e.target.value))
     }
 
-    if(profile) {
+    if(p === null && profile) {
         if(profile.profile) {
             dispatch(selectProfile(profile));
         } else if (!profile.profile) {
