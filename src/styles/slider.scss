@@ -106,3 +106,17 @@
     right: 0;
     margin-right: 52px;
   }
+
+@media only screen and (orientation : landscape) {
+  /* Styles */
+  .slider-mobile {
+    .slider-button {
+      opacity: 1;
+    }
+    .slider-button-next {
+      right: 0;
+      opacity: 1;
+      margin-right: 20px;
+    }
+  }
+}

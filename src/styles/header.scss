@@ -10,7 +10,8 @@
     align-content: center;
     padding: 0 3%;
     background: linear-gradient(180deg, rgba(0,0,0,.9) 0%, rgba(0,0,0,0) 100%);
-    position: sticky;
+    position: fixed;
+    width: 100%;
     top: 0;
     z-index: 100;
     a {

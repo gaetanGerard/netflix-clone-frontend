@@ -80,7 +80,7 @@ const Header = (props: Props) => {
         }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [u, u.profiles, kidProfile, p, searchBtn])
+    }, [u, u?.profiles, kidProfile, p, searchBtn])
 
     const handleSearch = (event) => {
         clearTimeout(timeoutId);

@@ -180,7 +180,18 @@
     grid-template-rows: 100px auto auto;
     justify-content: space-between;
 
+    .header-container {
+        position: sticky;
+    }
+
     footer {
         align-self: end;
     }
 }
+
+@media only screen and (orientation : landscape) {
+    /* Styles */
+    .home-container {
+      overflow-x: hidden;
+    }
+  }

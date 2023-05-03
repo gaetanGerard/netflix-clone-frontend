@@ -58,7 +58,7 @@ const Slider: React.FC<ISliderProps> = ({ items, sliderTitle, position }) => {
     };
 
     return (
-        <div className={`slider-container slider-position-${position}`}>
+        <div className={`slider-container slider-position-${position} ${/Mobi/.test(navigator.userAgent) ? "slider-mobile" : ""}`}>
             <Typography HTMLElement="h2" classname="slider-title">{sliderTitle}</Typography>
             <div className="slider-wrapper" style={{ transform: `translateX(-${currentIndex * 225}px)` }}>
                 {newList.map((item, index=1) => (
