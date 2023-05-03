@@ -261,6 +261,16 @@
     }
 }
 
+@media only screen and (max-width: 820px) {
+    .header-container {
+        width: 100vw;
+        padding: 0 20px;
+        .navigation-container {
+            justify-content: space-between;
+        }
+    }
+}
+
 @media only screen and (max-width: 540px) {
     .header-container {
         grid-template-columns: 80px auto;
@@ -291,6 +301,26 @@
                     grid-template-columns: auto auto auto;
                     justify-content: space-between;
                     width: 94vw;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 280px) {
+    .header-container {
+        grid-template-columns: 94vw;
+        grid-template-rows: 25px 25px 30px;
+        gap: 5px;
+        .navigation-container {
+            height: auto;
+            .navigation-items {
+                height: 25px;
+                li {
+                    height: 32px;
+                    button, svg {
+                        height: 25px;
+                    }
                 }
             }
         }

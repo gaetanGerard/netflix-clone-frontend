@@ -196,7 +196,7 @@
     }
 }
 
-@media only screen and (max-width: 720px) {
+@media only screen and (max-width: 1280px) {
     .searchResult-container {
         grid-template-rows: 100px 1500px 263px;
         .search-body-container {
@@ -280,6 +280,46 @@
             }
             .typography-p.featured-list-item-overview {
                 font-size: 5vw;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 280px) {
+    .home-container {
+        .featured-list-item-container {
+            .featured-list-item-info {
+                .featured-list-item-btn-container {
+                    .btn {
+                        font-size: $font-size-small;
+                        padding: .2rem 1.1rem .2rem 1rem;
+                    }
+                }
+                .typography-h1.featured-list-item-title {
+                    font-size: 6vw;
+                }
+                .typography-p.featured-list-item-overview {
+                    font-size: 5vw;
+                }
+            }
+        }
+        &.no-featuredListItem {
+            grid-template-rows: 140px auto auto;
+        }
+        .myList-body-container {
+            .card-container {
+                .card:hover {
+                    transform: translateX(-20px);
+                    .card-inner {
+                        width: 270px;
+                        .img-container {
+                            width: 270px;
+                        }
+                        .card-body {
+                            width: 270px;
+                        }
+                    }
+                }
             }
         }
     }

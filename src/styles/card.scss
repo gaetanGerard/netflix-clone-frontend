@@ -178,3 +178,40 @@
         transform: translateX(50%);
     }
 }
+
+@media only screen and (max-width: 540px) {
+    .card:hover {
+        transform: translateX(5px);
+    }
+}
+
+@media only screen and (max-width: 280px) {
+    .searchResult-container .search-body-container .card-container {
+        .card:hover {
+            transform: translateX(-20px);
+            .card-inner {
+                width: 270px;
+                .img-container {
+                    width: 270px;
+                }
+                .card-body {
+                    width: 270px;
+                }
+            }
+        }
+    }
+    .slider-item {
+        .card:hover {
+            transform: translateX(0);
+            .card-inner {
+                width: 270px;
+                .img-container {
+                    width: 270px;
+                }
+                .card-body {
+                    width: 270px;
+                }
+            }
+        }
+    }
+}
