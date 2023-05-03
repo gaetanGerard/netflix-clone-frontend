@@ -46,7 +46,7 @@ export const SearchResult = () => {
     const [isInMyList, setIsInMyList] = useState(false)
 
     useEffect(() => {
-        document.title = langData.searchResult.documentTitle
+        document.title = langData?.searchResult.documentTitle
     }, [langData, language])
 
     // if searchResult is null or empty, redirect to home page
@@ -87,7 +87,7 @@ export const SearchResult = () => {
         if(content) {
             setIsInMyList(itemInMyList(p.profile.my_list, content))
         }
-    }, [content, p.profile.my_list])
+    }, [content, p?.profile.my_list])
 
     if(p && searchResult) {
         const filteredResult = searchResult?.results.filter((item: any) => {
@@ -98,7 +98,7 @@ export const SearchResult = () => {
         const resultOnlyWithImage = filteredResult.filter((item) => item.poster_path || item.backdrop_path)
 
         return (
-            <div className="home-container no-featuredListItem">
+            <div className="home-container no-featuredListItem searchResult-container">
                 <Header />
                 {showModal && <Modal onClose={() => dispatch(resetShowModal())} mediaType={mediaType} content={mediaType === "movie" ? movie : tv} movieCredits={mediaType === "movie" ? movieCast : null} isInMyList={isInMyList} />}
                 <div className="search-body-container">

@@ -115,6 +115,77 @@ const Header = (props: Props) => {
                         <li><NavLink to="/movies" className={({ isActive }) => isActive ? 'active' : ''}>{headerLanguage.left[2]}</NavLink></li>
                         <li><NavLink to="/my-list" className={({ isActive }) => isActive ? 'active' : ''}>{headerLanguage.left[4]}</NavLink></li>
                     </ul>
+                    <ul className="navigation-items nav-desktop">
+                        <li>
+                            { searchBtn ? (
+                                <div className="search-box">
+                                    <SearchIcon classname="header-icons" />
+                                    <input type="text" placeholder={headerLanguage.right.searchInput} autoFocus onBlur={() => {setSearchBtn(false)}} onChange={handleSearch} value={searchInput} />
+                                </div>
+                            ) :
+                            (
+                                <button className="btn" onClick={() => setSearchBtn(true)}><SearchIcon classname="header-icons" /></button>
+                            )}
+                        </li>
+                        {p.profile.kid ? null : (
+                            <li className="dropdown-btn notifications-header">
+                                <Notification classname="header-icons" />
+                                <ul className="dropdown-notifications-content">
+                                    {headerLanguage.right.notifications.map((notification, index) => (
+                                    <li className="dropdown-notification-item" key={index}>
+                                        <div className="img-container">
+                                            <img src={`/images/notifications/${notification.picture}`} alt={notification.title} />
+                                        </div>
+                                        <div className="dropdown-notification-item-content">
+                                            <Typography HTMLElement="h3" classname="title">{notification.type}</Typography>
+                                            <Typography HTMLElement="h3" classname="title">{notification.title}</Typography>
+                                            <Typography HTMLElement="span" classname="title">{notification.date}</Typography>
+                                        </div>
+                                    </li>
+                                    ))}
+                                </ul>
+                            </li>)}
+                        {p.profile.kid ? (
+                            <li className="profile-img">
+                                <img src={profile_pic[p.profile.profile_pic]} alt="profile" />
+                            </li>
+                        ) : (
+                            <li className="dropdown-btn profile-header">
+                                <img src={profile_pic[p.profile.profile_pic]} alt="profile" />
+                                <Arrow classname="header-icons header-icons-arrow" />
+                                <ul className="dropdown-profile-content">
+                                    {dropDownProfile !== null ? dropDownProfile.map(profile => (
+                                        <li key={profile.p_name}>
+                                            <img src={profile_pic[profile.profile_pic]} alt="profile" />
+                                            <Link to="/home" state={{ profileName: profile.p_name, profile: profile }}>{profile.p_name}</Link>
+                                        </li>
+                                    )) : null}
+                                    <li className="li-with-border">
+                                        <Edit classname="header-icons" />
+                                        <Link to="/profiles/manage">{headerLanguage.right.profile.manageProfile}</Link>
+                                    </li>
+                                    <li>
+                                        <Avatar classname="header-icons" />
+                                        <Link to="/account">{headerLanguage.right.profile.account}</Link>
+                                    </li>
+                                    <li className="li-with-border">
+                                        <Help classname="header-icons" />
+                                        <Link to="/help">{headerLanguage.right.profile.help}</Link>
+                                    </li>
+                                    <li className="li-without-column">
+                                        <Link to="/logout">{headerLanguage.right.profile.logout}</Link>
+                                    </li>
+                                </ul>
+                            </li>
+                        )}
+                        {p.profile.kid ? (
+                            <li>
+                                <Link to="/profiles/browse" className="btn-back-to-profile">{headerLanguage.right.kid_exit_btn}</Link>
+                            </li>
+                            ) : null}
+                    </ul>
+                </div>
+                <div className="navigation-container nav-mobile">
                     <ul className="navigation-items">
                         <li>
                             { searchBtn ? (

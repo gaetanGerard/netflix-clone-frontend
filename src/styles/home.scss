@@ -194,4 +194,93 @@
     .home-container {
       overflow-x: hidden;
     }
-  }
+}
+
+@media only screen and (max-width: 720px) {
+    .searchResult-container {
+        grid-template-rows: 100px 1500px 263px;
+        .search-body-container {
+            height: auto;
+            min-height: 1500px;
+            .card-container {
+                min-height: 1500px;
+                height: auto;
+            }
+        }
+    }
+    .home-container {
+        overflow-x: hidden;
+        .featured-list-item-container {
+            min-height: calc(100vh + 68px);
+            .featured-list-item-info {
+                position: absolute;
+                bottom: 5%;
+                left: 0;
+                width: 95%;
+                height: auto;
+                margin-top: 0;
+                .featured-list-item-btn-container {
+                    .btn {
+                        font-size: $font-size-normal;
+                        padding: .2rem 1.7rem .2rem 1.5rem;
+                    }
+                }
+                .typography-p.featured-list-item-overview {
+                    font-size: 2vw;
+                }
+            }
+        }
+        &.no-featuredListItem {
+            grid-template-rows: 140px auto auto;
+        }
+    }
+}
+
+@media only screen and (max-width: 540px) {
+    .searchResult-container {
+        grid-template-rows: 100px 2800px 263px;
+        .search-body-container {
+            height: auto;
+            min-height: 2800px;
+            padding: 0 5px;
+            .card-container {
+                min-height: 2800px;
+                height: auto;
+                .card:hover {
+                    transform: translateX(5px);
+                }
+            }
+        }
+    }
+    .home-container {
+        .featured-list-item-container .featured-list-item-info {
+            .typography-p.featured-list-item-overview {
+                font-size: 3vw;
+            }
+        }
+
+        .myList-body-container {
+            padding: 0 5px;
+            .card-container {
+                height: auto;
+                min-height: auto;
+                .card:hover {
+                    transform: translateX(5px);
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 412px) {
+    .home-container {
+        .featured-list-item-container .featured-list-item-info {
+            .typography-h1.featured-list-item-title {
+                font-size: 6vw;
+            }
+            .typography-p.featured-list-item-overview {
+                font-size: 5vw;
+            }
+        }
+    }
+}
