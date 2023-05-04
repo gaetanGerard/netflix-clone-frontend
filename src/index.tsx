@@ -14,8 +14,13 @@ import {
 import { setContext } from '@apollo/client/link/context';
 import store from './redux/store';
 
+// Pour un usage local ajouter le fichier .env à la racine du projet et ajouter après REACT_APP_BACKEND_URL= l'url de votre backend
+// ensuite ajouter le port avant /graphql (le port est en 4000)
+// changer https par http
+// example: `http://${process.env.REACT_APP_BACKEND_URL}:4000/graphql`
+// ou REACT_APP_BACKEND_URL= soit localhost si le backend tourne sur la machine soit l'ip du serveur sur lequel il tourne
 const httpLink = createHttpLink({
-  uri: `http://${process.env.REACT_APP_BACKEND_URL}:4000/graphql`,
+  uri: `https://${process.env.REACT_APP_BACKEND_URL_PRODUCTION}/graphql`,
 });
 
 // Improve Server for retrieve with the token generated when the user logged in
