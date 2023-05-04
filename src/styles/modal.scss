@@ -382,3 +382,35 @@
       padding: 20px;
     }
 }
+
+@media only screen and (max-width: 414px) {
+  .modal {
+    .modal-content {
+      .modal-header {
+        .header-content {
+          .modal-title {
+            font-size: $font-size-large;
+          }
+          .btn-container {
+            .btn {
+              .icon {
+                transform: scale(3);
+              }
+            }
+            .btn-play {
+              .icon {
+                transform: rotate(-90deg) scale(2);
+              }
+            }
+          }
+        }
+      }
+      .modal-info {
+        grid-template-columns: auto;
+        .right-info {
+          display: none;
+        }
+      }
+    }
+  }
+}
