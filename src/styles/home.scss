@@ -189,6 +189,21 @@
     }
 }
 
+@media only screen and (min-width: 2560px) {
+    .home-container {
+        .featured-list-item-container {
+            .featured-list-item-info {
+                width: 90%;
+                height: auto;
+                margin-top: 0;
+                align-content: end;
+                align-items: end;
+                margin-bottom: 20px;
+            }
+        }
+    }
+}
+
 @media only screen and (orientation : landscape) {
     /* Styles */
     .home-container {

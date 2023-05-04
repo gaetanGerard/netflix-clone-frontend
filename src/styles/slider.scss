@@ -107,6 +107,12 @@
     margin-right: 52px;
   }
 
+  @media only screen and (min-width: 2560px) {
+    .slider-button-next {
+      right: 65px;
+    }
+  }
+
 @media only screen and (orientation : landscape) {
   /* Styles */
   .slider-mobile {

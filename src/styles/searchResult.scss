@@ -22,3 +22,14 @@
         position: relative;
     }
 }
+
+@media only screen and (min-width: 2560px) {
+    .search-body-container {
+        min-height: 600px;
+        height: 600px;
+        .card-container {
+            min-height: 500px;
+            height: 600px;
+        }
+    }
+}
