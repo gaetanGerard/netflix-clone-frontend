@@ -79,6 +79,10 @@ const Login: FC<LoginProps> = ({ language, loginData, changeLanguage, options })
                                 <Link to="/help">{loginData[language].loginContainer.helpLink}</Link>
                             </div>
                         </div>
+                        <div className="credentials-test">
+                            <p><span style={{fontWeight: 'bold'}}>Username: </span>test@test.com</p>
+                            <p><span style={{fontWeight: 'bold'}}>Password: </span>azerty123</p>
+                        </div>
                         <div className="other-login-method">
                             <div className="with-fb">
                                 <div className="fb-icon"></div>
